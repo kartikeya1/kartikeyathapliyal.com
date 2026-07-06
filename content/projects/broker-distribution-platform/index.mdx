@@ -1,0 +1,74 @@
+---
+title: "One Platform, Many Brokers"
+summary: "Designing platform primitives so that each new broker integration became configuration, not a rebuild."
+category: "platform"
+role: "Product Manager"
+timeframe: "2023 — 2026"
+status: "Shipped"
+featured: true
+order: 1
+---
+
+## Overview
+
+smallcase distributes curated portfolios of stocks and ETFs through stock brokers. Each broker brings its own authentication, app constraints, compliance context, and release calendar. I owned the platform work that let smallcase run inside all of them without maintaining a separate product for each.
+
+The core idea: broker differences should live in data, not in code. When a difference is configuration, adding a broker is onboarding. When it is code, adding a broker is a rebuild.
+
+{/* TODO: add real broker count */}
+
+## Problem
+
+The naive path is N bespoke integrations. Each works at launch, then rots on its own schedule. A change to order flows means N implementations to update, N test matrices, N release trains to catch. Bugs stop being fixed once; they get fixed per broker, or quietly not at all.
+
+The deeper problem was drift. Bespoke integrations diverge in ways nobody decided on purpose, until the same product behaves differently depending on which broker a user came from.
+
+<Placeholder label="Diagram: N bespoke broker integrations versus one platform core with per-broker configuration" aspect="wide" caption="The naive path multiplies maintenance. The platform path multiplies distribution." />
+
+## Constraints
+
+This is a regulated domain. Flows that touch orders or user consent cannot be simplified past what regulation and each broker's own risk teams allow.
+
+We did not control partner release cycles. A broker might ship monthly, or freeze releases for a quarter, so any design requiring lockstep releases was dead on arrival. And existing integrations were live, with real users placing real orders. Nothing we abstracted could break what already worked.
+
+## Thinking
+
+Before deciding what the platform should be, I mapped what actually varied, integration by integration: how each broker authenticated users, how sessions were handed off between their app and ours, how orders were placed and confirmed, what their apps could render, what their compliance teams required.
+
+The pattern that emerged shaped everything after. Most variance was parametric — different values for the same underlying step. Some was structural — a genuinely different sequence. Parametric variance belongs in configuration. Structural variance is where you either extend the core carefully or say no.
+
+## Process
+
+The core-versus-config boundary was the central product decision. The rule: a behavior goes in the core only after more than one broker needed it. Until then it stayed at the edge, even if that felt untidy. One data point is an anecdote, not an abstraction.
+
+Negotiating with broker engineering teams was half the job. Each team reasonably wanted the integration shaped around their stack. My position: we would absorb variance in configuration wherever possible, but the handshake contract stayed fixed, because every exception there became a permanent tax on every future broker. Mostly this meant saying no politely, with reasons, many times.
+
+## Design
+
+The platform settled into four primitives: the authentication handshake between broker and smallcase, session continuity so a user moving between apps stayed logged in, order flows carrying a transaction from intent to broker confirmation, and a configuration layer describing each broker's specifics — endpoints, feature availability, compliance copy, UI constraints.
+
+A new broker, ideally, was a configuration entry plus certification testing. The design goal: no engineer should open the core codebase to launch a broker.
+
+<Placeholder label="Architecture sketch: auth handshake, session continuity, and order flow primitives reading from a per-broker configuration layer" aspect="video" />
+
+## Execution
+
+We could not pause live integrations to rebuild them, so migration was incremental. Each broker moved onto the primitives one flow at a time, with the old path kept runnable until the new one was verified against that broker's release. Since we could not force partner timelines, every migration had to be safe to sit half-finished for a quarter.
+
+Certification became the backbone: a fixed test suite each integration passed before launch and after any core change. Unglamorous work, and the thing that let us change the core without holding our breath.
+
+{/* TODO: add real integration timeline comparison, before vs. after */}
+
+## Outcome
+
+New brokers onboarded onto the shared primitives rather than bespoke builds. Integration effort shifted from engineering time to configuration and certification time. Core improvements landed once and reached every broker.
+
+{/* TODO: add real metric for onboarding time reduction */}
+
+<Placeholder label="Screenshot: the same smallcase order flow rendered inside two different broker apps" aspect="video" caption="One core, surfaced differently per broker." />
+
+## Learnings
+
+Premature abstraction is as costly as none. Early on I pushed a behavior into the core after seeing it at one broker, assuming others would match. They did not, and unwinding it cost more than duplication ever would have. The two-broker rule came from that mistake.
+
+The other learning: the negotiation is the product. The primitives only hold if you defend the contract in a hundred small conversations. Architecture diagrams do not keep a boundary intact; people do.

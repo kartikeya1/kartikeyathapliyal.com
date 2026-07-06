@@ -1,0 +1,107 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/*
+  Design tokens — dark mode only.
+  Near-monochrome palette with a single warm accent, used sparingly.
+*/
+@theme {
+  --color-background: #0a0a0a;
+  --color-foreground: #ededed;
+  --color-muted: #a1a1a1;
+  --color-faint: #707070;
+  --color-card: #101010;
+  --color-card-hover: #141414;
+  --color-border: #1f1f1f;
+  --color-border-strong: #2e2e2e;
+  --color-accent: #d9926c;
+  --color-accent-dim: #a06a4e;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
+
+  --radius-lg: 0.875rem;
+  --radius-xl: 1.25rem;
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 28%, transparent);
+  color: var(--color-foreground);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Long-form typography (project pages, thinking, now) */
+.prose {
+  --tw-prose-body: #ababab;
+  --tw-prose-headings: var(--color-foreground);
+  --tw-prose-lead: var(--color-muted);
+  --tw-prose-links: var(--color-foreground);
+  --tw-prose-bold: var(--color-foreground);
+  --tw-prose-counters: var(--color-faint);
+  --tw-prose-bullets: #3a3a3a;
+  --tw-prose-hr: var(--color-border);
+  --tw-prose-quotes: var(--color-muted);
+  --tw-prose-quote-borders: var(--color-border-strong);
+  --tw-prose-captions: var(--color-faint);
+  --tw-prose-code: var(--color-foreground);
+  --tw-prose-pre-code: var(--color-muted);
+  --tw-prose-pre-bg: var(--color-card);
+  --tw-prose-th-borders: var(--color-border-strong);
+  --tw-prose-td-borders: var(--color-border);
+}
+
+.prose h2 {
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-top: 3.5rem;
+}
+
+.prose h3 {
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.prose a {
+  text-decoration-color: var(--color-border-strong);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 150ms ease;
+}
+
+.prose a:hover {
+  text-decoration-color: var(--color-accent);
+}

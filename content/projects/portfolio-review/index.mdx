@@ -1,0 +1,51 @@
+---
+title: "A Calmer Portfolio"
+summary: "A concept for redesigning portfolio review around decisions rather than stimulation."
+category: "ux"
+role: "Product Manager"
+timeframe: "2025"
+status: "Concept"
+featured: false
+order: 2
+prototype:
+  url: "{{VERCEL_PROJECT_5}}"
+  label: "Open Prototype"
+---
+
+## Overview
+
+This is a concept for reorganizing the portfolio review screen around decisions instead of stimulation. It answers three questions in order: what changed, what needs a decision, and what can safely be ignored. Intraday movement is demoted to a detail. I explored this while at smallcase in 2025. It exists as a prototype and a set of testable hypotheses, not a shipped feature.
+
+## Problem
+
+Investing apps borrow engagement patterns from social feeds. Red and green on every row. Intraday movement front and center. These patterns produce opens and sessions, but they serve a long-term investor badly. That investor's questions are slower: has anything material changed, and do I need to act. The default screen answers the least useful question first and trains people to check often and react to noise.
+
+## Constraints
+
+The screen still had to show holdings and values accurately. A calm interface cannot withhold information users are entitled to see. Rebalance updates and pending actions had to stay prominent, because missing one has real cost. And the concept had to survive a business context where engagement is measured and reported. I could not simply declare that fewer opens would be fine.
+
+## Thinking
+
+I treated attention as a cost the interface spends, not a metric it maximizes. Every element either helps a decision or it does not. Ordering by decision relevance produces the three questions: what changed since I last looked, what needs a decision from me, what can I safely ignore. Anything in the third category defaults to a collapsed, muted state.
+
+## Process
+
+I catalogued every element on the existing screen and asked which of the three questions it answered. Most answered none; they existed because the data was available. I sketched hierarchies on paper and tested them against realistic portfolio states: nothing happened, a rebalance is due, a position moved sharply. I kept the version that stayed legible in the boring case, which is most days.
+
+## Design
+
+The screen opens with a short changes section in plain language: what happened since your last visit, or a single line saying nothing material changed. Below that sit decisions, such as rebalances due or actions pending, each with enough context to act on the spot. Holdings come last, in a muted table. Color is reserved for decision states rather than price direction, and the day's movement lives behind one tap instead of on every row.
+
+<Placeholder label="Portfolio review screen: changes summary on top, pending decisions in the middle, muted holdings table below" aspect="video" caption="The hierarchy follows the three questions, in order." />
+
+## Execution
+
+I built the concept as a clickable prototype covering the three main states and wrote the copy for the quiet case first, since that is what most users would see. I drafted a test plan: a small diary study comparing whether people could say what changed in their portfolio after a week on each design. As a concept, that plan is where execution stopped.
+
+## Outcome
+
+The outcome is a concept with hypotheses precise enough to test. If the design works, people open the app less often but act more reliably on the things that matter, and they can describe their portfolio's state without checking it. If it fails, the quiet screen reads as broken or as hiding something. Either result would be informative.
+
+## Learnings
+
+The honest tension: calm design and engagement metrics pull in opposite directions. A screen that helps people check less will look, on most dashboards, like a product getting worse. I do not have a clean resolution. The closest I got is that the right counter-metrics are retention and decision follow-through, which reward trust over frequency. But those move slowly, and slow evidence is hard currency inside a quarterly planning cycle.

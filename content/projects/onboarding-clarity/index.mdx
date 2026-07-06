@@ -1,0 +1,51 @@
+---
+title: "Onboarding, Without the Fog"
+summary: "A concept that resequences a first-time investor's onboarding around comprehension and trust rather than form completion."
+category: "ux"
+role: "Product Manager"
+timeframe: "2025"
+status: "Concept"
+featured: true
+order: 1
+prototype:
+  url: "{{VERCEL_PROJECT_4}}"
+  label: "Open Prototype"
+---
+
+## Overview
+
+This is a product thinking exercise, not a visual restyle. I took a first-time investor's onboarding journey — sign-up, KYC, bank mandate, first order — and resequenced it around comprehension and trust instead of form completion. The prototype's screens exist to make the sequence walkable. The sequence is the work.
+
+## Problem
+
+In investing products, drop-off concentrates where comprehension and trust dip at the same time. KYC asks for identity documents before the product has proven anything. The bank mandate asks for standing authority over money. The first order cannot be undone. Most redesigns polish these screens — tighter copy, fewer fields, a friendlier progress bar. The order of decisions stays untouched, and so does the drop-off.
+
+## Constraints
+
+Parts of the sequence are fixed. Regulation requires identity verification before any order is placed, and mandates run on payment rails with their own steps and failure modes. I treated those as immovable and worked inside them. The other constraint is evidence: my read on where users stall comes from years spent near this funnel at smallcase, not a fresh experiment.
+
+## Thinking
+
+Three ideas shaped the resequencing. First, reduce simultaneous decisions: a screen that asks for a document, a consent, and a plan choice at once is three chances to stall. Second, build trust before irreversible steps: before asking for a mandate, show where the money sits, who holds the securities, and how to stop. Third, progressive disclosure: at every step, the user knows why it exists and what happens next.
+
+## Process
+
+I started with a decision inventory, not wireframes. For each screen in a typical flow, I listed every decision it asked for, whether that decision was reversible, and what the user had to believe to proceed. The table made the problem visible: the heaviest belief requirements landed on the screens with the most simultaneous decisions. Resequencing was mostly rearranging that table until no screen carried more than one hard decision.
+
+## Design
+
+The concept flow opens with orientation: what the whole journey involves, how long it takes, and what can be changed later. KYC is split into single-decision steps, each with a one-line reason it is required. Before the mandate, a short trust interlude explains custody and cancellation in plain terms. The first order is framed as a small starting point, with a confirmation screen stating exactly what will happen and when.
+
+<Placeholder label="Concept flow map: orientation, single-decision KYC steps, trust interlude before the bank mandate, then the first order" aspect="wide" caption="The resequenced journey, one hard decision per screen." />
+
+## Execution
+
+I built a clickable prototype so the pacing could be felt rather than argued about. Fidelity is deliberately middling — real enough to judge the sequence, rough enough that feedback stays on the flow, not the visuals. The copy went through more revisions than the layouts, which reflects where I think the difficulty lives.
+
+## Outcome
+
+This is a concept, so the honest outcome is a set of testable hypotheses, stated as such. One: splitting compound screens into single decisions lowers abandonment at KYC even though the step count rises. Two: placing the trust interlude before the mandate improves completion more than any copy change on the mandate screen itself. Three: a persistent explanation of why each step exists reduces support contact during onboarding. Each is falsifiable with a standard split test.
+
+## Learnings
+
+Some questions only a live test could settle. Whether more, smaller steps read as lighter or simply longer is empirical; paper logic supports both answers. Whether users read trust content or skip past it is another. And the real test of any resequencing is its failure states — name mismatches, mandate rejections — because that is where the fog actually forms. A concept can shape those paths. Only production traffic can grade them.

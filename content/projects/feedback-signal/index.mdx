@@ -1,0 +1,37 @@
+---
+title: "Signal from Noise"
+summary: "A prototype LLM pipeline that turns high-volume qualitative feedback into themes without breaking the chain back to the original verbatims."
+category: "ai-lab"
+role: "Product Manager"
+timeframe: "2025 — 2026"
+status: "Prototype"
+featured: false
+order: 3
+prototype:
+  url: "{{VERCEL_PROJECT_3}}"
+  label: "Open Prototype"
+---
+
+## Problem
+
+Qualitative feedback arrives at a scale nobody actually reads. Support tickets, app store reviews, sales call notes, survey verbatims — they accumulate faster than any team can process them. So product managers do what people do under volume: they sample. They read what surfaces in Slack, what support escalates, what the loudest customer said this week.
+
+Sampling bias becomes roadmap bias. The feedback that reaches a PM is not a random draw. It is filtered by who escalates, who bothers to write reviews, and which anecdote is memorable enough to get retold. Worse, once feedback is summarized — users are confused by onboarding, say — the sources disappear. Nobody can check whether that claim rests on hundreds of tickets or on a handful, one of which was repeated in three meetings. Summaries without sources launder anecdotes into facts.
+
+## Idea
+
+Signal from Noise is an LLM pipeline that clusters raw feedback into themes, with one hard rule: every theme must link back to the verbatims that produced it. Click a theme and you see the actual tickets, reviews, and notes underneath, unedited. The unit of output is not a summary. It is a claim plus its evidence.
+
+That constraint changes how the synthesis behaves. A theme that cannot show its receipts does not appear. Frequency is visible rather than implied, so you can tell whether a theme is broad and shallow or narrow and intense. And when someone challenges a conclusion in a roadmap discussion, the answer is a link, not a defense of somebody's memory.
+
+## Mockup
+
+The working view is a ranked list of themes. Each row states the claim, how much evidence sits behind it, and which channels it came from. Expanding a row shows the raw quotes, untouched, each linked to its source record.
+
+<Placeholder label="Theme list with one theme expanded to show its underlying verbatims — raw quotes with source and date, grouped under the claim they support" aspect="video" caption="Every theme opens into the evidence that produced it." />
+
+## Prototype
+
+The prototype runs on an exported sample corpus, not a live feed. Ingestion from real ticketing and review systems is stubbed. The pipeline reads a flat file, embeds and clusters the entries, has a model label each cluster, and renders the theme view with expandable evidence.
+
+Clustering turned out to be the easy part. Embeddings plus a labeling pass produce themes that look plausible on the first attempt. The hard, unsolved parts are deduplication and weighting. The same user complaining about the same bug in three channels should count once, not three times, and detecting that reliably is messy. And not all verbatims deserve equal weight — a sales note about a large account and a one-line app review are different kinds of evidence. For now the prototype counts everything once and equally, and says so on screen, because a wrong weighting hidden inside the pipeline would recreate the exact laundering problem this tool exists to fix.

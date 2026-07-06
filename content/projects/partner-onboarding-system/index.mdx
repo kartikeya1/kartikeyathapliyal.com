@@ -1,0 +1,64 @@
+---
+title: "Integration as a Product"
+summary: "Turning broker onboarding from a bespoke engineering project into a product with self-serve docs, sandboxes, and shared checklists."
+category: "platform"
+role: "Product Manager"
+timeframe: "2024 — 2026"
+status: "Shipped"
+featured: false
+order: 2
+---
+
+## Overview
+
+Investors used smallcase through their stock brokers, so every broker partnership required a technical integration with the platform. For a long time, each integration was run as a one-off engineering project. I worked on turning the integration itself into a product: a defined path with documentation, sandbox environments, and checklists, built for the engineering teams on the other side.
+
+## Problem
+
+Onboarding a new broker was slow in ways that had little to do with the actual engineering. The knowledge of how to integrate lived in people's heads. Steps were rediscovered on ad-hoc calls. A question answered for one partner was answered again, from scratch, for the next. Nobody owned the sequence end to end, so progress depended on someone remembering to follow up.
+
+The cost showed up in two places: elapsed time, and coordination load. Engineers on both sides spent hours on calls that existed only because there was nothing to read.
+
+## Constraints
+
+Broker engineering teams varied widely. Some were large and process-heavy, with their own security reviews and release calendars. Others were three people shipping fast. I could not mandate how any of them worked, and a process designed for one kind of team would fail for the other.
+
+The other constraint was internal. This was infrastructure work with no launch moment, competing for engineering time against visible features. Whatever we built had to be cheap to maintain.
+
+## Thinking
+
+The reframe that made the work tractable: onboarding is a product, and its users are external engineers. Once you say that, the usual product questions apply. What is the first-run experience? Where do users get stuck? What can they do without talking to us?
+
+A bespoke project optimizes for the current partner. A product optimizes for the next ten. That meant doing things that felt slow at the time, like writing a doc instead of answering the question directly, because each one converted a recurring cost into a one-time cost.
+
+## Process
+
+I started by reconstructing the last few integrations from the people who had run them, and wrote down what actually happened rather than what the plan said. The same failure points repeated: unclear sequencing, delays in getting environment access, and questions that stalled for days because nobody knew whose job it was to answer them.
+
+From that, I mapped the integration into stages, each with an entry condition, an exit condition, and a named owner on our side.
+
+<Placeholder label="Diagram of the integration path: stages from kickoff to go-live, each with an owner and exit criteria" aspect="wide" caption="The integration path, drawn once and reused for every partner." />
+
+## Design
+
+The product had four parts. Self-serve documentation covering the full path, written for an engineer who had never spoken to us. Sandbox environments that partners could use without scheduling anything. A checklist per stage, shared with the partner, so both sides saw the same state. And a glossary, because much of the early confusion turned out to be two teams using the same word for different things.
+
+<Placeholder label="Mockup of a shared integration checklist showing stage status for a partner team" aspect="video" caption="One checklist, visible to both sides." />
+
+## Execution
+
+We rolled the system out with the next broker in the pipeline and treated every question they asked as a defect in the documentation. If a question needed a call, the answer went into the docs the same week. Over successive integrations the calls got shorter and rarer, and the checklist became the default status report. Nobody needed a meeting to know where things stood.
+
+## Outcome
+
+Integration timelines came down, and the improvement held across partners of very different sizes.
+{/* TODO: add real metric */}
+
+The larger shift was in coordination. Calls moved from being the primary channel to being exception handling, and onboarding stopped depending on any single person's availability. New people on our side could run an integration without shadowing anyone.
+{/* TODO: add real metric */}
+
+## Learnings
+
+Documentation is an interface. External teams experience your docs the way users experience your UI, and the docs deserve the same iteration loop.
+
+And the best process is the one that survives someone leaving. If an integration only works because one engineer remembers everything, you do not have a process. You have a person.

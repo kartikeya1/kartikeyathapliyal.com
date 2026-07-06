@@ -1,0 +1,37 @@
+---
+title: "Prototype-First Product Development"
+summary: "An exploration of what changes when AI makes a working prototype cheaper than the document that describes it."
+category: "ai-lab"
+role: "Product Manager"
+timeframe: "2025 — 2026"
+status: "Exploration"
+featured: true
+order: 2
+prototype:
+  url: "{{VERCEL_PROJECT_2}}"
+  label: "Open Prototype"
+---
+
+## Problem
+
+A spec is a lossy compression of intent. I write down what I want, an engineer decompresses it, and the two versions never quite match. The gaps surface late, in build reviews or in production, where they are most expensive to fix. Static mockups fail in a different way: they show what a screen looks like, not how it behaves, and behavior is where most product decisions actually live.
+
+Users cannot react to a PDF. Put a document in front of someone and you get feedback on the document — the wording, the diagram, the order of the slides — not on the product. The argument about a flow happens in the abstract. Two people can agree on a written description of an interaction and still disagree completely about what it means. Usually nobody finds out until after the build.
+
+## Idea
+
+With AI coding tools, a working prototype is often cheaper to produce than the document describing it. That inverts the usual sequence, so I have been exploring the inverted workflow: product decisions ship as functional prototypes that users and stakeholders can click, and the spec becomes an artifact extracted from the prototype rather than the other way around. States get enumerated by clicking through them. Edge cases turn up when the prototype breaks. Reviews start with a URL instead of a reading assignment.
+
+This changes the contract between PM and engineering, and the change has to be explicit. Prototypes are throwaway by agreement. They exist to settle what to build, and nobody inherits their code. Production quality is a separate craft — performance, accessibility, failure handling, all the things a prototype deliberately skips. The prototype answers whether this is the right thing; engineers still own how the real thing gets built. Blurring that line is how prototype code sneaks into production, which is the failure mode this workflow most needs to guard against.
+
+## Mockup
+
+The shape I keep converging on is a loop with three stops. A decision gets framed, a prototype makes it concrete, and the spec is written down last, by walking through what the prototype already does. Disagreements move from the abstract to the specific: instead of debating a paragraph, someone clicks the flow and points at the screen where it falls apart.
+
+<Placeholder label="Workflow diagram: decision framed, prototype built, spec extracted, with the review loop attached to the prototype rather than the document" aspect="wide" caption="The spec is extracted from the prototype, not the other way around." />
+
+## Prototype
+
+The linked prototype is a small collection of functional artifacts built this way: interaction flows, a couple of internal tools, and parts of this website, which was itself assembled prototype-first — sections were clickable before they were specified. Each piece took hours rather than weeks, and they are deliberately uneven. Several existed only long enough to prove an idea was not worth building, which I count as the cheapest outcome a prototype can deliver.
+
+<Placeholder label="Grid of small prototype screens from the collection, each labeled with the decision it was built to settle" aspect="video" caption="Small, disposable, and built to settle one decision each." />

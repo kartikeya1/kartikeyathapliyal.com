@@ -1,0 +1,63 @@
+---
+title: "Waypoint"
+summary: "An internal platform that let marketing teams and broker partners generate authenticated deep links into smallcase."
+category: "internal-tooling"
+role: "Product Manager"
+timeframe: "2024 — 2026"
+status: "Shipped"
+featured: true
+order: 1
+prototype:
+  url: "{{BROKER_PLATFORM_URL}}"
+  label: "Open Platform"
+---
+
+## Overview
+
+Waypoint was an internal platform I built and ran at smallcase. It let marketing teams and broker partners generate deep links that dropped a user onto a specific screen inside smallcase, already authenticated, in the correct broker context, with campaign attribution attached. Before Waypoint, every such link was assembled by hand.
+
+## Problem
+
+smallcase reaches investors through broker partners, and most campaigns start outside the product. A push notification from a broker, an email, a banner. Each needed the user to land somewhere specific, logged in, inside that broker's version of the platform.
+
+Those links were hand-built. An engineer assembled the URL and passed it through two or three teams for checking. One wrong parameter sent the user to the home screen or, worse, into the wrong broker context. Links broke silently, and nobody found out until a campaign underperformed and someone went looking. Every campaign cost engineering time, and the coordination between marketing, engineering, and the partner added days before anything shipped.
+
+{/* TODO: add real turnaround numbers for the before state */}
+
+## Constraints
+
+An authenticated link is close to a credential. If it leaks or lives too long, someone else can act as the user. So convenience had to be bounded by expiry, scope, and context checks from the first version.
+
+Each broker partner had its own configuration and auth handoff, in apps we could not change retroactively. Waypoint had to produce links that worked across all of them without asking any partner to rebuild link handling. The team was small, so whatever we built had to stay cheap to maintain.
+
+## Thinking
+
+The real problem was coordination, not link construction. Marketing did not need engineers to write URLs. They needed a guarantee that a link was correct before it went into a campaign. That reframing set the core principle. Instead of teaching people to write valid links, make invalid links impossible to create. Validation had to live in the act of construction, not in a review step afterwards.
+
+## Process
+
+I started by cataloguing deep links from past campaigns and the ways they had failed. Wrong broker context, expired sessions, dead routes, missing attribution. That catalogue became the spec. We shipped a narrow first version for internal marketing only, watched where people got stuck, then extended it to broker-specific configurations and opened it to partner teams. Each expansion was gated on the previous one running without incident.
+
+## Design
+
+The builder worked by selection rather than typing. You picked a destination from the live routing catalogue, a broker configuration, and a campaign, and Waypoint composed the link. There was no free-text URL entry, so a malformed link could not be produced. Saved navigation state let a link restore a mid-journey position, and every link could be previewed against the target broker before it went out.
+
+<Placeholder label="Waypoint link builder showing destination, broker, and campaign selection" aspect="video" caption="Composed by selection, never typed." />
+
+Permissions followed the trust model. Broker partners could only mint links into their own context. Authenticated links carried scoped, short-lived tokens, so a leaked link had a small blast radius.
+
+## Execution
+
+I worked with engineering to define a signed link schema with expiry and scope built in, then rolled it out broker by broker. Monitoring made a dead route or a stale broker configuration surface as an alert instead of a quiet failure. When a route changed in the product, existing links to it were flagged before a campaign went out.
+
+<Placeholder label="Link health monitoring across broker configurations" aspect="wide" />
+
+## Outcome
+
+Campaign links became self-serve. Marketing and partner teams generated and shared their own links, and engineering dropped out of the loop for routine campaigns. Turnaround went from a cross-team request to a form someone filled in themselves. Silent breakage was replaced by alerts naming the broken link.
+
+{/* TODO: add real metric */}
+
+## Learnings
+
+The best internal tools remove a class of errors rather than speeding up an error-prone task. Validation at construction beats validation at review. And trust models matter as much in internal tools as in user-facing ones. Once partners could mint authenticated links, scope and expiry stopped being implementation details and became product decisions.
