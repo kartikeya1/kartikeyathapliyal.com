@@ -8,8 +8,7 @@ export const metadata: Metadata = {
 };
 
 /**
- * All hrefs below come from lib/site.ts placeholders —
- * replace {{EMAIL}}, {{LINKEDIN}}, {{GITHUB}}, {{X_PROFILE}} there.
+ * All hrefs below come from lib/site.ts — edit links there, not here.
  */
 const channels = [
   {

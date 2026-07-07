@@ -64,6 +64,7 @@ Thinking page code).
 
 ## Placeholders still pending
 
-Search the repo for `{{` to find every URL not yet real:
-`{{LINKEDIN}}`, `{{GITHUB}}`, `{{EMAIL}}`, `{{X_PROFILE}}`, `{{INDIA_RESUME}}`,
-`{{SEA_RESUME}}`, `{{BROKER_PLATFORM_URL}}`, `{{VERCEL_PROJECT_1..5}}`.
+Search the repo for `{{` to find every URL not yet real. Social/contact
+links (LinkedIn, GitHub, email, X) are already live in `lib/site.ts`.
+Still pending: `{{INDIA_RESUME}}`, `{{SEA_RESUME}}`,
+`{{BROKER_PLATFORM_URL}}`, `{{VERCEL_PROJECT_1..5}}`.

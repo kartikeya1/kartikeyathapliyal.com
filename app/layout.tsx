@@ -63,7 +63,6 @@ const personJsonLd = {
     "Internal tooling",
     "Fintech",
   ],
-  // TODO: these resolve once the {{LINKEDIN}} / {{GITHUB}} placeholders in lib/site.ts are replaced.
   sameAs: [site.links.linkedin, site.links.github],
 };
 
