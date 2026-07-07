@@ -1,0 +1,31 @@
+---
+title: "Sign Bridge"
+summary: "An experiment that turns typed English into a step-by-step sign-language sequence — schematic hand shapes with a player, supporting both ASL and ISL."
+category: "ai-lab"
+role: "Designer & Builder"
+timeframe: "2025 — 2026"
+status: "Exploration"
+featured: false
+order: 5
+prototype:
+  url: "https://ai-experiments-ochre.vercel.app/sign-bridge"
+  label: "Open Prototype"
+---
+
+## Problem
+
+Text-to-sign-language is a genuinely hard problem, and most attempts either overreach — promising fluent, anatomically correct signing that current tools cannot deliver — or stop at a static alphabet chart. The interesting middle question is whether a schematic, honestly-scoped version can still be useful: not a fluent signer, but a bridge that shows the shape and sequence of what typed words look like when signed.
+
+## Idea
+
+Type some text, hit convert, and get a walkable sequence. Each word is matched against a dictionary; anything not found falls back to fingerspelling, letter by letter, so the tool never simply fails on an unknown word. Letters and digits render as schematic SVG hand shapes with a plain-language description of the hand position, and a player steps through the sequence with play, pause, previous, next, a repeat toggle, and adjustable speed. You can switch between ASL and ISL at any time, and the alphabet grid and descriptions update to match.
+
+The scoping is deliberate and stated. The hand shapes are schematic approximations meant to communicate a shape, not to be anatomically exact, and digits with no clean generated shape fall back to a numeral card rather than a misleading drawing. Coverage is whatever the word dictionary holds; everything else is fingerspelled. Being explicit about those limits is part of the design, not an apology for it.
+
+## Mockup
+
+<Placeholder label="Sign Bridge: converted sequence of schematic hand shapes with a player and an ASL/ISL toggle" aspect="video" caption="A bridge that shows shape and sequence, not a claim to fluency." />
+
+## Prototype
+
+Built as plain HTML, CSS, and vanilla JS — no frameworks, no build step — with the ASL and ISL generators and the word dictionary living in a single data file. The experiment is less about the rendering and more about the framing: the useful version of a hard problem is often the one that names exactly what it does not do, and does the rest well enough to be worth using.

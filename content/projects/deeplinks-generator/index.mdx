@@ -1,0 +1,33 @@
+---
+title: "smallcase Deep Links Generator"
+summary: "A small tool that turns a broker's smallcase web URL into a ready-to-use in-app deep link — the self-serve companion to hand-built campaign links."
+category: "internal-tooling"
+role: "Product Manager"
+timeframe: "2025 — 2026"
+status: "Prototype"
+featured: false
+order: 3
+prototype:
+  url: "https://pm-utilities.vercel.app/deeplinks-generator"
+  label: "Open Tool"
+---
+
+## Problem
+
+A broker's smallcase experience lives on the web, but the link a campaign actually needs is one that opens inside the broker's own app, on the right screen. Translating one into the other is a fiddly, format-specific transformation that people do by editing URLs by hand — and a single wrong parameter sends the user somewhere they did not intend. It is the sort of task that is too small to build a platform around and too error-prone to keep doing manually.
+
+## Approach
+
+Make the correct link the only thing the tool can produce. You paste the broker's smallcase web URL, and it composes the matching in-app deep link for the supported brokers — currently SBI and HDFC — handling the format differences between them so nobody has to remember which is which. There is no free-text URL editing, so the class of hand-typing errors simply cannot occur.
+
+This is deliberately narrow. It solves one transformation well rather than trying to be the general link platform — a lighter, public cousin of the internal deep-link work in [Waypoint](/work/waypoint), aimed at the everyday case of "I have this URL, give me the app link."
+
+## What it does
+
+Paste a smallcase web URL, pick the broker, and get a deep link ready to drop into a campaign or a message. The transformation is instant and runs entirely in the browser.
+
+<Placeholder label="URL in, broker selected, in-app deep link out — for SBI and HDFC" aspect="video" caption="One transformation, done correctly, every time." />
+
+## Prototype
+
+The tool works against real broker URL formats. Its whole value is removing a small, recurring source of mistakes: converting a link by hand is fast until the one time it is wrong, and that one time is a broken campaign nobody notices until the numbers look off. Encoding the format rules once means the answer is right by construction.

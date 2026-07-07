@@ -1,0 +1,35 @@
+---
+title: "Reconciliation, Utility First"
+summary: "A browser-based CSV reconciliation tool, built twice in one page — utility first, then UX polish — to show that solving the problem and making it trustworthy are different jobs."
+category: "internal-tooling"
+role: "Product Manager"
+timeframe: "2025 — 2026"
+status: "Prototype"
+featured: false
+order: 2
+prototype:
+  url: "https://pm-utilities.vercel.app/sbi-recon-evolution"
+  label: "Open Tool"
+---
+
+## Problem
+
+Reconciliation is the kind of task that quietly eats hours. Two CSV exports that should agree — a combined smallcase file and an Athena file — have to be lined up by a unique key, and every mismatch in dates, quantities, or turnover has to be found by hand. It is exact, repetitive work that a person does slowly and a machine does instantly, but the machine has to be built first.
+
+## Approach
+
+I built the tool twice, in the same page, so the two versions can be switched between directly. Version one is utility first: the core logic and nothing else. Version two keeps that exact logic and layers on the things that make an internal tool trustworthy to a real user. The point of showing both is the argument that a working tool and a usable tool are not the same deliverable — a distinction easy to state and easy to skip when a deadline is close.
+
+The reconciliation runs entirely in the browser using Pyodide, so pandas does the actual comparison client-side. Nothing is uploaded to a server, which for financial files is a feature, not a footnote.
+
+## What it does
+
+Upload multiple CSVs and it combines them into one. Upload the two fixed-format files and it reconciles them, producing six reports — a matching-key summary, records missing on each side, and date, quantity, and turnover mismatches — all downloadable as a single ZIP.
+
+Version two adds what version one leaves out: file metadata, validation hints, real error messages, animated status while pandas loads, structured colored logging, and an accessible responsive layout. Same engine, different level of care.
+
+<Placeholder label="Version toggle: bare utility on one side, polished UX on the other, same reconciliation engine" aspect="wide" caption="Utility first, then the work of making it trustworthy." />
+
+## Prototype
+
+The tool works against real fixed-format files, not mocks. Building it end to end — the unique-key construction, the mismatch detection, the ZIP assembly, and then the second pass to make it something a colleague would trust — is the whole demonstration. Automating the boring exact work is the easy half. Making the output legible enough that someone believes it is the half that usually gets cut.

@@ -1,0 +1,33 @@
+---
+title: "Buy / Invest-More Order Flow"
+summary: "A clickable, phone-sized prototype of the Buy / Invest-More journey, built to make edge cases — shortfalls, buffers, retries — walkable rather than described."
+category: "ux"
+role: "Product Manager"
+timeframe: "2025 — 2026"
+status: "Prototype"
+featured: false
+order: 3
+prototype:
+  url: "https://pm-showcase-lake.vercel.app/buy-im-mockups"
+  label: "Open Prototype"
+---
+
+## Problem
+
+The interesting part of an order flow is never the happy path. It is what happens when the amount someone types does not match the funds they have, when a broker adds a buffer that quietly changes the numbers, or when a balance call fails midway. Those states are hard to argue about in a document. A spec can say "handle the shortfall case," and everyone nods, but nobody agrees on what the screen should actually do until they see it.
+
+## Idea
+
+Build the flow as a clickable prototype and put an inspector rail next to the phone, so the edge cases are things you switch into rather than paragraphs you read. The prototype walks the full Buy / Invest-More journey — choose how to invest, enter an amount, review the order, see it placed — and the rail drives the scenarios that make the flow tricky.
+
+The order review is where the detail concentrates. It breaks an investment across roughly a dozen mock stocks with target weights, and it deliberately includes an HDFC-style broker buffer of around three percent plus a small simulated share-quantity loss — because pretending those do not exist is how a flow looks clean in review and breaks in production.
+
+## Mockup
+
+The phone shows the journey; the inspector rail alongside it lets you jump between scenarios, read the PRD reference tied to each screen, adjust state, and reset everything to defaults. The "add money to your broker" side-flow appears when the entered amount falls short of available funds, alongside the balance-fetch retry and error states.
+
+<Placeholder label="Phone prototype with inspector rail: scenario switcher, per-screen PRD captions, and state controls" aspect="video" caption="The rail turns edge cases into things you click into, not read about." />
+
+## Prototype
+
+The numbers, stocks, and buffers are mocked to illustrate behaviour, not to place real trades. That is the point: the prototype is a spec you can operate. Handing someone a running flow with a scenario switcher settles more design arguments in ten minutes than a written edge-case table settles in a week, because disagreement about a shortfall screen tends to evaporate the moment both people are looking at the same one.

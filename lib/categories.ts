@@ -41,7 +41,7 @@ export const categories: Category[] = [
     key: "internal-tooling",
     title: "Internal Tooling",
     intro:
-      "Internal systems built to simplify coordination between smallcase and partner brokers.",
+      "Internal systems and developer tools — built to cut manual work, whether that's coordinating smallcase and partner brokers or speeding up everyday engineering tasks.",
   },
   {
     key: "case-study",
