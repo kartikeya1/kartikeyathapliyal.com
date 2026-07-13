@@ -5,10 +5,15 @@ category: "ai-lab"
 role: "Product Manager"
 timeframe: "2025 — 2026"
 status: "Prototype"
-featured: false
+featured: true
 order: 3
+highlights:
+  - "LLM pipeline that clusters raw feedback into themes, with every theme linked back to its verbatims"
+  - "A theme that cannot show its receipts does not appear"
+  - "Evidence volume is visible, so broad-and-shallow versus narrow-and-intense is legible at a glance"
+  - "Unsolved parts — cross-channel dedup and evidence weighting — are named on screen, not hidden"
 prototype:
-  url: "{{VERCEL_PROJECT_3}}"
+  url: "https://pm-service-v1.vercel.app"
   label: "Open Prototype"
 ---
 
@@ -34,4 +39,4 @@ The working view is a ranked list of themes. Each row states the claim, how much
 
 The prototype works off an exported sample corpus, not a live feed. Ingestion from real ticketing and review systems is stubbed. The pipeline reads a flat file, embeds and clusters the entries, has a model label each cluster, and renders the theme view with expandable evidence.
 
-Clustering turned out to be the easy part. Embeddings plus a labeling pass produce themes that look plausible on the first attempt. The hard, unsolved parts are deduplication and weighting. The same user complaining about the same bug in three channels should count once, not three times, and detecting that reliably is messy. And not all verbatims deserve equal weight — a sales note about a large account and a one-line app review are different kinds of evidence. For now the prototype counts everything once and equally, and says so on screen, because a wrong weighting hidden inside the pipeline would quietly turn anecdote back into fact — the exact problem this tool exists to fix.
+Clustering turned out to be the easy part. Embeddings plus a labeling pass produce themes that look plausible on the first attempt. The hard, unsolved parts are deduplication and weighting. The same user complaining about the same bug in three channels should count once, not three times, and detecting that reliably is messy. And not all verbatims deserve equal weight — a sales note about a large account and a one-line app review are different kinds of evidence. For now the prototype counts everything once and equally, and says so on screen, because a wrong weighting hidden inside the pipeline would turn anecdote back into fact — the exact problem this tool exists to fix.

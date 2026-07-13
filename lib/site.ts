@@ -25,9 +25,11 @@ export const site = {
     x: "https://x.com/CallMeKarti",
     instagram: "https://www.instagram.com/callme.karti",
   },
+  // TODO: when the PDFs exist, drop them into /public (e.g. /resume-india.pdf)
+  // and set these to the paths. null renders an "available on request" state.
   resumes: {
-    india: "{{INDIA_RESUME}}",
-    sea: "{{SEA_RESUME}}",
+    india: null as string | null,
+    sea: null as string | null,
   },
   // TODO: replace with a real booking link (e.g. Cal.com) and wire it up
   // in components/site/hero-actions and anywhere "Book Consultation" appears.

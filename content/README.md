@@ -25,11 +25,18 @@ timeframe: "2024 — 2025" # optional
 status: "Shipped"        # Shipped | Prototype | Exploration | Concept
 featured: false          # true = appears in Selected Work on the home page (max 6 shown)
 order: 3                 # sort order within its category (lower = earlier)
+highlights:              # optional — 3–4 scannable facts, rendered as "At a glance"
+  - "One concrete fact a recruiter should not have to read 600 words to find"
+  - "Only claims already made in the body — never invent numbers here"
 prototype:               # optional — omit entirely if there is nothing to open
   url: "https://..."
   label: "Open Prototype"
 ---
 ```
+
+`highlights` exists because hiring managers scan before they read. Write each
+as a standalone fact (what was built, the rule that shaped it, what changed).
+Pull them from the body — the block is a summary, not a second source of truth.
 
 Body conventions:
 
@@ -60,11 +67,16 @@ Thinking page code).
 
 - `content/thinking.mdx` — the Thinking essay
 - `content/now.mdx` — the Now page (update `lastUpdated` when you touch it)
-- `lib/site.ts` — name, links, resume URLs, and all `{{PLACEHOLDER}}` values
+- `lib/site.ts` — name, links, resume URLs, booking link
 
-## Placeholders still pending
+## Still pending
 
-Search the repo for `{{` to find every URL not yet real. Social/contact
-links (LinkedIn, GitHub, email, X) are already live in `lib/site.ts`.
-Still pending: `{{INDIA_RESUME}}`, `{{SEA_RESUME}}`,
-`{{BROKER_PLATFORM_URL}}`, `{{VERCEL_PROJECT_1..5}}`.
+All prototype-URL placeholders are resolved. What remains:
+
+- **Resume PDFs** — `lib/site.ts` → `resumes.india` / `resumes.sea` are `null`;
+  the Resume page shows a "Request by email" fallback until real PDF paths
+  (files in `/public`) are set.
+- **Booking link** — `lib/site.ts` → `booking` is `null`; the home page's
+  "Book Consultation" button points to /contact until it exists.
+- **From Ambiguity to Launch** — still a template; its `{/* TODO */}` comments
+  mark where a real project's specifics belong.

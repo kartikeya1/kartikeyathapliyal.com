@@ -79,6 +79,28 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             ))}
           </dl>
         ) : null}
+
+        {project.highlights && project.highlights.length > 0 ? (
+          <div className="mt-8">
+            <p className="font-mono text-[0.6875rem] uppercase tracking-widest text-faint">
+              At a glance
+            </p>
+            <ul className="mt-3 space-y-2">
+              {project.highlights.map((highlight) => (
+                <li
+                  key={highlight}
+                  className="flex gap-3 text-sm leading-relaxed text-muted"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="mt-[0.4375rem] h-1 w-1 shrink-0 rounded-full bg-accent"
+                  />
+                  {highlight}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
       </header>
 
       <div className="prose prose-invert mt-12 max-w-none prose-p:leading-relaxed">

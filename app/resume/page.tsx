@@ -13,16 +13,17 @@ const resumes = [
   {
     label: "India Resume",
     description: "Formatted for roles based in India.",
-    // TODO: replace {{INDIA_RESUME}} in lib/site.ts with the hosted PDF URL.
     href: site.resumes.india,
   },
   {
     label: "SEA Resume",
     description: "Formatted for roles across Southeast Asia.",
-    // TODO: replace {{SEA_RESUME}} in lib/site.ts with the hosted PDF URL.
     href: site.resumes.sea,
   },
 ];
+
+const requestHref = (label: string) =>
+  `mailto:${site.links.email}?subject=${encodeURIComponent(`Resume request — ${label}`)}`;
 
 export default function ResumePage() {
   return (
@@ -48,13 +49,22 @@ export default function ResumePage() {
                   {resume.description}
                 </p>
               </div>
-              <a
-                href={resume.href}
-                download
-                className={buttonVariants({ variant: "secondary" })}
-              >
-                Download PDF
-              </a>
+              {resume.href ? (
+                <a
+                  href={resume.href}
+                  download
+                  className={buttonVariants({ variant: "secondary" })}
+                >
+                  Download PDF
+                </a>
+              ) : (
+                <a
+                  href={requestHref(resume.label)}
+                  className={buttonVariants({ variant: "secondary" })}
+                >
+                  Request by email
+                </a>
+              )}
             </div>
           </Reveal>
         ))}

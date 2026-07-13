@@ -35,6 +35,8 @@ export interface Project {
   status?: string;
   featured: boolean;
   order: number;
+  /** 3–4 scannable facts rendered as "At a glance" on the project page. */
+  highlights?: string[];
   prototype?: Prototype;
   /** Raw MDX body, compiled by the page that renders it. */
   body: string;
@@ -80,6 +82,9 @@ export function getAllProjects(): Project[] {
       status: data.status as string | undefined,
       featured: Boolean(data.featured),
       order: typeof data.order === "number" ? data.order : 99,
+      highlights: Array.isArray(data.highlights)
+        ? (data.highlights as string[])
+        : undefined,
       prototype: data.prototype as Prototype | undefined,
       body: content,
     } satisfies Project;

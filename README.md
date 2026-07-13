@@ -63,36 +63,26 @@ Personal website of Kartikeya Thapliyal—a product manager's working notebook. 
 
 ---
 
-## 🔄 What Was Pending (Killed Mid-Flight)
+## 🔄 Previously Pending — Now Done (July 2026)
 
-**Background workflow stopped:** The Fable 5 model hit token limits while running a three-phase content review workflow.
+The three-phase content workflow that was killed mid-flight has been completed:
 
-**Status at kill time (Jul 6, 22:52 IST):**
+- **Critique + revise pass** — all project case studies and fixed pages
+  reviewed for MDX syntax, frontmatter schema, voice consistency, invented
+  metrics, and cross-file redundancy; edits applied.
+- **Prototype placeholders resolved** — all `{{VERCEL_PROJECT_*}}` and
+  `{{BROKER_PLATFORM_URL}}` values replaced with live deployment URLs, or the
+  `prototype` block removed where no public prototype can exist (Waypoint was
+  internal; the two UX concepts have no deployed build).
+- **"At a glance" highlights** — every project now carries a `highlights:`
+  frontmatter block rendered as a scannable facts list on its page, so
+  recruiters get the substance without reading the full prose.
+- **Resume page fallback** — resume URLs are `null` in `lib/site.ts` until
+  real PDFs exist; the page shows a "Request by email" button instead of a
+  broken download.
 
-### Phase 1: Author ✅ **COMPLETE**
-- All 10 MDX files written and committed to git:
-  - 9 project case studies (`content/projects/*/index.mdx`)
-  - 1 now page (`content/now.mdx`)
-- All files structurally sound, have correct frontmatter schema, compile without errors
-- Word counts in target ranges (450–700 for standard, 350–550 for AI lab)
-- All required Placeholder components present
-
-### Phase 2: Critique 🔄 **IN PROGRESS (NOT STARTED)**
-- Critic agent was assigned to review all 10 files for:
-  - **MDX syntax violations:** raw `{` `}` `<` `>` in prose, invalid HTML comments, curly braces outside Placeholder components
-  - **YAML frontmatter schema:** wrong/missing/extra keys, unquoted values, wrong category values
-  - **Voice consistency:** banned buzzwords (rockstar, ninja, guru, synergy, seamless, etc.), exclamation marks, invented metrics/percentages, present-tense use of smallcase, arrogance/false modesty
-  - **Cross-file redundancy:** repeated opening constructions, identical stock phrases
-  - **Structure compliance:** correct H2 sections in order, Placeholder components present, word counts in range
-- Agent would return list of concrete edits (file, problem, exact find-and-replace)
-- **Action if you restart:** Check the workflow journal at `/Users/kartikeya/.claude/projects/-Users-kartikeya-workspace-productmanager/c2a549af-3de4-42ea-ae6d-425af64b2edb/subagents/workflows/wf_dab433c4-5ba/journal.jsonl` — if critique finished, you'll see edits structured. Otherwise, restart the Critique phase.
-
-### Phase 3: Revise ⏳ **NOT STARTED**
-- Would apply critique edits using Edit tool
-- Would re-read each touched file to verify YAML and MDX syntax validity
-- No edits anticipated for structural quality — more likely: voice tone consistency, a few invented metrics→TODO comments
-
-**Implication:** All 9 projects are **production-ready** but may benefit from a tone pass. The content is not broken; it's just unreviewed. Safe to ship as-is.
+See `CLAUDE.md` (repo root) for the current agent handbook and the remaining
+open items.
 
 ---
 
@@ -192,8 +182,8 @@ export const site = {
     instagram: "https://www.instagram.com/callme.karti",         // 👈 Real now
   },
   resumes: {
-    india: "{{INDIA_RESUME}}",     // 👈 Still a placeholder — add URL
-    sea: "{{SEA_RESUME}}",         // 👈 Still a placeholder — add URL
+    india: null,   // 👈 set to a /public PDF path when it exists
+    sea: null,     // 👈 set to a /public PDF path when it exists
   },
   booking: null,  // 👈 When booking link exists, set to URL (e.g., Cal.com)
 };
@@ -384,15 +374,13 @@ npm run lint     # ESLint + TypeScript
 
 ## ⚠️ Known Limitations & TODOs
 
-### Outstanding Placeholders
+### Outstanding Items
 
-Search the repo for `{{` to find all:
-- `{{INDIA_RESUME}}` — URL to India resume PDF
-- `{{SEA_RESUME}}` — URL to SEA resume PDF
-- `{{BROKER_PLATFORM_URL}}` — Waypoint prototype link (internal tooling)
-- `{{VERCEL_PROJECT_1..5}}` — Prototype links for AI Lab experiments
-
-**Action:** Replace these in `lib/site.ts` and project frontmatter with real URLs.
+- **Resume PDFs** — `lib/site.ts` → `resumes.india` / `resumes.sea` are `null`.
+  Add PDFs to `public/` and set the paths; the Resume page shows a
+  "Request by email" fallback until then.
+- **From Ambiguity to Launch** — still a template case study; its
+  `{/* TODO */}` comments mark where a real project's specifics belong.
 
 ### Book Consultation Button
 
