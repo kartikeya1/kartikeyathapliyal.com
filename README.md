@@ -2,7 +2,13 @@
 
 Personal website of Kartikeya Thapliyal—a product manager's working notebook. Dark, quiet, content-driven. Fully static, deployed on Vercel, zero runtime dependencies.
 
-**Live:** https://kartikeyathapliyal-com.vercel.app
+**Live:** https://kartikeyathapliyalcom.vercel.app
+
+> ⚠️ Deploy notes: GitHub → Vercel auto-deploy is **not connected** — a `git push`
+> does not trigger a build. Deploy manually with `vercel --prod --yes` from this
+> directory. The only **public** URL is `kartikeyathapliyalcom.vercel.app`; the
+> project/branch aliases sit behind Vercel SSO. See [`PENDING.md`](./PENDING.md)
+> for the full list of open items and how to complete each one.
 
 ---
 
@@ -52,7 +58,7 @@ Personal website of Kartikeya Thapliyal—a product manager's working notebook. 
 - Zero runtime JavaScript (only Framer Motion for animations, client-side only)
 - Build time: ~40 seconds
 - First Load JS: 168 kB (shared across all pages)
-- Vercel auto-deploys on git push
+- Deployed via `vercel --prod` (git auto-deploy is not connected — see Deployment)
 
 **Contact Links (Live):**
 - Email: kartikeyathapliyal@gmail.com
@@ -329,11 +335,20 @@ git commit -m "message"
 git push origin main
 ```
 
-**Vercel auto-deploys** on push. Build takes ~40 seconds.
+**⚠️ Auto-deploy is NOT wired up.** Pushing to `main` keeps GitHub in sync but
+does **not** trigger a Vercel build. To actually ship, deploy manually:
+
+```bash
+vercel --prod --yes    # from the repo root; builds on Vercel, ~40s
+```
+
+The CLI is authenticated under the `kartikeya-thapliyals-projects` team. To make
+`git push` deploy automatically again, reconnect the repo in the Vercel dashboard
+→ Project → Settings → Git.
 
 **Check deployment status:**
 ```bash
-vercel inspect kartikeyathapliyal-com.vercel.app
+vercel ls    # then: vercel inspect <deployment-url>
 ```
 
 **Environment:**
@@ -396,7 +411,7 @@ Currently points to `/contact`. When a booking link (Cal.com, etc.) exists:
 
 ### Custom Domain
 
-Currently deployed to `kartikeyathapliyal-com.vercel.app`. To use `kartikeyathapliyal.com`:
+Currently deployed to `kartikeyathapliyalcom.vercel.app`. To use `kartikeyathapliyal.com`:
 1. Go to Vercel dashboard → Project settings
 2. Add domain → `kartikeyathapliyal.com`
 3. Update DNS at registrar (Vercel gives instructions)

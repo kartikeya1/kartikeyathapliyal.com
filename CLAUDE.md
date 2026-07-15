@@ -83,6 +83,12 @@ work (employment ended July 2026). No buzzwords, no exclamation marks, and
 
 ## Known open items
 
+**The authoritative, actionable backlog is [`PENDING.md`](./PENDING.md).** It
+lists every open item with the exact input needed from Kartikeya and the precise
+code steps to apply once he provides it. When he hands you a PDF / URL / project
+write-up / screenshot, find the matching `id` in PENDING.md and follow its steps.
+Keep PENDING.md updated as items are finished. Quick summary below:
+
 - **Resume PDFs**: `lib/site.ts` → `resumes.india` / `resumes.sea` are `null`.
   Drop real PDFs into `public/` and set the paths; the Resume page currently
   shows a "Request by email" fallback.
