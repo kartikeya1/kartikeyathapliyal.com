@@ -14,8 +14,9 @@ needed, and know the precise code change to make once that input arrives.
    they name the files and the edits.
 4. Run `npm run build` to confirm nothing broke, then verify locally
    (`npm run dev`) if the change is visible.
-5. **Deploy manually** — `vercel --prod --yes` (git push does NOT auto-deploy;
-   see item `infra-autodeploy`).
+5. **Push to `main` to ship** — auto-deploy is connected, so a push triggers a
+   production build (~40s). Use `vercel --prod --yes` only to force a deploy
+   without a commit.
 6. Update this file: move the finished item to the "## Done" section at the
    bottom with a one-line note, or delete it if fully resolved.
 7. Keep this file honest — if you discover a new gap, add it here in the same
@@ -29,8 +30,8 @@ and it has everything it needs to finish and ship.
 needed from you, and the code steps to apply it.
 
 _Last verified against the tree: 2026-07-29 · working tree clean, level with
-`origin/main` · 6 commits. **Note: "in sync with GitHub" does not mean deployed**
-— see `infra-autodeploy`._
+`origin/main`. Auto-deploy from `main` is connected and verified, so pushing to
+`main` ships._
 
 ## Phases — execute in this order
 
@@ -40,16 +41,17 @@ Within a phase, items are independent.
 
 | Phase | Meaning | Section below |
 |---|---|---|
-| **P0** stop the bleeding | irreversible / exposure risk | *nothing pending* — clean, in sync, no leaks |
+| **P0** stop the bleeding | irreversible / exposure risk | *nothing pending* — clean, in sync, auto-deploying, no leaks |
 | **P1** safety net | tests + CI | "Phase 1 — no automated safety net" |
 | **P2** truth in docs | stale claims, drift | "Phase 2 — docs that contradict the code" |
 | **P3** polish | live placeholders, dead routes, SEO | "Phase 3 — unfinished content shipped live" |
 | **P4** features | new capability | "Future / nice-to-have" (blog, now-page) |
 | **P5** decision-gated | needs your input or a dashboard click | "Blocked on Kartikeya's input" + "Infrastructure" |
 
-**Recommended order:** P2 first (it's ~30 minutes and the drift is actively
-misleading any agent that reads `CLAUDE.md`), then P3's `from-ambiguity-to-launch`
-decision (it's a live indexed template), then whichever P5 inputs you have to hand.
+**Recommended order:** **P1 first now that auto-deploy is live** — every push
+ships to production with nothing checking it. Then P2 (~30 minutes of doc fixes),
+then P3's `from-ambiguity-to-launch` decision (it's a live indexed template), then
+whichever P5 inputs you have to hand.
 
 ---
 
@@ -60,9 +62,11 @@ decision (it's a live indexed template), then whichever P5 inputs you have to ha
 - **What:** There is no test runner (no Vitest/Jest/Playwright in
   `package.json`) and **no `.github/` directory at all** — so nothing runs on
   push. `npm run lint` is the only gate, and it's manual.
-- **Why it matters more here than usual:** combined with `infra-autodeploy`
-  being broken, a push to `main` triggers *neither* a check *nor* a deploy.
-  Nothing catches a broken build except remembering to run `npm run build`.
+- **Why it matters more here than usual:** auto-deploy is now connected, so a
+  push to `main` ships straight to production **with no check in front of it**.
+  Nothing catches a broken build except remembering to run `npm run build` first
+  — and Vercel's own build failing after the fact. CI is now the missing guard,
+  not the missing deploy.
 - **No input needed. Do this:**
   1. Add `.github/workflows/ci.yml` running `npm ci`, `npm run lint`,
      `npm run build` on push and PR to `main`.
@@ -77,21 +81,9 @@ decision (it's a live indexed template), then whichever P5 inputs you have to ha
 ## Phase 2 — docs that contradict the code
 
 These are all this repo's own docs disagreeing with the tree. Cheap to fix, and
-actively harmful: an agent that trusts `CLAUDE.md` will push and assume it shipped.
+worth doing: these files are the contract an agent works from.
 
-### 12. `CLAUDE.md` claims auto-deploy works; it doesn't — `id: doc-autodeploy-contradiction`
-
-- **What:** `CLAUDE.md:4` says the site "auto-deploys on push to `main`", and its
-  closing section says "Vercel deploys every push immediately". `README.md:7`
-  and `README.md:61` correctly say auto-deploy is **not** connected, and this
-  file's `infra-autodeploy` documents the manual workaround.
-- **Why it matters:** `CLAUDE.md` is the agent contract. An agent following it
-  pushes, believes the site updated, and it silently didn't.
-- **No input needed. Do this:** fix `CLAUDE.md:4` and its "Commands &
-  verification" section to say deploys are manual (`vercel --prod --yes`) until
-  `infra-autodeploy` is resolved. Then keep them consistent when it is.
-
-### 13. README undercounts the site by 7 projects — `id: doc-project-count`
+### 12. README undercounts the site by 7 projects — `id: doc-project-count`
 
 - **What:** `content/projects/` holds **16** projects. `README.md:21` says
   "All 9 projects" and `README.md:29` says "9 Project Case Studies". Commit
@@ -102,7 +94,7 @@ actively harmful: an agent that trusts `CLAUDE.md` will push and assume it shipp
   stop hand-writing the count — derive it, or drop the number and say
   "organised by capability".
 
-### 14. The same backlog is duplicated four ways — `id: doc-backlog-duplication`
+### 13. The same backlog is duplicated four ways — `id: doc-backlog-duplication`
 
 - **What:** open items are listed in this file, `README.md` §"Known Limitations
   & TODOs", `CLAUDE.md` §"Known open items", and `content/README.md` §"Still
@@ -113,7 +105,7 @@ actively harmful: an agent that trusts `CLAUDE.md` will push and assume it shipp
   other three to a one-line pointer ("open items live in `PENDING.md`"). Keep
   `CLAUDE.md`'s pointer, drop its bulleted summary.
 
-### 15. `/resume` and "Book Consultation" are described as more than they are — `id: doc-overclaim`
+### 14. `/resume` and "Book Consultation" are described as more than they are — `id: doc-overclaim`
 
 - **What:** `README.md` describes `/resume` as "Two download buttons (India
   version, SEA version)"; both currently resolve to mailto fallbacks because
@@ -124,7 +116,7 @@ actively harmful: an agent that trusts `CLAUDE.md` will push and assume it shipp
   fallback behaviour, and let `resume-pdfs` / `booking-link` update it when the
   real assets arrive. The code is fine — only the description overclaims.
 
-### 16. Performance numbers are asserted, not measured — `id: doc-perf-claims`
+### 15. Performance numbers are asserted, not measured — `id: doc-perf-claims`
 
 - **What:** `README.md` §Performance Metrics asserts "Lighthouse 95+", "First
   Load JS 168 kB" and "TTI <1s". There is no committed measurement, budget
@@ -137,7 +129,7 @@ actively harmful: an agent that trusts `CLAUDE.md` will push and assume it shipp
 
 ## Phase 3 — unfinished content shipped live
 
-### 17. A template case study is live and indexed — `id: live-template-route`
+### 16. A template case study is live and indexed — `id: live-template-route`
 
 - **What:** `/work/from-ambiguity-to-launch` is publicly reachable **and listed
   in `app/sitemap.ts`**, while still being an unfinished template with four
@@ -152,7 +144,7 @@ actively harmful: an agent that trusts `CLAUDE.md` will push and assume it shipp
      of `content/projects/`.
   2. Then resolve it properly via `template-case-study` when you pick a project.
 
-### 18. Unfilled placeholders across live case studies — `id: content-placeholders`
+### 17. Unfilled placeholders across live case studies — `id: content-placeholders`
 
 - **What:** two distinct classes, both live:
   - **23 `<Placeholder>` mockup frames** across the 16 case studies — hatched
@@ -169,7 +161,7 @@ actively harmful: an agent that trusts `CLAUDE.md` will push and assume it shipp
 - **Note:** this is the same underlying gap as `mockup-images` and
   `thin-case-studies`; kept here as the *inventory* so the scale is visible.
 
-### 19. Site advertises a URL it doesn't serve — `id: seo-canonical-mismatch`
+### 18. Site advertises a URL it doesn't serve — `id: seo-canonical-mismatch`
 
 - **What:** `lib/site.ts` sets `url: "https://kartikeyathapliyal.com"`, and
   `app/sitemap.ts`, `robots`, the OG tags and the JSON-LD all read from it — but
@@ -182,7 +174,7 @@ actively harmful: an agent that trusts `CLAUDE.md` will push and assume it shipp
   side effect), or temporarily set `site.url` to the working `.vercel.app` host
   so the metadata is at least truthful in the meantime.
 
-### 20. Stray `.DS_Store` files — `id: dsstore`
+### 19. Stray `.DS_Store` files — `id: dsstore`
 
 - **What:** `.DS_Store` files exist in the repo root, `app/`, `components/` and
   `content/`. **They are not tracked by git** (verified) — so this is local
@@ -309,22 +301,7 @@ steps below are mechanical._
 
 ## Phase 5 — infrastructure (owner action in a dashboard; an agent cannot click through)
 
-### 6. GitHub → Vercel auto-deploy is not connected — `id: infra-autodeploy`
-
-- **What:** Pushing to `main` should trigger a Vercel build. It does not.
-- **Evidence:** After a push to `main`, the newest Vercel deployment stayed days
-  old; the live update only happened after a manual `vercel --prod`.
-- **Current workaround:** deploy manually with `vercel --prod --yes` from the
-  repo root (CLI authed under team `kartikeya-thapliyals-projects`).
-- **Fix (requires Kartikeya in the Vercel dashboard — AI cannot click through):**
-  1. Vercel dashboard → project `kartikeyathapliyal.com` → Settings → Git.
-  2. Connect / reconnect the GitHub repo `kartikeya1/kartikeyathapliyal.com`,
-     production branch `main`.
-  3. Confirm by pushing a trivial commit and watching a new deployment appear.
-  4. Once confirmed, update `README.md` and `CLAUDE.md` to say auto-deploy works,
-     and mark this item Done.
-
-### 7. Custom domain not attached — `id: custom-domain`
+### 6. Custom domain not attached — `id: custom-domain`
 
 - **What:** The site is only reachable at `kartikeyathapliyalcom.vercel.app`
   (the branch/project aliases sit behind Vercel SSO). The real
@@ -336,7 +313,7 @@ steps below are mechanical._
   3. Then in code: `lib/site.ts` → `url: "https://kartikeyathapliyal.com"`
      (also update the OG/JSON-LD which read from `site.url`), rebuild, deploy.
 
-### 8. Deployment protection / SSO on aliases — `id: infra-sso`
+### 7. Deployment protection / SSO on aliases — `id: infra-sso`
 
 - **What:** The project and git-branch `.vercel.app` aliases return a 302 to a
   Vercel sign-in (deployment protection is on). Only `kartikeyathapliyalcom.vercel.app`
@@ -376,6 +353,16 @@ steps below are mechanical._
 ## Done
 
 _(Move completed items here with a date + one-line note, or delete them.)_
+
+- **2026-07-29** — **GitHub → Vercel auto-deploy is connected and verified by
+  Kartikeya.** Pushing to `main` now triggers a production build; `vercel --prod
+  --yes` is only needed to force a deploy without a commit. `README.md` (three
+  places) and this file updated to match; `CLAUDE.md` was already correct.
+  Consequence: CI is now the missing guard — a push ships to production with
+  nothing checking it first (see `no-ci`). — `id: infra-autodeploy`
+- **2026-07-29** — Resolved the `CLAUDE.md`-vs-`README.md` auto-deploy
+  contradiction by confirming auto-deploy works and correcting the README, which
+  was the file that had it wrong. — `id: doc-autodeploy-contradiction`
 
 - **2026-07-15** — Resolved all `{{VERCEL_PROJECT_*}}` / `{{BROKER_PLATFORM_URL}}`
   prototype placeholders (real URLs, or block removed where no public prototype

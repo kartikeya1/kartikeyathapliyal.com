@@ -4,11 +4,12 @@ Personal website of Kartikeya Thapliyal—a product manager's working notebook. 
 
 **Live:** https://kartikeyathapliyalcom.vercel.app
 
-> ⚠️ Deploy notes: GitHub → Vercel auto-deploy is **not connected** — a `git push`
-> does not trigger a build. Deploy manually with `vercel --prod --yes` from this
-> directory. The only **public** URL is `kartikeyathapliyalcom.vercel.app`; the
-> project/branch aliases sit behind Vercel SSO. See [`PENDING.md`](./PENDING.md)
-> for the full list of open items and how to complete each one.
+> Deploy notes: GitHub → Vercel auto-deploy **is connected** — pushing to `main`
+> triggers a production build (verified 2026-07-29). `vercel --prod --yes` still
+> works if you need to force a deploy. The only **public** URL is
+> `kartikeyathapliyalcom.vercel.app`; the project/branch aliases sit behind
+> Vercel SSO. See [`PENDING.md`](./PENDING.md) for the full list of open items
+> and how to complete each one.
 
 ---
 
@@ -58,7 +59,7 @@ Personal website of Kartikeya Thapliyal—a product manager's working notebook. 
 - Zero runtime JavaScript (only Framer Motion for animations, client-side only)
 - Build time: ~40 seconds
 - First Load JS: 168 kB (shared across all pages)
-- Deployed via `vercel --prod` (git auto-deploy is not connected — see Deployment)
+- Auto-deployed from `main` via the GitHub → Vercel integration (verified 2026-07-29)
 
 **Contact Links (Live):**
 - Email: kartikeyathapliyal@gmail.com
@@ -335,16 +336,16 @@ git commit -m "message"
 git push origin main
 ```
 
-**⚠️ Auto-deploy is NOT wired up.** Pushing to `main` keeps GitHub in sync but
-does **not** trigger a Vercel build. To actually ship, deploy manually:
+**Auto-deploy is wired up** (verified 2026-07-29). Pushing to `main` triggers a
+production Vercel build (~40s) — so `git push` is the deploy.
+
+To force a deploy without a commit (or to ship an uncommitted local state):
 
 ```bash
 vercel --prod --yes    # from the repo root; builds on Vercel, ~40s
 ```
 
-The CLI is authenticated under the `kartikeya-thapliyals-projects` team. To make
-`git push` deploy automatically again, reconnect the repo in the Vercel dashboard
-→ Project → Settings → Git.
+The CLI is authenticated under the `kartikeya-thapliyals-projects` team.
 
 **Check deployment status:**
 ```bash
