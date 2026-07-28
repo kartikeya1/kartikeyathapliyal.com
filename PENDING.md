@@ -28,9 +28,183 @@ and it has everything it needs to finish and ship.
 **Format of each item:** `id`, what it is, current state, the exact input
 needed from you, and the code steps to apply it.
 
+_Last verified against the tree: 2026-07-29 · working tree clean, level with
+`origin/main` · 6 commits. **Note: "in sync with GitHub" does not mean deployed**
+— see `infra-autodeploy`._
+
+## Phases — execute in this order
+
+Sections below are grouped by **phase**, using the same ladder as every other
+repo in Kartikeya's portfolio, so the numbering means the same thing everywhere.
+Within a phase, items are independent.
+
+| Phase | Meaning | Section below |
+|---|---|---|
+| **P0** stop the bleeding | irreversible / exposure risk | *nothing pending* — clean, in sync, no leaks |
+| **P1** safety net | tests + CI | "Phase 1 — no automated safety net" |
+| **P2** truth in docs | stale claims, drift | "Phase 2 — docs that contradict the code" |
+| **P3** polish | live placeholders, dead routes, SEO | "Phase 3 — unfinished content shipped live" |
+| **P4** features | new capability | "Future / nice-to-have" (blog, now-page) |
+| **P5** decision-gated | needs your input or a dashboard click | "Blocked on Kartikeya's input" + "Infrastructure" |
+
+**Recommended order:** P2 first (it's ~30 minutes and the drift is actively
+misleading any agent that reads `CLAUDE.md`), then P3's `from-ambiguity-to-launch`
+decision (it's a live indexed template), then whichever P5 inputs you have to hand.
+
 ---
 
-## Blocked on Kartikeya's input
+## Phase 1 — no automated safety net
+
+### 11. No tests and no CI — `id: no-ci`
+
+- **What:** There is no test runner (no Vitest/Jest/Playwright in
+  `package.json`) and **no `.github/` directory at all** — so nothing runs on
+  push. `npm run lint` is the only gate, and it's manual.
+- **Why it matters more here than usual:** combined with `infra-autodeploy`
+  being broken, a push to `main` triggers *neither* a check *nor* a deploy.
+  Nothing catches a broken build except remembering to run `npm run build`.
+- **No input needed. Do this:**
+  1. Add `.github/workflows/ci.yml` running `npm ci`, `npm run lint`,
+     `npm run build` on push and PR to `main`.
+  2. The highest-value tests are over `lib/content.ts` — frontmatter parsing,
+     `getFeaturedProjects`, and category validation against `lib/categories.ts`
+     (a bad `category` key currently only fails at build time).
+  3. A link-check over the built output would catch the class of bug that
+     commit `71c84c5` fixed by hand.
+
+---
+
+## Phase 2 — docs that contradict the code
+
+These are all this repo's own docs disagreeing with the tree. Cheap to fix, and
+actively harmful: an agent that trusts `CLAUDE.md` will push and assume it shipped.
+
+### 12. `CLAUDE.md` claims auto-deploy works; it doesn't — `id: doc-autodeploy-contradiction`
+
+- **What:** `CLAUDE.md:4` says the site "auto-deploys on push to `main`", and its
+  closing section says "Vercel deploys every push immediately". `README.md:7`
+  and `README.md:61` correctly say auto-deploy is **not** connected, and this
+  file's `infra-autodeploy` documents the manual workaround.
+- **Why it matters:** `CLAUDE.md` is the agent contract. An agent following it
+  pushes, believes the site updated, and it silently didn't.
+- **No input needed. Do this:** fix `CLAUDE.md:4` and its "Commands &
+  verification" section to say deploys are manual (`vercel --prod --yes`) until
+  `infra-autodeploy` is resolved. Then keep them consistent when it is.
+
+### 13. README undercounts the site by 7 projects — `id: doc-project-count`
+
+- **What:** `content/projects/` holds **16** projects. `README.md:21` says
+  "All 9 projects" and `README.md:29` says "9 Project Case Studies". Commit
+  `17921f8` ("Add 7 project cards") never updated the README. `README.md:51`
+  and `:57` likewise say "22 routes", which is pre-drift.
+- **Note:** `PENDING.md` and `CLAUDE.md` are correct — only the README drifted.
+- **No input needed. Do this:** recount and update those four lines. Better:
+  stop hand-writing the count — derive it, or drop the number and say
+  "organised by capability".
+
+### 14. The same backlog is duplicated four ways — `id: doc-backlog-duplication`
+
+- **What:** open items are listed in this file, `README.md` §"Known Limitations
+  & TODOs", `CLAUDE.md` §"Known open items", and `content/README.md` §"Still
+  pending". Four copies of one list.
+- **Evidence it doesn't hold up:** the 16-vs-9 drift above and the auto-deploy
+  contradiction both come from exactly this duplication.
+- **No input needed. Do this:** make **this file the single source**. Reduce the
+  other three to a one-line pointer ("open items live in `PENDING.md`"). Keep
+  `CLAUDE.md`'s pointer, drop its bulleted summary.
+
+### 15. `/resume` and "Book Consultation" are described as more than they are — `id: doc-overclaim`
+
+- **What:** `README.md` describes `/resume` as "Two download buttons (India
+  version, SEA version)"; both currently resolve to mailto fallbacks because
+  `lib/site.ts` has `resumes.india`/`resumes.sea` as `null` (see `resume-pdfs`).
+  "Book Consultation" is described as an action button but points at `/contact`
+  (see `booking-link`).
+- **No input needed. Do this:** reword the README to describe the *current*
+  fallback behaviour, and let `resume-pdfs` / `booking-link` update it when the
+  real assets arrive. The code is fine — only the description overclaims.
+
+### 16. Performance numbers are asserted, not measured — `id: doc-perf-claims`
+
+- **What:** `README.md` §Performance Metrics asserts "Lighthouse 95+", "First
+  Load JS 168 kB" and "TTI <1s". There is no committed measurement, budget
+  check, or date, and the route count it sits beside is stale.
+- **No input needed. Do this:** either run Lighthouse and record the numbers
+  *with a date*, or soften the claims. Optionally add a bundle-size budget to
+  the `no-ci` workflow so the JS figure stays honest by itself.
+
+---
+
+## Phase 3 — unfinished content shipped live
+
+### 17. A template case study is live and indexed — `id: live-template-route`
+
+- **What:** `/work/from-ambiguity-to-launch` is publicly reachable **and listed
+  in `app/sitemap.ts`**, while still being an unfinished template with four
+  `{/* TODO */}` holes. `featured: false` only hides it from the home grid — it
+  does not unpublish it.
+- **Why this is P3 and not just P5:** the *decision* about which real project to
+  use is blocked on you (`template-case-study`), but **un-indexing it is not**.
+  A hiring manager can currently find a page with placeholder specifics on it.
+- **No input needed for the interim fix. Do this now:**
+  1. Either add a `draft: true` frontmatter flag that `lib/content.ts` filters
+     out of `/work`, the sitemap and routes, or temporarily move the folder out
+     of `content/projects/`.
+  2. Then resolve it properly via `template-case-study` when you pick a project.
+
+### 18. Unfilled placeholders across live case studies — `id: content-placeholders`
+
+- **What:** two distinct classes, both live:
+  - **23 `<Placeholder>` mockup frames** across the 16 case studies — hatched
+    frames where real imagery belongs. Heaviest: `broker-distribution-platform`
+    (3), then `prototype-first`, `partner-onboarding-system`, `spec-copilot`,
+    `waypoint` (2 each). Resolving these needs image files → see `mockup-images`.
+  - **"add real metric" TODO comments** in the MDX bodies of
+    `broker-distribution-platform` (real broker count, integration timeline,
+    onboarding-time reduction), `partner-onboarding-system:60,63`,
+    `waypoint:27,61`. These are invisible to readers (MDX comments) but mark
+    sentences that read as vague because the number is missing.
+- **Input needed:** the numbers, or a decision to keep those sentences
+  qualitative. Per `CLAUDE.md`, never invent them.
+- **Note:** this is the same underlying gap as `mockup-images` and
+  `thin-case-studies`; kept here as the *inventory* so the scale is visible.
+
+### 19. Site advertises a URL it doesn't serve — `id: seo-canonical-mismatch`
+
+- **What:** `lib/site.ts` sets `url: "https://kartikeyathapliyal.com"`, and
+  `app/sitemap.ts`, `robots`, the OG tags and the JSON-LD all read from it — but
+  that domain is not attached (see `custom-domain`). The live site is
+  `kartikeyathapliyalcom.vercel.app`.
+- **Consequence:** every canonical URL, sitemap entry and OG link points at a
+  hostname that doesn't resolve to this site. Crawlers and link unfurlers both
+  get it wrong today.
+- **Do this:** either complete `custom-domain` (preferred — it fixes this as a
+  side effect), or temporarily set `site.url` to the working `.vercel.app` host
+  so the metadata is at least truthful in the meantime.
+
+### 20. Stray `.DS_Store` files — `id: dsstore`
+
+- **What:** `.DS_Store` files exist in the repo root, `app/`, `components/` and
+  `content/`. **They are not tracked by git** (verified) — so this is local
+  noise, not a committed-file problem.
+- **Do this:** add `.DS_Store` to `.gitignore` if absent, and delete the local
+  ones. Low priority; listed so it isn't re-investigated as a leak.
+
+### Verified non-issues (do not re-investigate)
+
+- **Accessibility looks deliberate and no gap was found** — sections carry
+  `aria-labelledby`, `<Placeholder>` carries `aria-label`, and
+  `components/motion/reveal.tsx` respects `prefers-reduced-motion`. This is the
+  only repo in the portfolio where a11y is in good shape.
+- **No secrets or internal data** in the repo; the site is genuinely env-free,
+  so the absence of `.env.example` is correct rather than a gap.
+
+---
+
+## Phase 5 — blocked on Kartikeya's input
+
+_Each of these is a **question**, not a task. Hand over the bold input and the
+steps below are mechanical._
 
 ### 1. Resume PDFs  — `id: resume-pdfs`
 
@@ -133,7 +307,7 @@ needed from you, and the code steps to apply it.
 
 ---
 
-## Infrastructure (owner action or CLI, not blocked on content)
+## Phase 5 — infrastructure (owner action in a dashboard; an agent cannot click through)
 
 ### 6. GitHub → Vercel auto-deploy is not connected — `id: infra-autodeploy`
 
@@ -174,12 +348,17 @@ needed from you, and the code steps to apply it.
 
 ---
 
-## Future / nice-to-have
+## Phase 4 — future / nice-to-have (new capability)
 
 ### 9. Blog — `id: blog`
 
-- **What:** `content/writing/` exists but is empty; `/thinking` shows a
-  "coming soon" state for posts.
+- **What:** `content/writing/` exists but is empty (only its README); `/thinking`
+  shows a "coming soon" state for posts (`app/thinking/page.tsx:94`).
+- **The missing piece is a route, not just content:** `app/thinking/` contains
+  only `page.tsx` — there is **no `/thinking/[slug]` route**, so a post cannot be
+  read individually even once written. `app/thinking/page.tsx:68` renders the
+  list with no links. Writing the route is the unblocked half of this item and
+  can be done before any post exists.
 - **When Kartikeya writes a post, do this:**
   1. Create `content/writing/<slug>.mdx` with frontmatter `title`, `summary`,
      `date: "YYYY-MM-DD"`. It appears on `/thinking` automatically.
