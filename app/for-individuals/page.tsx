@@ -23,7 +23,7 @@ export default function ForIndividualsPage() {
         <PrimaryCta href="/contact">Get in touch</PrimaryCta>
       </div>
 
-      <PackageGrid packages={individualPackages} />
+      <PackageGrid packages={individualPackages} heading="Ways to work together" />
     </div>
   );
 }

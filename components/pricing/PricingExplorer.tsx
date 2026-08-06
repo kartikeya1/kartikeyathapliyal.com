@@ -80,6 +80,12 @@ export function PricingExplorer({
         sort={sort}
         onSortChange={setSort}
       />
+      {/* Own h2, not just a styled label — keeps this grid's h3 cards under
+          their own section rather than nested under EntryBand's "Start
+          here" heading. */}
+      <h2 data-label className="text-muted">
+        All engagements
+      </h2>
       <div
         id="package-grid"
         data-box
