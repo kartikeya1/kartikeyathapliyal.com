@@ -10,12 +10,15 @@ need Kartikeya's input or are simply queued.
 
 ### Improvements programme, remaining phases
 
-| Phase | Scope | Model · effort |
-|---|---|---|
-| **I7** | Docs pass, dashboard-only checklist | Sonnet 5 · low |
+**All improvements phases (I1–I7) are done.** Nothing queued here right now.
 
 I2 (header/footer/CTA), I3 (individuals pricing), I4 (brand assets), I5
 (homepage) and I6 (currency) are **done**. **I1 is done** — see below.
+**I7 is done** — `CLAUDE.md` and `README.md` brought current with I1–I6
+(stale `PrimaryCta`/`SecondaryLink` references, missing `lib/currency.ts`
+and `lib/logo.ts` entries, updated non-negotiables), plus
+`DASHBOARD-CHECKLIST.md` for the settings that live only in GitHub or
+Vercel.
 
 **I1 shipped**: `app/contact/` deleted; the Cal.com and Google Form embeds
 moved to a `#book` section at the bottom of `/services` (highest-intent
@@ -118,22 +121,19 @@ and search results show the `.vercel.app` host.
 track. If coaching should use its own event type, that's a new
 `siteConfig.booking` value only Kartikeya can create.
 
-### 4. FX refresh cadence (for I6)
+### 4. FX refresh cadence — resolved as shipped, confirm you're OK with it
 
-Stated requirement was "fetch every time the user opens the website". The
-sources only update **daily**, so per-visit fetching adds latency for no
-fresher data. Recommend caching in `localStorage` with a TTL. Confirm before
-I6 is built.
+I6 shipped with a 12-hour `localStorage` cache rather than fetching on every
+visit, since the underlying sources only publish once daily — per-visit
+fetching would add latency for no fresher data. If you want it more
+aggressive, `siteConfig.currency.fx.cacheHours` is the one value to change.
 
-### 5. GitHub repo social preview — dashboard only
+### 5. Dashboard-only steps
 
-`.github/social-preview.png` exists at the right dimensions, but **GitHub
-does not read that path**. It must be uploaded manually:
-Settings → General → Social preview.
-
-Note: the **Vercel dashboard thumbnail is an auto-screenshot of the
-homepage** and is not configurable by any file — improving it means
-improving the homepage (I5).
+Everything that cannot be done from this repo — no file or commit reaches
+it — is tracked in **[`DASHBOARD-CHECKLIST.md`](./DASHBOARD-CHECKLIST.md)**
+instead of here, so it isn't duplicated in two places. Currently open:
+uploading the GitHub social preview, and attaching the custom domain.
 
 ---
 

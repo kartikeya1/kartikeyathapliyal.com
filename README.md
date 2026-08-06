@@ -17,8 +17,8 @@ the site-wide footer rather than a dedicated page.
 |---|---|
 | `/` | Positioning, what I'm hired for, track record |
 | `/about` | Career background, written from private source notes |
-| `/services` | The 12 consulting packages, a rate estimator, filter/sort, and booking |
-| `/for-individuals` | Secondary audience — career coaching |
+| `/services` | The 12 consulting packages, a rate estimator, filter/sort, an INR/USD toggle with a live FX rate, and booking |
+| `/for-individuals` | Secondary audience — career coaching, real pricing |
 
 `/contact` 308-redirects to `/services#book` (see `next.config.ts`).
 
@@ -50,9 +50,11 @@ npm run claims:build    # regenerates CLAIMS.md — commit the diff
 
 See [`CLAUDE.md`](./CLAUDE.md) for the full map and the non-negotiables
 (no hardcoded config, no dynamic routes, claims registry discipline). See
-[`PENDING.md`](./PENDING.md) for open items awaiting the owner's input, and
+[`PENDING.md`](./PENDING.md) for open items awaiting the owner's input,
 [`CLAIMS.md`](./CLAIMS.md) for every factual claim on the site with its
-source.
+source, and [`DASHBOARD-CHECKLIST.md`](./DASHBOARD-CHECKLIST.md) for the
+handful of things that only exist as a setting in GitHub or Vercel, not as
+a file in this repo.
 
 ## History
 
