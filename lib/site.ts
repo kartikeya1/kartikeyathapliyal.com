@@ -1,45 +1,56 @@
 /**
- * Single source of truth for site-wide facts, links and placeholders.
+ * The single source of truth for everything the site says about how to reach
+ * Kartikeya, what it costs, and where it lives.
  *
- * Every {{PLACEHOLDER}} below is meant to be replaced with a real URL
- * before (or after) going live. Search the codebase for "{{" to find
- * anything still pending.
+ * Nothing in `app/` or `components/` may hardcode an email, a phone number, a
+ * URL, or a currency figure. From Phase 2 onward `scripts/check-config.mjs`
+ * enforces that in `prebuild`, so a stray literal fails the Vercel build.
  */
-export const site = {
+export const siteConfig = {
   name: "Kartikeya Thapliyal",
-  url: "https://kartikeyathapliyal.com",
-  title: "Kartikeya Thapliyal",
-  tagline:
-    "Product manager building products, platforms and internal systems that make complex ecosystems simpler.",
-  description:
-    "Kartikeya Thapliyal is a product manager who builds products, platforms and internal systems that make complex ecosystems simpler. Previously Product Manager II at smallcase (Aug 2023 – Jul 2026).",
-  previously: {
-    role: "Product Manager II",
-    company: "smallcase",
-    period: "Aug 2023 – Jul 2026",
+  role: "Product & fintech consultant",
+  positioning:
+    "I help fintech and platform teams ship integrations that hold up in production.",
+
+  /** Swap this one value when the custom domain is attached in Vercel. */
+  url: "https://kartikeyathapliyalcom.vercel.app",
+  locale: "en_IN",
+
+  contact: {
+    email: "kartikeya.thapliyal.work@gmail.com",
+    phone: "+91 9999999999",
   },
-  links: {
+
+  social: {
     linkedin: "https://www.linkedin.com/in/kartikeyathapliyal",
     github: "https://github.com/kartikeya1",
-    email: "kartikeyathapliyal@gmail.com",
-    x: "https://x.com/CallMeKarti",
-    instagram: "https://www.instagram.com/callme.karti",
   },
-  // TODO: when the PDFs exist, drop them into /public (e.g. /resume-india.pdf)
-  // and set these to the paths. null renders an "available on request" state.
-  resumes: {
-    india: null as string | null,
-    sea: null as string | null,
-  },
-  // TODO: replace with a real booking link (e.g. Cal.com) and wire it up
-  // in components/site/hero-actions and anywhere "Book Consultation" appears.
-  booking: null as string | null,
-};
 
-export const navigation = [
-  { href: "/", label: "Home" },
-  { href: "/work", label: "Work" },
-  { href: "/thinking", label: "Thinking" },
-  { href: "/resume", label: "Resume" },
-  { href: "/contact", label: "Contact" },
-] as const;
+  booking: {
+    /** The ?embedded=true variant is required for the iframe. */
+    formEmbedUrl:
+      "https://docs.google.com/forms/d/e/1FAIpQLSf3Vm1UgtyiVZNv3ikTodsnu_Hfu8MJPkloWbBCMkhkD3W3-w/viewform?embedded=true",
+    /** Same form, link-out variant, for no-JS and for people who prefer a tab. */
+    formUrl:
+      "https://docs.google.com/forms/d/e/1FAIpQLSf3Vm1UgtyiVZNv3ikTodsnu_Hfu8MJPkloWbBCMkhkD3W3-w/viewform",
+    calUrl: "https://cal.com/kartikeyathapliyal/30min",
+  },
+
+  currency: {
+    /** Every ~$ figure on the site is computed from this at build time. */
+    inrPerUsd: 90,
+    rateAsOf: "2026-08-06",
+    /** Becomes "live" if a future project fetches the rate instead. */
+    source: "manual",
+    /** USD figures round to the nearest multiple of this. */
+    usdRounding: 10,
+  },
+
+  nav: [
+    { href: "/services", label: "Services" },
+    { href: "/about", label: "About" },
+    { href: "/contact", label: "Contact" },
+  ],
+} as const;
+
+export type SiteConfig = typeof siteConfig;

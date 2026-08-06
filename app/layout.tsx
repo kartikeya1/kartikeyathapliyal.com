@@ -1,98 +1,71 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { ThemeScript } from "@/components/theme/ThemeScript";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { siteConfig } from "@/lib/site";
 import "./globals.css";
-import { Nav } from "@/components/site/nav";
-import { Footer } from "@/components/site/footer";
-import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${site.name} — Product Manager`,
-    template: `%s — ${site.name}`,
+    default: `${siteConfig.name} — ${siteConfig.role}`,
+    template: `%s — ${siteConfig.name}`,
   },
-  description: site.description,
-  keywords: [
-    "Kartikeya Thapliyal",
-    "product manager",
-    "platform products",
-    "AI product development",
-    "smallcase",
-  ],
-  authors: [{ name: site.name, url: site.url }],
-  creator: site.name,
-  openGraph: {
-    type: "website",
-    url: site.url,
-    siteName: site.name,
-    title: `${site.name} — Product Manager`,
-    description: site.tagline,
-    locale: "en_US",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${site.name} — Product Manager`,
-    description: site.tagline,
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-    },
-  },
-  alternates: {
-    canonical: "./",
-  },
+  description: siteConfig.positioning,
 };
 
-const personJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: site.name,
-  url: site.url,
-  jobTitle: "Product Manager",
-  description: site.tagline,
-  knowsAbout: [
-    "Product management",
-    "Platform products",
-    "AI product development",
-    "Internal tooling",
-    "Fintech",
-  ],
-  sameAs: [site.links.linkedin, site.links.github],
-};
+const wireframe = process.env.NEXT_PUBLIC_WIREFRAME === "1";
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="en"
-      data-scroll-behavior="smooth"
+      data-wireframe={wireframe ? "" : undefined}
+      // Suppresses exactly one attribute diff on this element: `data-theme`,
+      // which ThemeScript adds before paint. Do not move this any deeper.
+      suppressHydrationWarning
       className={`${GeistSans.variable} ${GeistMono.variable}`}
     >
-      <body className="flex min-h-svh flex-col">
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-6 focus:top-3 focus:z-[60] focus:rounded-full focus:bg-foreground focus:px-4 focus:py-2 focus:text-sm focus:text-background"
-        >
-          Skip to content
-        </a>
-        <Nav />
-        <main id="main" className="flex-1">
+      <head>
+        <ThemeScript />
+      </head>
+      <body>
+        <header className="border-b border-border">
+          <div className="mx-auto flex max-w-[68rem] items-center justify-between px-6 py-5 md:px-10">
+            <Link href="/" className="text-sm font-medium">
+              {siteConfig.name}
+            </Link>
+            <nav className="flex items-center gap-6">
+              {siteConfig.nav.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-sm text-muted hover:text-text"
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <ThemeToggle />
+            </nav>
+          </div>
+        </header>
+
+        <main className="mx-auto max-w-[68rem] px-6 py-20 md:px-10">
           {children}
         </main>
-        <Footer />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
-        />
+
+        <footer className="border-t border-border">
+          <div className="mx-auto flex max-w-[68rem] flex-wrap items-center justify-between gap-4 px-6 py-8 text-sm text-muted md:px-10">
+            <a href={`mailto:${siteConfig.contact.email}`}>
+              {siteConfig.contact.email}
+            </a>
+            <Link href="/for-individuals">For individuals</Link>
+          </div>
+        </footer>
       </body>
     </html>
   );
