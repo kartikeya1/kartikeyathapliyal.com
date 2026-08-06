@@ -5,105 +5,31 @@
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 /* ===========================================================================
-   DESIGN DIRECTIONS — Phase 3, temporary.
+   Design tokens.
 
-   Three complete looks share one information architecture and one set of copy.
-   Only tokens and a handful of element rules differ, which is what makes them
-   cheap to compare and cheap to throw away.
+   Structure — type scale, weight, tracking, radius, card treatment, rhythm —
+   is theme-independent by design. Only colour changes between light and dark,
+   so toggling the theme never reflows the page or changes what the brand
+   looks like.
 
-   Direction A (default, no attribute) — Quiet editorial.
-     Serif display, warm paper neutrals, generous air. Reads considered and
-     personal; closest to the rashmiwilson.com reference.
-
-   Direction B — Technical spec.
-     Sans display, cool neutrals, sharp corners, monospace for labels and
-     figures. Reads like good API documentation; leans into the platform and
-     integration positioning.
-
-   Direction C — Confident consultancy.
-     Large tight sans display, high contrast, filled cards, near-black buttons
-     instead of a coloured accent. Reads premium and decisive.
-
-   Once a direction is chosen, its block becomes :root and the other two are
-   deleted along with the switcher.
+   Light is a high-contrast near-black-on-white treatment: confidence comes
+   from type and contrast rather than from a colour, so the primary button is
+   near-black. Dark inverts that into a cool, slightly blue near-black with a
+   cyan accent, which reads better on a dark surface than white-on-black.
    =========================================================================== */
-
-/* --------------------------------------------------- A — Quiet editorial */
 :root {
   color-scheme: light;
-  --bg: #fdfcfa;
-  --surface: #f5f2ed;
-  --text: #1c1a17;
-  --text-muted: #6b655c;
-  --border: #e6e0d6;
-  /* 4.9:1 on --bg. The dark-mode accent #d9926c is only ~2.3:1 on white,
-     so light mode needs its own darker value in every direction. */
-  --accent: #9c5a34;
+  --bg: #ffffff;
+  --surface: #f4f4f5;
+  --text: #09090b;
+  --text-muted: #52525b;
+  --border: #e4e4e7;
+  --accent: #18181b;
   --accent-fg: #ffffff;
-
-  --font-display: var(--font-instrument-serif), Georgia, serif;
-  --display-weight: 400;
-  --display-tracking: -0.005em;
-  --label-family: var(--font-geist-sans), system-ui, sans-serif;
-  --label-tracking: 0.08em;
-  --figure-family: var(--font-geist-sans), system-ui, sans-serif;
-
-  --fs-hero: clamp(2.25rem, 8vw, 3rem);
-  --fs-h1: clamp(1.875rem, 6vw, 2.25rem);
-  --fs-h2: clamp(1.25rem, 4vw, 1.5rem);
-  --fs-h3: 1.0625rem;
-  --lh-display: 1.15;
-
-  --radius: 4px;
-  --card-bg: transparent;
-  --card-border: var(--border);
-  --section-gap: 3.5rem;
-  --page-pad: clamp(3rem, 8vw, 5rem);
 }
 
 [data-theme="dark"] {
   color-scheme: dark;
-  --bg: #14120f;
-  --surface: #1c1a17;
-  --text: #ede9e3;
-  --text-muted: #a09a90;
-  --border: #2a2723;
-  --accent: #d9926c;
-  --accent-fg: #14120f;
-}
-
-/* ---------------------------------------------------- B — Technical spec */
-[data-design="b"] {
-  --bg: #ffffff;
-  --surface: #f6f7f9;
-  --text: #101418;
-  --text-muted: #5a6470;
-  --border: #dfe3e8;
-  --accent: #15607a; /* 5.6:1 on white */
-  --accent-fg: #ffffff;
-
-  --font-display: var(--font-geist-sans), system-ui, sans-serif;
-  --display-weight: 500;
-  --display-tracking: -0.015em;
-  --label-family: var(--font-geist-mono), ui-monospace, monospace;
-  --label-tracking: 0.06em;
-  --figure-family: var(--font-geist-mono), ui-monospace, monospace;
-
-  --fs-hero: clamp(2rem, 7vw, 2.5rem);
-  --fs-h1: clamp(1.625rem, 5vw, 1.875rem);
-  --fs-h2: clamp(1.125rem, 3.5vw, 1.25rem);
-  --fs-h3: 1rem;
-  --lh-display: 1.2;
-
-  --radius: 2px;
-  --card-bg: transparent;
-  --card-border: var(--border);
-  --section-gap: 3rem;
-  --page-pad: clamp(2.5rem, 7vw, 4rem);
-}
-
-[data-design="b"][data-theme="dark"],
-[data-theme="dark"] [data-design="b"] {
   --bg: #0b0e11;
   --surface: #141a1f;
   --text: #e6ebf0;
@@ -113,18 +39,8 @@
   --accent-fg: #0b0e11;
 }
 
-/* ---------------------------------------------- C — Confident consultancy */
-[data-design="c"] {
-  --bg: #ffffff;
-  --surface: #f4f4f5;
-  --text: #09090b;
-  --text-muted: #52525b;
-  --border: #e4e4e7;
-  /* Near-black rather than a hue: the whole point of this direction is that
-     confidence comes from contrast and type, not from a colour. */
-  --accent: #18181b;
-  --accent-fg: #ffffff;
-
+/* Structure — identical in both themes. */
+:root {
   --font-display: var(--font-geist-sans), system-ui, sans-serif;
   --display-weight: 600;
   --display-tracking: -0.035em;
@@ -141,24 +57,12 @@
   --radius: 8px;
   --card-bg: var(--surface);
   --card-border: transparent;
-  --section-gap: 4rem;
   --page-pad: clamp(3rem, 9vw, 6rem);
 }
 
-[data-design="c"][data-theme="dark"],
-[data-theme="dark"] [data-design="c"] {
-  --bg: #09090b;
-  --surface: #18181b;
-  --text: #fafafa;
-  --text-muted: #a1a1aa;
-  --border: #27272a;
-  --accent: #fafafa;
-  --accent-fg: #18181b;
-}
-
 /* `@theme inline` is the load-bearing bit: utilities resolve to var(--bg)
-   rather than to a baked hex, so flipping [data-theme] or [data-design]
-   re-resolves every utility and no `dark:` prefix appears in markup. */
+   rather than to a baked hex, so flipping [data-theme] re-resolves every
+   utility on the page and no `dark:` prefix appears anywhere in markup. */
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
@@ -180,8 +84,8 @@ body {
 }
 
 /* --------------------------------------------------------------- type ---
-   Headings are styled here, not with utilities on each component, so a
-   direction can restyle every heading on the site by changing four vars. */
+   Headings are styled here, not with utilities on each component, so the
+   whole site's typography is governed by a handful of variables. */
 h1,
 h2,
 h3 {
@@ -203,7 +107,7 @@ h3 {
   font-size: var(--fs-hero);
 }
 
-/* Eyebrows and small caps labels. */
+/* Eyebrows and small-caps labels. */
 [data-label] {
   font-family: var(--label-family);
   letter-spacing: var(--label-tracking);
@@ -211,7 +115,7 @@ h3 {
   font-size: 0.6875rem;
 }
 
-/* Prices and figures — monospace in direction B so columns line up. */
+/* Prices and figures — tabular so columns line up down the pricing grid. */
 [data-figure] {
   font-family: var(--figure-family);
   font-variant-numeric: tabular-nums;
@@ -241,35 +145,4 @@ button {
 }
 [data-theme="dark"] .icon-moon {
   display: none;
-}
-
-/* ---------------------------------------------------------------------------
-   Wireframe layer — Phase 1 only. Activated by NEXT_PUBLIC_WIREFRAME=1, which
-   is inlined at build time, so production ships none of this.
-   Deleted at the end of Phase 3 together with the design switcher.
-   --------------------------------------------------------------------------- */
-@layer wireframe {
-  html[data-wireframe] {
-    --accent: #6b7280;
-    --bg: #ffffff;
-    --surface: #f3f4f6;
-    --text: #111111;
-    --text-muted: #6b7280;
-    --border: #9ca3af;
-    --accent-fg: #ffffff;
-    --card-bg: transparent;
-    --card-border: #9ca3af;
-  }
-  html[data-wireframe] * {
-    font-family: ui-monospace, monospace !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-  }
-  html[data-wireframe] [data-box] {
-    outline: 1px dashed var(--border);
-  }
-  html[data-wireframe] img,
-  html[data-wireframe] svg {
-    filter: grayscale(1) opacity(0.4);
-  }
 }
