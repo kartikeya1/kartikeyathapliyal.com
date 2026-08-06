@@ -83,38 +83,25 @@ Owner: Kartikeya. Confirmed fine for now, 2026-08-06.
 
 ---
 
-## 5. Delete `consultancy-pricing` — blocked until the stack is on `main`
+## 5. `consultancy-pricing` — retired 2026-08-06
 
-**Migration is done and verified. Deletion is not, and must not happen yet.**
+All 10 packages migrated into `lib/packages.ts` and verified by diffing the
+original `index.html` against the migrated data programmatically: every
+price, category, hourly rate and duration tag matched. The Google Form URL
+carried over into `siteConfig.booking`. The one intentional difference is an
+added ₹4,500 workshop rate the original calculator's dropdown was missing.
 
-Done:
-- All 10 packages migrated into `lib/packages.ts`. Verified by diffing the
-  original HTML against the migrated data programmatically — every price,
-  category, hourly rate and duration tag matches. (The one intentional
-  difference: an added ₹4,500 workshop rate the original calculator was
-  missing.)
-- Google Form URL carried over into `siteConfig.booking`.
-- Full git history preserved at `archive/consultancy-pricing.bundle`,
-  verified to restore all 6 commits with a byte-identical `index.html`.
+`/services` replaces the old page entirely. Retired at the owner's
+instruction, in this order, after `/services` was confirmed live in
+production:
 
-**Why deletion is blocked:** `https://consultancy-pricing.vercel.app` is
-currently **live and public**, serving the real pricing sheet. The new
-`/services` only exists on unmerged branches — production still serves the
-Phase 0 placeholder. Redirecting or deleting now would replace a working
-public pricing page with a stub. The approved plan's own ordering says to
-verify `/services` in production *first*.
+1. Git bundle removed from `archive/` — the owner confirmed no copy was
+   needed, since the pricing data is fully represented in `lib/packages.ts`
+   and the old page had no remaining users.
+2. Vercel project deleted.
+3. GitHub repo deleted.
 
-**Do this, in order, once the stack is merged and `/services` is live:**
-
-1. Confirm `https://kartikeyathapliyal.com/services` (or the `.vercel.app`
-   host) renders all 12 packages.
-2. Point the `consultancy-pricing` Vercel project at `/services` — either a
-   redirect, or delete the Vercel project once nothing links to it.
-3. Only then: `gh repo delete kartikeya1/consultancy-pricing`
-   (the `delete_repo` scope is already granted).
-
-The bundle makes step 3 recoverable regardless, but the ordering above
-avoids a window where neither page works.
+No action remaining.
 
 ---
 

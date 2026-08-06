@@ -2,26 +2,23 @@
 
 Frozen code. Nothing in here is built, linted, type-checked, or deployed.
 
-## consultancy-pricing.bundle
+## consultancy-pricing — migrated, not archived
 
-The complete git history of the `kartikeya1/consultancy-pricing` repo — the
-standalone HTML pricing sheet whose 10 packages now live in
-`lib/packages.ts`. A `git bundle` is a single file containing every object
-and ref, so this is the whole repo, not a snapshot.
+The standalone HTML pricing sheet that used to live at
+`kartikeya1/consultancy-pricing` was folded into this site in August 2026.
+Its 10 packages are now `lib/packages.ts`; `/services` replaces it entirely.
 
-Restore it any time with:
-
-```bash
-git clone archive/consultancy-pricing.bundle consultancy-pricing
-```
-
-Verified on creation (2026-08-06): restores all 6 commits and both branches,
-and the restored `index.html` is byte-identical to the original.
-
-The migration itself was verified by diffing the source HTML against
+The migration was verified by diffing the original `index.html` against
 `lib/packages.ts` programmatically — every price, category, hourly rate and
-duration tag matches. The only intentional difference is an added ₹4,500
-workshop rate, which the original calculator's dropdown was missing.
+duration tag matched. The one intentional difference is an added ₹4,500
+workshop rate, which the original calculator's dropdown was missing. The
+Google Form URL carried over into `siteConfig.booking`.
+
+**No copy of the old repo is kept here.** A git bundle was created and
+verified during the migration, then deliberately removed at the owner's
+request once `/services` was live — the pricing data is fully represented
+in `lib/packages.ts`, and the old page had no remaining users. The GitHub
+repo and its Vercel project were deleted at the same time.
 
 ## site-v1/
 
