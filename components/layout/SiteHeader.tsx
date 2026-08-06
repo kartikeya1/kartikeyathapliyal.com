@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { Logomark } from "@/components/brand/Logomark";
 import { Container } from "./Container";
 import { siteConfig } from "@/lib/site";
 
@@ -19,14 +20,14 @@ export function SiteHeader() {
       <Container className="flex items-center gap-4 py-4 sm:gap-6 md:py-5">
         {/* Below `sm` the full name can't fit alongside nav, the audience
             switch and the theme toggle without eating the gutter — so the
-            brand falls back to initials rather than truncating to something
-            unreadable. Replaced by the logo mark in a later phase. */}
+            mark carries the brand alone there. The link keeps its
+            accessible name via aria-label, since the SVG is decorative. */}
         <Link
           href="/"
           aria-label={siteConfig.name}
-          className="shrink-0 whitespace-nowrap text-sm font-medium"
+          className="flex shrink-0 items-center gap-2 whitespace-nowrap text-sm font-medium"
         >
-          <span className="sm:hidden">{siteConfig.shortName}</span>
+          <Logomark className="h-5 w-5 shrink-0" />
           <span className="hidden sm:inline">{siteConfig.name}</span>
         </Link>
 

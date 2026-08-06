@@ -8,9 +8,6 @@
  */
 export const siteConfig = {
   name: "Kartikeya Thapliyal",
-  /** Brand fallback where the full name doesn't fit — replaced by the logo
-   *  mark once that exists. */
-  shortName: "KT",
   role: "Product & fintech consultant",
   positioning:
     "I help fintech and platform teams ship integrations that hold up in production.",

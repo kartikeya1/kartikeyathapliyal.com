@@ -14,6 +14,7 @@ export function JsonLd() {
         name: siteConfig.name,
         url: siteConfig.url,
         jobTitle: siteConfig.role,
+        image: `${siteConfig.url}/opengraph-image`,
         description: siteConfig.positioning,
         email: `mailto:${siteConfig.contact.email}`,
         sameAs: [siteConfig.social.linkedin, siteConfig.social.github],

@@ -109,6 +109,27 @@ function countPrimaryCtas(src) {
   return tags.filter((tag) => !/variant\s*=\s*"secondary"/.test(tag)).length;
 }
 
+// --- brand sync ---
+// app/icon.svg is a static file, so it cannot import lib/logo.ts like the
+// header mark and the OG image do. Assert its path data matches instead —
+// the same "derived or verified, never hand-synced" rule as CLAIMS.md.
+// Only stroke-width and a wrapping transform differ between surfaces, so
+// verbatim `d` matching is exactly the right assertion.
+const logoSrc = readFileSync(join(ROOT, "lib/logo.ts"), "utf8");
+const iconSrc = readFileSync(join(ROOT, "app/icon.svg"), "utf8");
+const logoPaths = [...logoSrc.matchAll(/^\s*"(M[^"]+)",/gm)].map((m) => m[1]);
+
+if (logoPaths.length === 0) {
+  errors.push("lib/logo.ts  [brand] no paths parsed — the gate is checking nothing");
+}
+for (const d of logoPaths) {
+  if (!iconSrc.includes(d)) {
+    errors.push(
+      `app/icon.svg  [brand-drift] missing path from lib/logo.ts: ${d} — the favicon no longer matches the logo`,
+    );
+  }
+}
+
 // FX staleness — a warning, never a failure. A hard error here would break a
 // deploy months from now for a reason nobody is awake to fix.
 const site = readFileSync(join(ROOT, "lib/site.ts"), "utf8");

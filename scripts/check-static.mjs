@@ -28,6 +28,7 @@ const EXPECTED_ROUTES = new Set([
   "/contact",
   "/_not-found",
   "/icon.svg",
+  "/apple-icon",
   "/opengraph-image",
   "/robots.txt",
   "/sitemap.xml",
