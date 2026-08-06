@@ -1,15 +1,7 @@
 "use client";
 
 import { formatInr } from "@/lib/format";
-
-export const rateOptions = [
-  { value: 5000, label: "5,000 · advisory / workshop" },
-  { value: 4500, label: "4,500 · full-day workshop" },
-  { value: 4375, label: "4,375 · strategy sprint" },
-  { value: 4167, label: "4,167 · reliability sprint" },
-  { value: 4000, label: "4,000 · standard sprint / retainer" },
-  { value: 3750, label: "3,750 · coaching" },
-] as const;
+import { rateOptions } from "@/lib/packages";
 
 export function RateCalculator({
   hours,

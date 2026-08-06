@@ -1,0 +1,110 @@
+#!/usr/bin/env node
+/**
+ * Runs in `prebuild`, so Vercel enforces it on every deployment — a hardcoded
+ * email or price can never reach production.
+ *
+ * Rule: app/ and components/ may not contain contact details, external URLs,
+ * or currency literals. Those belong in lib/site.ts, lib/packages.ts, or
+ * lib/claims.ts, so changing one value changes it everywhere.
+ *
+ * Also asserts at most one primary CTA per page, and warns when the manually
+ * maintained FX rate is going stale.
+ */
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { ROOT, sourceFiles, readSource } from "./lib/read-data.mjs";
+
+const ALLOWLIST = new Set([
+  "lib/site.ts",
+  "lib/packages.ts",
+  "lib/claims.ts",
+  // Vendor integration. The app.cal.com script URL and the cal.com embed
+  // origin are part of Cal.com's embed protocol, not site configuration —
+  // they change when Cal.com changes, not when Kartikeya's details do.
+  // Which booking page to open still comes from siteConfig.booking.calUrl.
+  "components/content/CalEmbed.tsx",
+]);
+
+const RULES = [
+  {
+    name: "email-literal",
+    re: /[\w.%+-]+@[\w.-]+\.\w{2,}/,
+    hint: "use siteConfig.contact.email",
+  },
+  {
+    name: "phone-literal",
+    re: /\+91[\s-]?\d/,
+    hint: "use siteConfig.contact.phone",
+  },
+  {
+    name: "external-url",
+    re: /https?:\/\/(?:docs\.google|[\w.-]*linkedin\.com|github\.com|cal\.com|app\.cal\.com)/,
+    hint: "use siteConfig.social.* or siteConfig.booking.*",
+  },
+  {
+    name: "rupee-literal",
+    re: /₹\s?\d/,
+    hint: "use formatPrice() / formatInr() from lib/format.ts",
+  },
+];
+
+// Numbers that are legitimately structural rather than data.
+const NUMBER_EXEMPT =
+  /viewBox|^\s*d="|stroke|\bpath\b|#[0-9a-f]{3,8}\b|20\d\d-\d\d-\d\d|max-w-|min-h-|\bh-\d|\bw-\d|height|width|\bzIndex\b|\bkey=|\bconst\s+[A-Z][A-Z0-9_]*\s*=/;
+
+const errors = [];
+const warnings = [];
+
+for (const file of sourceFiles()) {
+  if (ALLOWLIST.has(file)) continue;
+  const lines = readSource(file).split("\n");
+
+  lines.forEach((line, i) => {
+    const at = `${file}:${i + 1}`;
+    for (const rule of RULES) {
+      const m = line.match(rule.re);
+      if (m) errors.push(`${at}  [${rule.name}] ${m[0].trim()} — ${rule.hint}`);
+    }
+
+    // Bare 4+ digit integers, e.g. a price pasted into JSX.
+    if (!NUMBER_EXEMPT.test(line)) {
+      const m = line.match(/(?<![\w.#-])\d{4,}(?![\w.-])/);
+      if (m) {
+        warnings.push(`${at}  [bare-number] ${m[0]} — should this come from lib/?`);
+      }
+    }
+  });
+
+  // One primary CTA per page.
+  if (/^app\/.*page\.tsx$/.test(file)) {
+    const count = (readSource(file).match(/data-cta="primary"/g) || []).length;
+    if (count > 1) {
+      errors.push(`${file}  [multi-cta] ${count} primary CTAs — a page may have at most one`);
+    }
+  }
+}
+
+// FX staleness — a warning, never a failure. A hard error here would break a
+// deploy months from now for a reason nobody is awake to fix.
+const site = readFileSync(join(ROOT, "lib/site.ts"), "utf8");
+const rateAsOf = site.match(/rateAsOf:\s*"([\d-]+)"/)?.[1];
+const source = site.match(/source:\s*"(\w+)"/)?.[1];
+if (rateAsOf) {
+  const days = Math.round((Date.now() - Date.parse(rateAsOf)) / 86_400_000);
+  if (days > 180 && source !== "live") {
+    warnings.push(
+      `lib/site.ts  [fx-stale] INR/USD rate set ${days} days ago and still manual — re-check it`,
+    );
+  }
+}
+
+for (const w of warnings) console.warn(`warning  ${w}`);
+
+if (errors.length) {
+  console.error(`\ncheck-config: ${errors.length} problem(s)\n`);
+  for (const e of errors) console.error(`  ${e}`);
+  console.error("");
+  process.exit(1);
+}
+
+console.log(`check-config: ok — ${warnings.length} warning(s)`);

@@ -7,10 +7,14 @@
   },
   "scripts": {
     "dev": "next dev --turbopack",
+    "prebuild": "node scripts/check-config.mjs && node scripts/check-claims.mjs",
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
+    "check": "node scripts/check-config.mjs && node scripts/check-claims.mjs",
+    "claims:build": "node scripts/build-claims-manifest.mjs",
+    "claims:check": "node scripts/check-claims.mjs",
     "verify": "npm run typecheck && npm run lint && npm run build"
   },
   "dependencies": {
