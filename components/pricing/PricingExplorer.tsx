@@ -1,10 +1,17 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { ConsultingPackage, PackageCategory } from "@/lib/packages";
+import {
+  defaultRateInr,
+  type ConsultingPackage,
+  type PackageCategory,
+} from "@/lib/packages";
 import { PackageCard } from "./PackageCard";
 import { RateCalculator } from "./RateCalculator";
 import { FilterSortBar, type SortValue } from "./FilterSortBar";
+
+/** Matches the `flash-highlight` fade below. */
+const FLASH_MS = 1200;
 
 /**
  * Owns the state that the calculator and the filter/sort bar both act on:
@@ -18,7 +25,7 @@ export function PricingExplorer({
 }) {
   const [hours, setHours] = useState(10);
   const [weeks, setWeeks] = useState(3);
-  const [rate, setRate] = useState(4000);
+  const [rate, setRate] = useState<number>(defaultRateInr);
   const [filter, setFilter] = useState<PackageCategory | "all">("all");
   const [sort, setSort] = useState<SortValue>("default");
   const [flashId, setFlashId] = useState<string | null>(null);
@@ -51,7 +58,7 @@ export function PricingExplorer({
     if (!el) return;
     el.scrollIntoView({ behavior: "smooth", block: "center" });
     setFlashId(closest.id);
-    window.setTimeout(() => setFlashId(null), 1200);
+    window.setTimeout(() => setFlashId(null), FLASH_MS);
   }
 
   return (
@@ -73,6 +80,12 @@ export function PricingExplorer({
         sort={sort}
         onSortChange={setSort}
       />
+      {/* Own h2, not just a styled label — keeps this grid's h3 cards under
+          their own section rather than nested under EntryBand's "Start
+          here" heading. */}
+      <h2 data-label className="text-muted">
+        All engagements
+      </h2>
       <div
         id="package-grid"
         data-box
@@ -83,7 +96,7 @@ export function PricingExplorer({
             key={pkg.id}
             className={
               flashId === pkg.id
-                ? "rounded-[10px] ring-2 ring-accent transition-shadow duration-300"
+                ? "rounded-[var(--radius)] ring-2 ring-accent transition-shadow duration-300"
                 : ""
             }
           >

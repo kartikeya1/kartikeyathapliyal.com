@@ -18,7 +18,7 @@ export const siteConfig = {
 
   contact: {
     email: "kartikeya.thapliyal.work@gmail.com",
-    phone: "+91 9999999999",
+    phone: "+91 8088033870",
   },
 
   social: {

@@ -23,7 +23,7 @@ export function Section({
       className={cn("py-10 first:pt-0 md:py-14 md:first:pt-0", className)}
     >
       {heading && (
-        <h2 className="text-xl font-medium tracking-tight">{heading}</h2>
+        <h2>{heading}</h2>
       )}
       {lede && <p className="mt-2 max-w-[62ch] text-muted">{lede}</p>}
       {children && <div className={heading || lede ? "mt-6" : ""}>{children}</div>}

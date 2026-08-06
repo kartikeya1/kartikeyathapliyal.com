@@ -2,6 +2,24 @@
 
 Frozen code. Nothing in here is built, linted, type-checked, or deployed.
 
+## consultancy-pricing — migrated, not archived
+
+The standalone HTML pricing sheet that used to live at
+`kartikeya1/consultancy-pricing` was folded into this site in August 2026.
+Its 10 packages are now `lib/packages.ts`; `/services` replaces it entirely.
+
+The migration was verified by diffing the original `index.html` against
+`lib/packages.ts` programmatically — every price, category, hourly rate and
+duration tag matched. The one intentional difference is an added ₹4,500
+workshop rate, which the original calculator's dropdown was missing. The
+Google Form URL carried over into `siteConfig.booking`.
+
+**No copy of the old repo is kept here.** A git bundle was created and
+verified during the migration, then deliberately removed at the owner's
+request once `/services` was live — the pricing data is fully represented
+in `lib/packages.ts`, and the old page had no remaining users. The GitHub
+repo and its Vercel project were deleted at the same time.
+
 ## site-v1/
 
 The original kartikeyathapliyal.com — a dark-only Next.js 15 "product manager's

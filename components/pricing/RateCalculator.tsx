@@ -1,15 +1,7 @@
 "use client";
 
 import { formatInr } from "@/lib/format";
-
-export const rateOptions = [
-  { value: 5000, label: "5,000 · advisory / workshop" },
-  { value: 4500, label: "4,500 · full-day workshop" },
-  { value: 4375, label: "4,375 · strategy sprint" },
-  { value: 4167, label: "4,167 · reliability sprint" },
-  { value: 4000, label: "4,000 · standard sprint / retainer" },
-  { value: 3750, label: "3,750 · coaching" },
-] as const;
+import { rateOptions } from "@/lib/packages";
 
 export function RateCalculator({
   hours,
@@ -33,8 +25,8 @@ export function RateCalculator({
   onMatchClick: () => void;
 }) {
   return (
-    <div data-box className="rounded-[10px] border border-border p-5">
-      <div className="text-xs font-medium uppercase tracking-wide text-muted">
+    <div data-box className="rounded-[var(--radius)] border border-[var(--card-border)] bg-[var(--card-bg)] p-5">
+      <div data-label className="text-muted">
         Estimate a custom scope
       </div>
       <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -76,7 +68,7 @@ export function RateCalculator({
         </label>
       </div>
       <div className="mt-5 flex items-baseline justify-between">
-        <div className="text-2xl font-medium">{formatInr(total)}</div>
+        <div data-figure className="text-2xl font-medium">{formatInr(total)}</div>
         {matchName && (
           <button
             type="button"

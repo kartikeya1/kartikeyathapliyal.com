@@ -4,11 +4,17 @@ import { LazyEmbed } from "@/components/content/LazyEmbed";
 import { CalEmbed } from "@/components/content/CalEmbed";
 import { ExternalLink } from "@/components/content/ExternalLink";
 import { siteConfig } from "@/lib/site";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = { title: "Contact" };
+export const metadata: Metadata = buildMetadata({
+  title: "Contact",
+  description: "Get in touch — email, LinkedIn, or book a 30-minute call.",
+  path: "/contact",
+});
 
-// "kartikeyathapliyal/30min" from "https://cal.com/kartikeyathapliyal/30min" —
-// derived rather than duplicated in config, since calUrl is the single source.
+// Cal.com's embed wants the path segment ("user/event-type"), not the full
+// URL. Derived from booking.calUrl rather than duplicated in config, so the
+// config keeps exactly one source of truth for where bookings go.
 const calLink = new URL(siteConfig.booking.calUrl).pathname.slice(1);
 
 export default function ContactPage() {

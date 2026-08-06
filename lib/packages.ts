@@ -63,7 +63,7 @@ export const packages: readonly ConsultingPackage[] = [
   },
   {
     id: "intro-call",
-    name: "Intro consultation call",
+    name: "Sanity-check a product decision",
     category: "call",
     tier: "core",
     priceInr: 5000,
@@ -80,7 +80,7 @@ export const packages: readonly ConsultingPackage[] = [
   },
   {
     id: "deep-dive-diagnostic",
-    name: "Deep-dive diagnostic",
+    name: "Diagnose a broken product flow",
     category: "sprint",
     tier: "core",
     priceInr: 40000,
@@ -97,7 +97,7 @@ export const packages: readonly ConsultingPackage[] = [
   },
   {
     id: "strategy-sprint",
-    name: "Product strategy / roadmap sprint",
+    name: "Reset a reactive roadmap",
     category: "sprint",
     tier: "core",
     priceInr: 70000,
@@ -114,7 +114,7 @@ export const packages: readonly ConsultingPackage[] = [
   },
   {
     id: "integration-readiness-sprint",
-    name: "Fintech integration / API readiness sprint",
+    name: "Integration readiness audit",
     category: "sprint",
     tier: "core",
     priceInr: 120000,
@@ -131,7 +131,7 @@ export const packages: readonly ConsultingPackage[] = [
   },
   {
     id: "reliability-sprint",
-    name: "Reliability / critical-journey sprint",
+    name: "Reliability and error-reduction program",
     category: "sprint",
     tier: "core",
     priceInr: 150000,
@@ -182,7 +182,7 @@ export const packages: readonly ConsultingPackage[] = [
   },
   {
     id: "pm-coaching",
-    name: "PM coaching / team enablement",
+    name: "PM coaching and team enablement",
     category: "monthly",
     tier: "core",
     priceInr: 30000,
@@ -199,7 +199,7 @@ export const packages: readonly ConsultingPackage[] = [
   },
   {
     id: "half-day-workshop",
-    name: "Half-day workshop / offsite",
+    name: "Half-day product workshop",
     category: "workshop",
     tier: "core",
     priceInr: 20000,
@@ -216,7 +216,7 @@ export const packages: readonly ConsultingPackage[] = [
   },
   {
     id: "full-day-workshop",
-    name: "Full-day workshop / offsite",
+    name: "Full-day strategy offsite",
     category: "workshop",
     tier: "core",
     priceInr: 36000,
@@ -232,6 +232,23 @@ export const packages: readonly ConsultingPackage[] = [
     outcome: "Outcome: shared direction, clearer priorities, and a stronger execution path.",
   },
 ] as const;
+
+/**
+ * The hourly-rate ladder offered by the estimator, mirroring the effective
+ * rates of the packages above. Lives here rather than in the component
+ * because it is pricing data, not presentation.
+ */
+export const rateOptions = [
+  { value: 5000, label: "5,000 · advisory / workshop" },
+  { value: 4500, label: "4,500 · full-day workshop" },
+  { value: 4375, label: "4,375 · strategy sprint" },
+  { value: 4167, label: "4,167 · reliability sprint" },
+  { value: 4000, label: "4,000 · standard sprint / retainer" },
+  { value: 3750, label: "3,750 · coaching" },
+] as const;
+
+/** The estimator's starting rate — the most common one across packages. */
+export const defaultRateInr = 4000;
 
 export const entryPackages: readonly ConsultingPackage[] = packages.filter(
   (p) => p.tier === "entry",

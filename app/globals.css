@@ -4,36 +4,65 @@
    That is what lets a user override their OS preference. */
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
-/* ---------------------------------------------------------------------------
-   Semantic tokens. Light on :root, dark as an attribute override.
-   Final palette is decided in Phase 3; these are working values.
-   --------------------------------------------------------------------------- */
+/* ===========================================================================
+   Design tokens.
+
+   Structure — type scale, weight, tracking, radius, card treatment, rhythm —
+   is theme-independent by design. Only colour changes between light and dark,
+   so toggling the theme never reflows the page or changes what the brand
+   looks like.
+
+   Light is a high-contrast near-black-on-white treatment: confidence comes
+   from type and contrast rather than from a colour, so the primary button is
+   near-black. Dark inverts that into a cool, slightly blue near-black with a
+   cyan accent, which reads better on a dark surface than white-on-black.
+   =========================================================================== */
 :root {
   color-scheme: light;
   --bg: #ffffff;
-  --surface: #f7f7f6;
-  --text: #17181a;
-  --text-muted: #5c6066;
-  --border: #e5e4e1;
-  /* Darker than the dark-mode accent: #d9926c on white is ~2.3:1, an AA fail. */
-  --accent: #b4623c;
+  --surface: #f4f4f5;
+  --text: #09090b;
+  --text-muted: #52525b;
+  --border: #e4e4e7;
+  --accent: #18181b;
   --accent-fg: #ffffff;
 }
 
 [data-theme="dark"] {
   color-scheme: dark;
-  --bg: #0e0f11;
-  --surface: #17181a;
-  --text: #ececea;
-  --text-muted: #a0a3a8;
-  --border: #26282b;
-  --accent: #d9926c;
-  --accent-fg: #17181a;
+  --bg: #0b0e11;
+  --surface: #141a1f;
+  --text: #e6ebf0;
+  --text-muted: #8f9aa6;
+  --border: #232b33;
+  --accent: #5cc8e8;
+  --accent-fg: #0b0e11;
+}
+
+/* Structure — identical in both themes. */
+:root {
+  --font-display: var(--font-geist-sans), system-ui, sans-serif;
+  --display-weight: 600;
+  --display-tracking: -0.035em;
+  --label-family: var(--font-geist-sans), system-ui, sans-serif;
+  --label-tracking: 0.1em;
+  --figure-family: var(--font-geist-sans), system-ui, sans-serif;
+
+  --fs-hero: clamp(2.5rem, 10vw, 3.75rem);
+  --fs-h1: clamp(2rem, 7vw, 2.75rem);
+  --fs-h2: clamp(1.375rem, 4.5vw, 1.75rem);
+  --fs-h3: 1.0625rem;
+  --lh-display: 1.05;
+
+  --radius: 8px;
+  --card-bg: var(--surface);
+  --card-border: transparent;
+  --page-pad: clamp(3rem, 9vw, 6rem);
 }
 
 /* `@theme inline` is the load-bearing bit: utilities resolve to var(--bg)
    rather than to a baked hex, so flipping [data-theme] re-resolves every
-   utility on the page and no `dark:` prefix is needed anywhere in markup. */
+   utility on the page and no `dark:` prefix appears anywhere in markup. */
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
@@ -52,6 +81,44 @@ body {
   color: var(--text);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+}
+
+/* --------------------------------------------------------------- type ---
+   Headings are styled here, not with utilities on each component, so the
+   whole site's typography is governed by a handful of variables. */
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
+  line-height: var(--lh-display);
+}
+h1 {
+  font-size: var(--fs-h1);
+}
+h2 {
+  font-size: var(--fs-h2);
+}
+h3 {
+  font-size: var(--fs-h3);
+}
+[data-hero] h1 {
+  font-size: var(--fs-hero);
+}
+
+/* Eyebrows and small-caps labels. */
+[data-label] {
+  font-family: var(--label-family);
+  letter-spacing: var(--label-tracking);
+  text-transform: uppercase;
+  font-size: 0.6875rem;
+}
+
+/* Prices and figures — tabular so columns line up down the pricing grid. */
+[data-figure] {
+  font-family: var(--figure-family);
+  font-variant-numeric: tabular-nums;
 }
 
 /* The only motion on the site. */
@@ -78,33 +145,4 @@ button {
 }
 [data-theme="dark"] .icon-moon {
   display: none;
-}
-
-/* ---------------------------------------------------------------------------
-   Wireframe layer — Phase 1 only. Activated by NEXT_PUBLIC_WIREFRAME=1, which
-   is inlined at build time, so production ships none of this.
-   Deleted entirely at the end of Phase 3.
-   --------------------------------------------------------------------------- */
-@layer wireframe {
-  html[data-wireframe] {
-    --accent: #6b7280;
-    --bg: #ffffff;
-    --surface: #f3f4f6;
-    --text: #111111;
-    --text-muted: #6b7280;
-    --border: #9ca3af;
-    --accent-fg: #ffffff;
-  }
-  html[data-wireframe] * {
-    font-family: ui-monospace, monospace !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-  }
-  html[data-wireframe] [data-box] {
-    outline: 1px dashed var(--border);
-  }
-  html[data-wireframe] img,
-  html[data-wireframe] svg {
-    filter: grayscale(1) opacity(0.4);
-  }
 }

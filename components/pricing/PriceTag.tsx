@@ -9,9 +9,9 @@ export function PriceTag({
 }) {
   return (
     <div>
-      <div className="text-lg font-medium">{formatPrice(priceInr)}</div>
+      <div data-figure className="text-lg font-medium">{formatPrice(priceInr)}</div>
       {rateInrPerHour !== null && (
-        <div className="text-xs text-muted">{formatRate(rateInrPerHour)}</div>
+        <div data-figure className="text-xs text-muted">{formatRate(rateInrPerHour)}</div>
       )}
     </div>
   );

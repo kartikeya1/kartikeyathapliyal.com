@@ -1,0 +1,58 @@
+# kartikeyathapliyal.com
+
+Personal consulting site for Kartikeya Thapliyal — product and fintech
+consulting for businesses, with a secondary track for individual career
+coaching.
+
+**Live:** https://kartikeyathapliyalcom.vercel.app
+**Stack:** Next.js 15 (App Router) · React 19 · Tailwind v4 · TypeScript
+**Backend:** none. Fully static. The only external services are a Google
+Form and a Cal.com booking embed, both loaded client-side and only on
+`/contact`.
+
+## Routes
+
+| Route | Purpose |
+|---|---|
+| `/` | Name, one-line positioning, one CTA |
+| `/about` | Career background, written from private source notes |
+| `/services` | The 12 consulting packages, a rate estimator, filter/sort |
+| `/for-individuals` | Secondary audience — career coaching (pricing pending) |
+| `/contact` | Email, phone, LinkedIn, Cal.com and Google Form embeds |
+
+## Running locally
+
+```bash
+npm install
+npm run dev      # http://localhost:3000
+```
+
+## Before pushing
+
+```bash
+npm run verify    # typecheck + lint + build (all three build-time gates)
+```
+
+The build runs three gates automatically — `prebuild` checks for hardcoded
+contact details/prices/URLs and validates the claims registry; `postbuild`
+asserts the output is fully static with zero serverless functions. All
+three run on Vercel too, so a build that passes locally will pass there.
+
+If you touched `lib/claims.ts` or `lib/packages.ts`:
+
+```bash
+npm run claims:build    # regenerates CLAIMS.md — commit the diff
+```
+
+## Structure
+
+See [`CLAUDE.md`](./CLAUDE.md) for the full map and the non-negotiables
+(no hardcoded config, no dynamic routes, claims registry discipline). See
+[`PENDING.md`](./PENDING.md) for open items awaiting the owner's input, and
+[`CLAIMS.md`](./CLAIMS.md) for every factual claim on the site with its
+source.
+
+## History
+
+Rebuilt from scratch in four phases, replacing a dark-only portfolio site
+now frozen in [`archive/site-v1/`](./archive/) for reference.
