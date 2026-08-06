@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+/* The dark variant keys off the attribute we control, never off a media query.
+   That is what lets a user override their OS preference. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ---------------------------------------------------------------------------
+   Semantic tokens. Light on :root, dark as an attribute override.
+   Final palette is decided in Phase 3; these are working values.
+   --------------------------------------------------------------------------- */
+:root {
+  color-scheme: light;
+  --bg: #ffffff;
+  --surface: #f7f7f6;
+  --text: #17181a;
+  --text-muted: #5c6066;
+  --border: #e5e4e1;
+  /* Darker than the dark-mode accent: #d9926c on white is ~2.3:1, an AA fail. */
+  --accent: #b4623c;
+  --accent-fg: #ffffff;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0e0f11;
+  --surface: #17181a;
+  --text: #ececea;
+  --text-muted: #a0a3a8;
+  --border: #26282b;
+  --accent: #d9926c;
+  --accent-fg: #17181a;
+}
+
+/* `@theme inline` is the load-bearing bit: utilities resolve to var(--bg)
+   rather than to a baked hex, so flipping [data-theme] re-resolves every
+   utility on the page and no `dark:` prefix is needed anywhere in markup. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-text: var(--text);
+  --color-muted: var(--text-muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The only motion on the site. */
+a,
+button {
+  transition:
+    color 120ms ease,
+    background-color 120ms ease,
+    border-color 120ms ease;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Theme-toggle icons: the icon shows the theme you'd switch TO.
+   Pure CSS, so the right one is visible before hydration. */
+.icon-sun {
+  display: none;
+}
+[data-theme="dark"] .icon-sun {
+  display: block;
+}
+[data-theme="dark"] .icon-moon {
+  display: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Wireframe layer — Phase 1 only. Activated by NEXT_PUBLIC_WIREFRAME=1, which
+   is inlined at build time, so production ships none of this.
+   Deleted entirely at the end of Phase 3.
+   --------------------------------------------------------------------------- */
+@layer wireframe {
+  html[data-wireframe] {
+    --accent: #6b7280;
+    --bg: #ffffff;
+    --surface: #f3f4f6;
+    --text: #111111;
+    --text-muted: #6b7280;
+    --border: #9ca3af;
+    --accent-fg: #ffffff;
+  }
+  html[data-wireframe] * {
+    font-family: ui-monospace, monospace !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+  html[data-wireframe] [data-box] {
+    outline: 1px dashed var(--border);
+  }
+  html[data-wireframe] img,
+  html[data-wireframe] svg {
+    filter: grayscale(1) opacity(0.4);
+  }
+}
