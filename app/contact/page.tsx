@@ -1,46 +1,53 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/content/PageHeader";
 import { LazyEmbed } from "@/components/content/LazyEmbed";
+import { CalEmbed } from "@/components/content/CalEmbed";
 import { ExternalLink } from "@/components/content/ExternalLink";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = { title: "Contact" };
 
+// "kartikeyathapliyal/30min" from "https://cal.com/kartikeyathapliyal/30min" —
+// derived rather than duplicated in config, since calUrl is the single source.
+const calLink = new URL(siteConfig.booking.calUrl).pathname.slice(1);
+
 export default function ContactPage() {
   return (
-    <div className="max-w-[62ch] space-y-8">
-      <PageHeader title="Contact" />
+    <div className="space-y-8">
+      <div className="max-w-[62ch] space-y-8">
+        <PageHeader title="Contact" />
 
-      <div data-box className="space-y-1 text-sm">
-        <div>
-          <a href={`mailto:${siteConfig.contact.email}`} className="underline">
-            {siteConfig.contact.email}
-          </a>
-        </div>
-        <div className="text-muted">{siteConfig.contact.phone}</div>
-        <div>
-          <ExternalLink href={siteConfig.social.linkedin} className="underline">
-            LinkedIn
-          </ExternalLink>
+        <div data-box className="space-y-1 text-sm">
+          <div>
+            <a href={`mailto:${siteConfig.contact.email}`} className="underline">
+              {siteConfig.contact.email}
+            </a>
+          </div>
+          <div className="text-muted">{siteConfig.contact.phone}</div>
+          <div>
+            <ExternalLink href={siteConfig.social.linkedin} className="underline">
+              LinkedIn
+            </ExternalLink>
+          </div>
         </div>
       </div>
 
-      <div data-box>
-        <LazyEmbed
-          label="Book a 30-minute call"
-          linkUrl={siteConfig.booking.calUrl}
-          embedUrl={siteConfig.booking.calUrl}
-          height={650}
-        />
-      </div>
+      {/* Wider than the prose column above — a calendar and a form both
+          need real width to lay out properly, not a reading-width column. */}
+      <div data-box className="max-w-[46rem] space-y-8">
+        <LazyEmbed label="Book a 30-minute call" linkUrl={siteConfig.booking.calUrl}>
+          <CalEmbed calLink={calLink} />
+        </LazyEmbed>
 
-      <div data-box>
-        <LazyEmbed
-          label="Open the inquiry form"
-          linkUrl={siteConfig.booking.formUrl}
-          embedUrl={siteConfig.booking.formEmbedUrl}
-          height={900}
-        />
+        <LazyEmbed label="Open the inquiry form" linkUrl={siteConfig.booking.formUrl}>
+          <iframe
+            src={siteConfig.booking.formEmbedUrl}
+            title="Consulting inquiry form"
+            loading="lazy"
+            style={{ height: 900 }}
+            className="w-full rounded border border-border"
+          />
+        </LazyEmbed>
       </div>
     </div>
   );
