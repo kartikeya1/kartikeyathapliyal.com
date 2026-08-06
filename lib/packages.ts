@@ -16,7 +16,13 @@ export interface ConsultingPackage {
   bullets: readonly [string, string];
   outcome: string;
   claimIds?: readonly string[];
-  /** /for-individuals only, until real prices are supplied. */
+  /**
+   * Set when one offering has several prices — mock interviews are priced by
+   * the candidate's level. `priceInr` then acts as the "from" price and the
+   * tiers render beneath it, which beats three near-identical cards.
+   */
+  priceTiers?: readonly { label: string; priceInr: number }[];
+  /** Marks an offering whose price is not final. Renders a visible badge. */
   isPlaceholder?: true;
 }
 
@@ -268,45 +274,80 @@ export function packageById(id: string): ConsultingPackage | undefined {
  */
 export const individualPackages: readonly ConsultingPackage[] = [
   {
+    id: "individuals-intro-chat",
+    name: "Career chat",
+    category: "call",
+    tier: "entry",
+    priceInr: 0,
+    rateInrPerHour: null,
+    tag: "30 min · free",
+    featured: false,
+    summary:
+      "A free call to talk through where you are and what you actually want next.",
+    bullets: [
+      "Useful when you're not sure whether you want a PM role or just a change",
+      "No prep, no pitch — bring a question or bring the confusion",
+    ],
+    outcome:
+      "Outcome: a clearer read on your next step, and an honest answer on whether any of the paid options below would help.",
+  },
+  {
     id: "individuals-resume-review",
     name: "Resume review",
     category: "call",
     tier: "core",
-    priceInr: 0,
+    priceInr: 500,
     rateInrPerHour: null,
-    tag: "Draft pricing",
+    tag: "Two passes · 24-hour turnaround each",
     featured: false,
-    summary: "Placeholder — real scope and price pending.",
-    bullets: ["Placeholder bullet one", "Placeholder bullet two"],
-    outcome: "Outcome: placeholder.",
-    isPlaceholder: true,
+    summary:
+      "Two full passes over your resume — I review, you revise, I check the final version.",
+    bullets: [
+      "First pass: written feedback on positioning, structure, and which lines are doing no work",
+      "Second pass: I re-read your revision and tell you whether it's ready. Further rounds need a new booking",
+    ],
+    outcome:
+      "Outcome: a resume that survives a recruiter screen, and a clear account of what was weak and why.",
   },
   {
     id: "individuals-mock-interview",
     name: "Mock PM interview",
     category: "call",
     tier: "core",
-    priceInr: 0,
+    priceInr: 500,
     rateInrPerHour: null,
-    tag: "Draft pricing",
+    tag: "60 min · priced by level",
     featured: false,
-    summary: "Placeholder — real scope and price pending.",
-    bullets: ["Placeholder bullet one", "Placeholder bullet two"],
-    outcome: "Outcome: placeholder.",
-    isPlaceholder: true,
+    priceTiers: [
+      { label: "Breaking into APM", priceInr: 500 },
+      { label: "APM practising for PM", priceInr: 1000 },
+      { label: "Working PM or SPM", priceInr: 1500 },
+    ],
+    summary:
+      "A realistic 60-minute round at your level, followed by written feedback within 24 hours.",
+    bullets: [
+      "Priced by where you actually are, so the questions match the bar you're being held to",
+      "Feedback is honest rather than encouraging — what worked, what didn't, and what to change",
+    ],
+    outcome:
+      "Outcome: a real read on where you stand, and specific things to fix before the round that counts.",
   },
   {
     id: "individuals-career-coaching",
     name: "SDE→PM / APM→PM coaching",
     category: "monthly",
     tier: "core",
-    priceInr: 0,
-    rateInrPerHour: null,
-    tag: "Draft pricing",
-    featured: false,
-    summary: "Placeholder — real scope and price pending.",
-    bullets: ["Placeholder bullet one", "Placeholder bullet two"],
-    outcome: "Outcome: placeholder.",
-    isPlaceholder: true,
+    priceInr: 3500,
+    rateInrPerHour: 1750,
+    tag: "2 × 1-hour sessions · mock interview included",
+    featured: true,
+    summary:
+      "Two hours of coaching on your specific transition, plus a mock interview at no extra cost.",
+    bullets: [
+      "Two one-hour sessions on your actual situation and gaps — not a generic PM curriculum",
+      "Includes a free mock interview with written feedback inside 24 hours",
+    ],
+    outcome:
+      "Outcome: a concrete path from where you are to a PM role, and practice at the part that decides it.",
   },
 ] as const;
