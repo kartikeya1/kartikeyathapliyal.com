@@ -1,52 +1,90 @@
 # Pending items
 
-Open items that don't block ongoing build work but do block production
-launch. Check this file before merging `phase-4-launch` (or its successor)
-into `main`.
+Open work and parked scope. Nothing here blocks a production deploy any
+more — the launch blockers are closed. Items are grouped by whether they
+need Kartikeya's input or are simply queued.
 
 ---
 
-## 1. `/for-individuals` prices — not yet supplied
+## Queued work — no input needed
 
-All three individual-track packages in `lib/packages.ts` carry
-`isPlaceholder: true` and render a visible "Draft pricing" badge with a
-₹0 / "Free" price on the live site:
+### Improvements programme, remaining phases
 
-- `individuals-resume-review` — Resume review
-- `individuals-mock-interview` — Mock PM interview
-- `individuals-career-coaching` — SDE→PM / APM→PM coaching
+| Phase | Scope | Model · effort |
+|---|---|---|
+| **I1** | Delete `/contact`, move the Cal.com and Google Form embeds to a `#book` section on `/services`, add a `308` redirect, update `sitemap.ts` + `check-static.mjs` `EXPECTED_ROUTES` | Sonnet 5 · medium |
+| **I4** | Logo mark, favicon redraw, `apple-icon.png` (missing — iOS ignores SVG), OG image mark, brand-sync gate | Opus 5 · medium |
+| **I5** | Homepage — currently name, one line, one CTA. No reason to scroll | Opus 5 · medium |
+| **I6** | Geo-based currency (India → INR, else USD), live USD/INR rate, explicit toggle, visible rate + last-refresh time | Opus 5 · medium |
+| **I7** | Docs pass, dashboard-only checklist | Sonnet 5 · low |
 
-**To resolve:** supply name, price, duration, and a one-line outcome for
-each. Update the three entries in `lib/packages.ts`, remove
-`isPlaceholder: true`, run `npm run claims:build` to regenerate
-`CLAIMS.md`, and confirm the PLACEHOLDERS section is empty.
+Notes for **I1**: `/contact` is already out of the header nav (the footer
+carries contact on every page now), but the route still exists and is still
+in `sitemap.ts` and `check-static.mjs`. Those two files hard-fail the build
+if the route set changes without them, so all three must land together.
 
-Owner: Kartikeya. Noted 2026-08-06, deferred to "later."
+Notes for **I6**: **Yahoo and Google Finance cannot be used** — both are
+CORS-blocked from a browser (Yahoo also returns 429). Verified working
+alternatives, both free and CORS-enabled: `open.er-api.com/v6/latest/USD`
+(primary — it returns `time_last_update_utc`, which supplies the
+"last refreshed" display directly) and the jsdelivr `@fawazahmed0/currency-api`
+(fallback). Both update **daily**, not intraday — the UI should say "as of"
+rather than imply a live feed. Geo detection uses
+`Intl.DateTimeFormat().resolvedOptions().timeZone`; Vercel's geo headers
+would need middleware, which creates a serverless function and fails
+`check-static.mjs`.
+
+### Services page revamp
+
+Kartikeya wants a substantial rework but hasn't briefed it yet. Recorded so
+it isn't lost. **Needs a brief before it can be scoped.**
+
+### Product-consultant research
+
+Study how established product consultants position themselves, structure
+offers, and price. Research task, not a build task. Low priority.
 
 ---
 
-## 2. Phone number — resolved 2026-08-06
+## Parked — deliberately not being picked up
 
-Was `+91 9999999999` (a dummy). Updated to the real number
-(`lib/site.ts` → `contact.phone`) and confirmed no longer flagged in
-`CLAIMS.md`'s placeholder section — `scripts/build-claims-manifest.mjs`
-detects an all-repeated-digit number as a dummy automatically, so a
-future accidental revert back to a placeholder pattern will resurface
-here rather than ship silently.
+### Back-office tools → separate project
 
-No action needed. Kept as a record.
+Invoice generator, pricing control panel, lead-generation tooling, LinkedIn
+cold-outreach templates. **Decided: these will not live in this repo.**
+Kartikeya will build a separate project for them. **Delete this section once
+that project exists.**
+
+The analysis, kept for when it's picked up:
+
+| Tool | Backend needed? | Why |
+|---|---|---|
+| Invoice generator | **No** | Form → rendered invoice → browser print-to-PDF is fully client-side. Data never leaves the browser. |
+| Pricing control panel | **Yes, for live edits** | Changing what *other visitors* see requires server-side persistence. The no-backend pattern is: the tool emits updated `lib/packages.ts` content, you commit, Vercel redeploys. One deploy per change — acceptable, since prices move rarely. |
+| Lead generation / LinkedIn outreach | **Mostly yes** | Scraping LinkedIn is CORS-blocked from a browser and violates their ToS. Workable client-side: template generators, a `localStorage` tracker, CSV import/export. Automated lead *discovery* needs a backend and usually a paid data source. |
+
+Why it can't live here: with no backend there is no real authentication. A
+client-side password ships in the JS bundle and is readable by anyone; a
+"secret route" is obscurity, not security. Vercel's Password Protection is
+Pro-plan only, and this account cannot enable SSO on production.
+
+### Testimonials
+
+`whoami` holds ~15 name-attributed, public-safe pull quotes, but **none are
+cleared for public use** and no referee outreach has happened. This blocks
+the strongest version of the homepage (I5) — social proof is the single
+biggest missing element on the site.
 
 ---
 
-## 3. Package name renames — awaiting explicit approval
+## Needs Kartikeya's input
 
-Phase 2 sharpened 8 of the 12 package names toward buyer outcomes (per
-the competitor research: named-outcome offers convert better than
-"consulting call"). **Prices were not touched** — every price was
-verified unchanged before and after. `CLAIMS.md` and `/about` have been
-reviewed and approved; the renames have not been separately confirmed.
+### 1. Package renames — awaiting approval
 
-| id | Original name (consultancy-pricing) | Current name |
+Phase 2 sharpened 8 of the 12 business package names toward buyer outcomes.
+**Prices were not touched** — verified unchanged before and after.
+
+| id | Original | Current |
 |---|---|---|
 | `intro-call` | Intro consultation call | Sanity-check a product decision |
 | `deep-dive-diagnostic` | Deep-dive diagnostic | Diagnose a broken product flow |
@@ -57,78 +95,55 @@ reviewed and approved; the renames have not been separately confirmed.
 | `half-day-workshop` | Half-day workshop / offsite | Half-day product workshop |
 | `full-day-workshop` | Full-day workshop / offsite | Full-day strategy offsite |
 
-Unchanged: `founder-advisory-retainer` (Founder advisory retainer),
-`fractional-product-lead` (Fractional product lead).
+Unchanged: `founder-advisory-retainer`, `fractional-product-lead`.
 
-**To resolve:** review the table above against the live `/services`
-page and either approve as-is or ask for specific names changed. Prices
-are not affected either way.
+**To resolve:** review `/services` and either approve, or name the specific
+ones to revert.
 
-Owner: Kartikeya. Noted 2026-08-06, deferred to "later."
+### 2. Custom domain
 
----
+`siteConfig.url` points at `https://kartikeyathapliyalcom.vercel.app`.
+Attach `kartikeyathapliyal.com` in Vercel, then one config value changes and
+sitemap, robots, OG tags and JSON-LD all follow. Until then, link previews
+and search results show the `.vercel.app` host.
 
-## 4. Custom domain — deferred, not blocking
+### 3. Cal.com event for the individuals track
 
-`siteConfig.url` (`lib/site.ts`) currently points at
-`https://kartikeyathapliyalcom.vercel.app`, the only non-preview domain
-attached to the Vercel project. When `kartikeyathapliyal.com` is
-attached in the Vercel dashboard, update that one config value and
-redeploy — sitemap, robots, OG tags, and JSON-LD all read from it.
+`/for-individuals` currently books the same 30-minute event as the business
+track. If coaching should use its own event type, that's a new
+`siteConfig.booking` value only Kartikeya can create.
 
-Until then, OG previews and search results will show the `.vercel.app`
-host. Confirmed fine for now.
+### 4. FX refresh cadence (for I6)
 
-Owner: Kartikeya. Confirmed fine for now, 2026-08-06.
+Stated requirement was "fetch every time the user opens the website". The
+sources only update **daily**, so per-visit fetching adds latency for no
+fresher data. Recommend caching in `localStorage` with a TTL. Confirm before
+I6 is built.
 
----
+### 5. GitHub repo social preview — dashboard only
 
-## 5. `consultancy-pricing` — retired 2026-08-06
+`.github/social-preview.png` exists at the right dimensions, but **GitHub
+does not read that path**. It must be uploaded manually:
+Settings → General → Social preview.
 
-All 10 packages migrated into `lib/packages.ts` and verified by diffing the
-original `index.html` against the migrated data programmatically: every
-price, category, hourly rate and duration tag matched. The Google Form URL
-carried over into `siteConfig.booking`. The one intentional difference is an
-added ₹4,500 workshop rate the original calculator's dropdown was missing.
-
-`/services` replaces the old page entirely. Retired at the owner's
-instruction, after `/services` was confirmed live in production with all 12
-packages.
-
-Done:
-1. Git bundle removed from `archive/` — the owner confirmed no copy was
-   needed, since the pricing data is fully represented in `lib/packages.ts`
-   and the old page had no remaining users.
-2. **GitHub repo deleted** (`kartikeya1/consultancy-pricing`) — confirmed
-   gone.
-
-### Still open — one manual step
-
-**The Vercel project still exists and `https://consultancy-pricing.vercel.app`
-is still publicly serving the old pricing sheet.** Deleting the GitHub repo
-does not remove the Vercel deployment; it only severs the git connection, so
-the last successful build keeps being served.
-
-This could not be automated: there is no project-deletion tool in the Vercel
-MCP, no Vercel CLI or token on this machine, and Vercel Authentication /
-password protection are not available for production deployments on this
-plan (API returns `invalid_sso_protection`).
-
-**To finish — about 30 seconds:**
-
-1. Open https://vercel.com/kartikeya-thapliyals-projects/consultancy-pricing/settings
-2. Scroll to the bottom, **Delete Project**
-3. Type `consultancy-pricing` to confirm
-
-Nothing depends on it — the packages live in `lib/packages.ts`, and
-`/services` is live.
+Note: the **Vercel dashboard thumbnail is an auto-screenshot of the
+homepage** and is not configurable by any file — improving it means
+improving the homepage (I5).
 
 ---
 
-## Merge order — confirmed 2026-08-06
+## Closed
 
-Branches stack in order: `phase-1-wireframes` → `phase-2-content` →
-`phase-3-design` → `phase-4-launch`. **None of PRs #3–#6 merge into
-`main` until Phase 4 is fully complete, tested, and explicitly approved
-by the owner.** Items 1–3 above should be resolved before that approval,
-since they're currently visible on the live preview as placeholders.
+- **`/for-individuals` prices** — resolved. Four real offerings shipped
+  (career chat free, resume review ₹500, mock interview from ₹500 tiered,
+  coaching ₹3,500). No `isPlaceholder` remains; `CLAIMS.md` reports
+  "None. Safe to launch on this axis."
+- **Phone number** — real number in `lib/site.ts`, rendered as a live `tel:`
+  link in the footer. The manifest generator detects an all-repeated-digit
+  number as a dummy, so a future revert to a placeholder resurfaces
+  automatically.
+- **`consultancy-pricing`** — GitHub repo and Vercel project both deleted;
+  verified `404 / DEPLOYMENT_NOT_FOUND`. All 10 packages were migrated into
+  `lib/packages.ts` and verified by a programmatic diff against the original
+  HTML before removal.
+- **Merge order** — Phases 0–4 are all on `main`.
