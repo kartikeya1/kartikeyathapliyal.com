@@ -5,7 +5,7 @@ export function EntryBand({ packages }: { packages: readonly ConsultingPackage[]
   if (packages.length === 0) return null;
   return (
     <div data-box>
-      <div className="text-xs font-medium uppercase tracking-wide text-muted">
+      <div data-label className="text-muted">
         Start here
       </div>
       <div className="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2">

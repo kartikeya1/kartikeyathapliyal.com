@@ -42,7 +42,7 @@ export default function AboutPage() {
       </section>
 
       <section data-box className="space-y-4">
-        <h2 className="text-xl font-medium tracking-tight">What I actually fixed</h2>
+        <h2>What I actually fixed</h2>
         <ul className="space-y-2 text-muted">
           <li>
             Took <Claim id="sip-success" /> by finding where the retry and
@@ -74,7 +74,7 @@ export default function AboutPage() {
       </section>
 
       <section data-box className="space-y-4">
-        <h2 className="text-xl font-medium tracking-tight">Where I go deep</h2>
+        <h2>Where I go deep</h2>
         <p className="text-muted">
           Broker and stockbroker integrations first, then mutual funds and RTAs,
           account aggregation, payments, and compliance. Underneath all of it:
@@ -89,7 +89,7 @@ export default function AboutPage() {
       </section>
 
       <section data-box className="space-y-4">
-        <h2 className="text-xl font-medium tracking-tight">How I think about it</h2>
+        <h2>How I think about it</h2>
         <blockquote className="border-l-2 border-border pl-4 text-muted">
           Design for the second integrator. The first one will forgive you. The
           platform is only real once the second one succeeds without asking you
@@ -98,7 +98,7 @@ export default function AboutPage() {
       </section>
 
       <section data-box className="space-y-3">
-        <h2 className="text-xl font-medium tracking-tight">Working with me</h2>
+        <h2>Working with me</h2>
         <p className="text-muted">
           Advisory and strategy, not hands-on code. Best fit is fintech and
           wealth, and adjacent platform work where integrations, reliability, or

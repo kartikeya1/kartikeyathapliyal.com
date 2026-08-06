@@ -90,7 +90,7 @@ export function PricingExplorer({
             key={pkg.id}
             className={
               flashId === pkg.id
-                ? "rounded-[10px] ring-2 ring-accent transition-shadow duration-300"
+                ? "rounded-[var(--radius)] ring-2 ring-accent transition-shadow duration-300"
                 : ""
             }
           >
