@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import { PrimaryCta } from "@/components/content/PrimaryCta";
 import { Claim } from "@/components/content/Claim";
 import { siteConfig } from "@/lib/site";
+import { buildMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = buildMetadata({
+  description: siteConfig.positioning,
+  path: "/",
+});
 
 export default function HomePage() {
   return (

@@ -9,6 +9,7 @@
     "dev": "next dev --turbopack",
     "prebuild": "node scripts/check-config.mjs && node scripts/check-claims.mjs",
     "build": "next build --turbopack",
+    "postbuild": "node scripts/check-static.mjs",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",

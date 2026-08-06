@@ -4,12 +4,14 @@ import { PrimaryCta } from "@/components/content/PrimaryCta";
 import { ExternalLink } from "@/components/content/ExternalLink";
 import { Claim } from "@/components/content/Claim";
 import { siteConfig } from "@/lib/site";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "About",
   description:
-    "Kartikeya Thapliyal — platform and integration product manager, ~7 years across engineering and product, most recently at smallcase.",
-};
+    "Platform and integration product manager, ~7 years across engineering and product, most recently at smallcase.",
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (

@@ -3,8 +3,14 @@ import { PageHeader } from "@/components/content/PageHeader";
 import { PrimaryCta } from "@/components/content/PrimaryCta";
 import { PackageGrid } from "@/components/pricing/PackageGrid";
 import { individualPackages } from "@/lib/packages";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = { title: "For individuals" };
+export const metadata: Metadata = buildMetadata({
+  title: "For individuals",
+  description:
+    "Career coaching and interview preparation for people moving into or within product management.",
+  path: "/for-individuals",
+});
 
 export default function ForIndividualsPage() {
   return (

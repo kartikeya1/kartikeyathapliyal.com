@@ -6,8 +6,14 @@ import { PricingExplorer } from "@/components/pricing/PricingExplorer";
 import { corePackages, entryPackages } from "@/lib/packages";
 import { currencyDisclosure } from "@/lib/format";
 import { siteConfig } from "@/lib/site";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = { title: "Services" };
+export const metadata: Metadata = buildMetadata({
+  title: "Services",
+  description:
+    "Fixed-price consulting engagements for fintech and platform teams — from a 15-minute fit call to fractional product leadership.",
+  path: "/services",
+});
 
 export default function ServicesPage() {
   return (
