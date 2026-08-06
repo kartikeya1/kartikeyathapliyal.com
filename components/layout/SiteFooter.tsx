@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "./Container";
+import { ExternalLink } from "@/components/content/ExternalLink";
 import { siteConfig } from "@/lib/site";
 
 export function SiteFooter() {
@@ -10,8 +11,8 @@ export function SiteFooter() {
           {siteConfig.contact.email}
         </a>
         <div className="flex items-center gap-6">
-          <a href={siteConfig.social.linkedin}>LinkedIn</a>
-          <a href={siteConfig.social.github}>GitHub</a>
+          <ExternalLink href={siteConfig.social.linkedin}>LinkedIn</ExternalLink>
+          <ExternalLink href={siteConfig.social.github}>GitHub</ExternalLink>
           <Link href="/for-individuals">For individuals</Link>
         </div>
       </Container>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/content/PageHeader";
 import { LazyEmbed } from "@/components/content/LazyEmbed";
+import { ExternalLink } from "@/components/content/ExternalLink";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = { title: "Contact" };
@@ -18,9 +19,9 @@ export default function ContactPage() {
         </div>
         <div className="text-muted">{siteConfig.contact.phone}</div>
         <div>
-          <a href={siteConfig.social.linkedin} className="underline">
+          <ExternalLink href={siteConfig.social.linkedin} className="underline">
             LinkedIn
-          </a>
+          </ExternalLink>
         </div>
       </div>
 

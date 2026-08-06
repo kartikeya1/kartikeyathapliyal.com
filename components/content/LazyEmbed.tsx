@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ExternalLink } from "./ExternalLink";
 
 /**
  * Third-party iframes (Google Forms, Cal.com) load several hundred KB of JS
@@ -43,9 +44,9 @@ export function LazyEmbed({
         {label}
       </button>
       <noscript>
-        <a href={linkUrl} className="mt-2 block text-sm underline">
+        <ExternalLink href={linkUrl} className="mt-2 block text-sm underline">
           {label} (opens in a new tab)
-        </a>
+        </ExternalLink>
       </noscript>
     </div>
   );
