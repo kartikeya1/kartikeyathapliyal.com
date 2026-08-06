@@ -92,16 +92,36 @@ carried over into `siteConfig.booking`. The one intentional difference is an
 added ₹4,500 workshop rate the original calculator's dropdown was missing.
 
 `/services` replaces the old page entirely. Retired at the owner's
-instruction, in this order, after `/services` was confirmed live in
-production:
+instruction, after `/services` was confirmed live in production with all 12
+packages.
 
+Done:
 1. Git bundle removed from `archive/` — the owner confirmed no copy was
    needed, since the pricing data is fully represented in `lib/packages.ts`
    and the old page had no remaining users.
-2. Vercel project deleted.
-3. GitHub repo deleted.
+2. **GitHub repo deleted** (`kartikeya1/consultancy-pricing`) — confirmed
+   gone.
 
-No action remaining.
+### Still open — one manual step
+
+**The Vercel project still exists and `https://consultancy-pricing.vercel.app`
+is still publicly serving the old pricing sheet.** Deleting the GitHub repo
+does not remove the Vercel deployment; it only severs the git connection, so
+the last successful build keeps being served.
+
+This could not be automated: there is no project-deletion tool in the Vercel
+MCP, no Vercel CLI or token on this machine, and Vercel Authentication /
+password protection are not available for production deployments on this
+plan (API returns `invalid_sso_protection`).
+
+**To finish — about 30 seconds:**
+
+1. Open https://vercel.com/kartikeya-thapliyals-projects/consultancy-pricing/settings
+2. Scroll to the bottom, **Delete Project**
+3. Type `consultancy-pricing` to confirm
+
+Nothing depends on it — the packages live in `lib/packages.ts`, and
+`/services` is live.
 
 ---
 

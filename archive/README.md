@@ -18,7 +18,10 @@ Google Form URL carried over into `siteConfig.booking`.
 verified during the migration, then deliberately removed at the owner's
 request once `/services` was live — the pricing data is fully represented
 in `lib/packages.ts`, and the old page had no remaining users. The GitHub
-repo and its Vercel project were deleted at the same time.
+repo was deleted at the same time.
+
+See `PENDING.md` item 5 for the one remaining manual step: the old Vercel
+project still exists and is still serving the retired page.
 
 ## site-v1/
 
