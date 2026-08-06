@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/content/PageHeader";
-import { PrimaryCta } from "@/components/content/PrimaryCta";
+import { CtaLink } from "@/components/content/CtaLink";
 import { PackageGrid } from "@/components/pricing/PackageGrid";
 import { individualPackages } from "@/lib/packages";
+import { siteConfig } from "@/lib/site";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildMetadata({
@@ -20,7 +21,9 @@ export default function ForIndividualsPage() {
           title="For individuals"
           dek="Career coaching and interview preparation for people moving into or within product management."
         />
-        <PrimaryCta href="/contact">Get in touch</PrimaryCta>
+        <CtaLink href={siteConfig.booking.calUrl} external>
+          Book a free intro call
+        </CtaLink>
       </div>
 
       <PackageGrid packages={individualPackages} heading="Ways to work together" />

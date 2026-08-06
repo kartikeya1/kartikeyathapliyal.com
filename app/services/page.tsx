@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/content/PageHeader";
-import { ExternalLink } from "@/components/content/ExternalLink";
+import { CtaLink } from "@/components/content/CtaLink";
 import { EntryBand } from "@/components/pricing/EntryBand";
 import { PricingExplorer } from "@/components/pricing/PricingExplorer";
 import { corePackages, entryPackages } from "@/lib/packages";
@@ -23,13 +23,9 @@ export default function ServicesPage() {
           title="Consulting engagements"
           dek="Fixed pricing keeps the engagement simple. Scope can be adjusted for deeper involvement, additional stakeholders, or tighter timelines."
         />
-        <ExternalLink
-          href={siteConfig.booking.calUrl}
-          data-cta="primary"
-          className="inline-block rounded border border-accent bg-accent px-5 py-2.5 text-sm text-accent-fg"
-        >
+        <CtaLink href={siteConfig.booking.calUrl} external>
           Book a 30-minute call
-        </ExternalLink>
+        </CtaLink>
       </div>
 
       <EntryBand packages={entryPackages} />

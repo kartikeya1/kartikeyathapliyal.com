@@ -8,6 +8,9 @@
  */
 export const siteConfig = {
   name: "Kartikeya Thapliyal",
+  /** Brand fallback where the full name doesn't fit — replaced by the logo
+   *  mark once that exists. */
+  shortName: "KT",
   role: "Product & fintech consultant",
   positioning:
     "I help fintech and platform teams ship integrations that hold up in production.",
@@ -46,10 +49,24 @@ export const siteConfig = {
     usdRounding: 10,
   },
 
+  /** Primary nav — topics. Rendered left, next to the brand. */
   nav: [
     { href: "/services", label: "Services" },
     { href: "/about", label: "About" },
-    { href: "/contact", label: "Contact" },
+  ],
+
+  /**
+   * Audience switch, not a topic — so it sits right, with the theme toggle,
+   * rather than among the primary nav items. `shortLabel` is what renders
+   * below the `sm` breakpoint, where the full label would push the theme
+   * toggle past the gutter.
+   */
+  utilityNav: [
+    {
+      href: "/for-individuals",
+      label: "For individuals",
+      shortLabel: "Individuals",
+    },
   ],
 } as const;
 
