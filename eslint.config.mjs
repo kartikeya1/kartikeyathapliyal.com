@@ -11,7 +11,13 @@ const eslintConfig = [
   // Must be first, and must contain ONLY `ignores` to be global.
   // ESLint 9 does not read .eslintignore at all.
   {
-    ignores: ["archive/**", ".next/**", "out/**", "node_modules/**"],
+    ignores: [
+      "archive/**",
+      ".next/**",
+      "out/**",
+      "node_modules/**",
+      "next-env.d.ts",
+    ],
   },
   ...compat.extends("next/core-web-vitals", "next/typescript"),
 ];

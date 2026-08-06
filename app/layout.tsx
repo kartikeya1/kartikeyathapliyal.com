@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { ThemeScript } from "@/components/theme/ThemeScript";
-import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SiteFooter } from "@/components/layout/SiteFooter";
+import { Container } from "@/components/layout/Container";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
@@ -34,38 +35,11 @@ export default function RootLayout({
         <ThemeScript />
       </head>
       <body>
-        <header className="border-b border-border">
-          <div className="mx-auto flex max-w-[68rem] items-center justify-between px-6 py-5 md:px-10">
-            <Link href="/" className="text-sm font-medium">
-              {siteConfig.name}
-            </Link>
-            <nav className="flex items-center gap-6">
-              {siteConfig.nav.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="text-sm text-muted hover:text-text"
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <ThemeToggle />
-            </nav>
-          </div>
-        </header>
-
-        <main className="mx-auto max-w-[68rem] px-6 py-20 md:px-10">
-          {children}
+        <SiteHeader />
+        <main>
+          <Container className="py-20">{children}</Container>
         </main>
-
-        <footer className="border-t border-border">
-          <div className="mx-auto flex max-w-[68rem] flex-wrap items-center justify-between gap-4 px-6 py-8 text-sm text-muted md:px-10">
-            <a href={`mailto:${siteConfig.contact.email}`}>
-              {siteConfig.contact.email}
-            </a>
-            <Link href="/for-individuals">For individuals</Link>
-          </div>
-        </footer>
+        <SiteFooter />
       </body>
     </html>
   );
