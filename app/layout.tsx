@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { ThemeScript } from "@/components/theme/ThemeScript";
+import { CurrencyScript } from "@/components/currency/CurrencyScript";
+import { CurrencyProvider } from "@/components/currency/CurrencyProvider";
 import { JsonLd } from "@/components/content/JsonLd";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
@@ -31,14 +33,17 @@ export default function RootLayout({
     >
       <head>
         <ThemeScript />
+        <CurrencyScript />
         <JsonLd />
       </head>
       <body>
-        <SiteHeader />
-        <main>
-          <Container className="py-[var(--page-pad)]">{children}</Container>
-        </main>
-        <SiteFooter />
+        <CurrencyProvider>
+          <SiteHeader />
+          <main>
+            <Container className="py-[var(--page-pad)]">{children}</Container>
+          </main>
+          <SiteFooter />
+        </CurrencyProvider>
       </body>
     </html>
   );

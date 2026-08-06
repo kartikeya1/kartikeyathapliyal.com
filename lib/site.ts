@@ -37,13 +37,33 @@ export const siteConfig = {
   },
 
   currency: {
-    /** Every ~$ figure on the site is computed from this at build time. */
+    /**
+     * Build-time fallback. Every price is server-rendered with this so the
+     * page is correct with JavaScript disabled and for crawlers; the client
+     * then refines it with a live rate.
+     */
     inrPerUsd: 90,
     rateAsOf: "2026-08-06",
-    /** Becomes "live" if a future project fetches the rate instead. */
     source: "manual",
-    /** USD figures round to the nearest multiple of this. */
+    /** USD figures round to the nearest multiple of this above $100. */
     usdRounding: 10,
+
+    /**
+     * Live rate sources, in order. Both are free, keyless and CORS-enabled —
+     * verified. Yahoo and Google Finance cannot be used: neither sends
+     * Access-Control-Allow-Origin, so a browser request is blocked outright
+     * (Yahoo also rate-limits to 429).
+     *
+     * Both publish once daily, so the UI says "as of" rather than implying a
+     * live market feed.
+     */
+    fx: {
+      primaryUrl: "https://open.er-api.com/v6/latest/USD",
+      fallbackUrl:
+        "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json",
+      /** How long a fetched rate is reused before refetching. */
+      cacheHours: 12,
+    },
   },
 
   /** Primary nav — topics. Rendered left, next to the brand. */

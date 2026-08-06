@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/content/PageHeader";
 import { CtaLink } from "@/components/content/CtaLink";
+import { CurrencyToggle } from "@/components/currency/CurrencyToggle";
 import { EntryBand } from "@/components/pricing/EntryBand";
 import { PricingExplorer } from "@/components/pricing/PricingExplorer";
 import { corePackages, entryPackages } from "@/lib/packages";
-import { currencyDisclosure } from "@/lib/format";
 import { siteConfig } from "@/lib/site";
 import { buildMetadata } from "@/lib/metadata";
 
@@ -32,9 +32,7 @@ export default function ServicesPage() {
 
       <PricingExplorer packages={corePackages} />
 
-      <p data-box className="text-sm text-muted">
-        {currencyDisclosure()}
-      </p>
+      <CurrencyToggle />
     </div>
   );
 }

@@ -51,14 +51,3 @@ export function formatRate(inrPerHour: number | null): string {
   if (inrPerHour === null) return "";
   return `${formatInr(inrPerHour)}/hour`;
 }
-
-/** The visible, non-footnote conversion-rate line for /services. */
-export function currencyDisclosure(): string {
-  const { inrPerUsd, rateAsOf } = siteConfig.currency;
-  const date = new Date(rateAsOf).toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  });
-  return `USD shown at ₹${inrPerUsd} = $1 (set ${date}). INR is the billing currency.`;
-}

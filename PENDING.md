@@ -13,17 +13,18 @@ need Kartikeya's input or are simply queued.
 | Phase | Scope | Model · effort |
 |---|---|---|
 | **I1** | Delete `/contact`, move the Cal.com and Google Form embeds to a `#book` section on `/services`, add a `308` redirect, update `sitemap.ts` + `check-static.mjs` `EXPECTED_ROUTES` | Sonnet 5 · medium |
-| **I4** | Logo mark, favicon redraw, `apple-icon.png` (missing — iOS ignores SVG), OG image mark, brand-sync gate | Opus 5 · medium |
-| **I5** | Homepage — currently name, one line, one CTA. No reason to scroll | Opus 5 · medium |
-| **I6** | Geo-based currency (India → INR, else USD), live USD/INR rate, explicit toggle, visible rate + last-refresh time | Opus 5 · medium |
 | **I7** | Docs pass, dashboard-only checklist | Sonnet 5 · low |
+
+I2 (header/footer/CTA), I3 (individuals pricing), I4 (brand assets) and
+I5 (homepage) are **done**. I6 (currency) is **done** — see below.
 
 Notes for **I1**: `/contact` is already out of the header nav (the footer
 carries contact on every page now), but the route still exists and is still
 in `sitemap.ts` and `check-static.mjs`. Those two files hard-fail the build
 if the route set changes without them, so all three must land together.
 
-Notes for **I6**: **Yahoo and Google Finance cannot be used** — both are
+**I6 shipped** using the following, which is recorded because it would
+otherwise be re-derived: **Yahoo and Google Finance cannot be used** — both are
 CORS-blocked from a browser (Yahoo also returns 429). Verified working
 alternatives, both free and CORS-enabled: `open.er-api.com/v6/latest/USD`
 (primary — it returns `time_last_update_utc`, which supplies the
