@@ -2,6 +2,27 @@
 
 Frozen code. Nothing in here is built, linted, type-checked, or deployed.
 
+## consultancy-pricing.bundle
+
+The complete git history of the `kartikeya1/consultancy-pricing` repo — the
+standalone HTML pricing sheet whose 10 packages now live in
+`lib/packages.ts`. A `git bundle` is a single file containing every object
+and ref, so this is the whole repo, not a snapshot.
+
+Restore it any time with:
+
+```bash
+git clone archive/consultancy-pricing.bundle consultancy-pricing
+```
+
+Verified on creation (2026-08-06): restores all 6 commits and both branches,
+and the restored `index.html` is byte-identical to the original.
+
+The migration itself was verified by diffing the source HTML against
+`lib/packages.ts` programmatically — every price, category, hourly rate and
+duration tag matches. The only intentional difference is an added ₹4,500
+workshop rate, which the original calculator's dropdown was missing.
+
 ## site-v1/
 
 The original kartikeyathapliyal.com — a dark-only Next.js 15 "product manager's
