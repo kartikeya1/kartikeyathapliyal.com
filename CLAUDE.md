@@ -4,14 +4,16 @@ Agent handbook for `kartikeyathapliyal.com`. Read this before touching the repo.
 
 ## What this is
 
-A five-page consulting front door for Kartikeya Thapliyal — product and
+A four-page consulting front door for Kartikeya Thapliyal — product and
 fintech consulting for businesses, with a secondary track for individual
 career coaching. **No backend of any kind.** Everything is static; the only
 external services are a Google Form and a Cal.com booking embed, both
-client-side.
+client-side, both on `/services#book`.
 
-Routes: `/` `/about` `/services` `/for-individuals` `/contact` — plus
-`/robots.txt`, `/sitemap.xml`, `/opengraph-image`, `/icon.svg`.
+Routes: `/` `/about` `/services` `/for-individuals` — plus `/robots.txt`,
+`/sitemap.xml`, `/opengraph-image`, `/icon.svg`, `/apple-icon`.
+`/contact` 308-redirects to `/services#book`; contact details live in the
+site-wide footer instead of a dedicated page.
 
 ## Non-negotiables
 

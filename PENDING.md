@@ -12,16 +12,20 @@ need Kartikeya's input or are simply queued.
 
 | Phase | Scope | Model · effort |
 |---|---|---|
-| **I1** | Delete `/contact`, move the Cal.com and Google Form embeds to a `#book` section on `/services`, add a `308` redirect, update `sitemap.ts` + `check-static.mjs` `EXPECTED_ROUTES` | Sonnet 5 · medium |
 | **I7** | Docs pass, dashboard-only checklist | Sonnet 5 · low |
 
-I2 (header/footer/CTA), I3 (individuals pricing), I4 (brand assets) and
-I5 (homepage) are **done**. I6 (currency) is **done** — see below.
+I2 (header/footer/CTA), I3 (individuals pricing), I4 (brand assets), I5
+(homepage) and I6 (currency) are **done**. **I1 is done** — see below.
 
-Notes for **I1**: `/contact` is already out of the header nav (the footer
-carries contact on every page now), but the route still exists and is still
-in `sitemap.ts` and `check-static.mjs`. Those two files hard-fail the build
-if the route set changes without them, so all three must land together.
+**I1 shipped**: `app/contact/` deleted; the Cal.com and Google Form embeds
+moved to a `#book` section at the bottom of `/services` (highest-intent
+place on the site — someone who scrolled the whole pricing grid); a `308`
+redirect `/contact → /services#book` added in `next.config.ts` (verified
+this does not create a serverless function — it compiles into
+`routes-manifest.json`, not `middleware-manifest.json`, and the build
+already carried an unrelated redirect there before this one existed);
+`sitemap.ts` and `check-static.mjs`'s `EXPECTED_ROUTES` updated together in
+one commit, since either alone hard-fails the build.
 
 **I6 shipped** using the following, which is recorded because it would
 otherwise be re-derived: **Yahoo and Google Finance cannot be used** — both are

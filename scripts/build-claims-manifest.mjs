@@ -98,7 +98,7 @@ export function buildManifest() {
       (p) => `| ${p.name} (\`${p.id}\`) | lib/packages.ts · /for-individuals | Draft price |`,
     ),
     ...(phoneIsPlaceholder
-      ? [`| Phone number | lib/site.ts · /contact | \`${phone}\` is a placeholder |`]
+      ? [`| Phone number | lib/site.ts · site footer | \`${phone}\` is a placeholder |`]
       : []),
   ];
   if (placeholderRows.length === 0) {

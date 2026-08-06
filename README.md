@@ -8,17 +8,19 @@ coaching.
 **Stack:** Next.js 15 (App Router) · React 19 · Tailwind v4 · TypeScript
 **Backend:** none. Fully static. The only external services are a Google
 Form and a Cal.com booking embed, both loaded client-side and only on
-`/contact`.
+`/services#book`. Contact details (email, phone, LinkedIn, GitHub) live in
+the site-wide footer rather than a dedicated page.
 
 ## Routes
 
 | Route | Purpose |
 |---|---|
-| `/` | Name, one-line positioning, one CTA |
+| `/` | Positioning, what I'm hired for, track record |
 | `/about` | Career background, written from private source notes |
-| `/services` | The 12 consulting packages, a rate estimator, filter/sort |
-| `/for-individuals` | Secondary audience — career coaching (pricing pending) |
-| `/contact` | Email, phone, LinkedIn, Cal.com and Google Form embeds |
+| `/services` | The 12 consulting packages, a rate estimator, filter/sort, and booking |
+| `/for-individuals` | Secondary audience — career coaching |
+
+`/contact` 308-redirects to `/services#book` (see `next.config.ts`).
 
 ## Running locally
 

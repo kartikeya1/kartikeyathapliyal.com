@@ -25,7 +25,6 @@ const EXPECTED_ROUTES = new Set([
   "/about",
   "/services",
   "/for-individuals",
-  "/contact",
   "/_not-found",
   "/icon.svg",
   "/apple-icon",
