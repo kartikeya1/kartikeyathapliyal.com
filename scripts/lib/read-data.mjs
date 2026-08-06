@@ -66,6 +66,14 @@ export function readPlaceholderPackages() {
   return out;
 }
 
+/** The phone number currently configured in lib/site.ts. */
+export function readSitePhone() {
+  const src = readFileSync(join(ROOT, "lib/site.ts"), "utf8");
+  const m = src.match(/phone:\s*"([^"]+)"/);
+  if (!m) throw new Error("read-data: could not find contact.phone in lib/site.ts");
+  return m[1];
+}
+
 /** Every .tsx/.ts file under app/ and components/, repo-relative. */
 export function sourceFiles() {
   const out = [];

@@ -15,13 +15,22 @@ import {
   ROOT,
   readClaims,
   readPlaceholderPackages,
+  readSitePhone,
   sourceFiles,
   readSource,
 } from "./lib/read-data.mjs";
 
+/** A phone number where every digit repeats is a dummy, not a real contact. */
+function looksLikeDummyPhone(phone) {
+  const digits = phone.replace(/\D/g, "");
+  return /^(\d)\1+$/.test(digits);
+}
+
 export function buildManifest() {
   const claims = readClaims();
   const placeholders = readPlaceholderPackages();
+  const phone = readSitePhone();
+  const phoneIsPlaceholder = looksLikeDummyPhone(phone);
   const files = sourceFiles();
 
   // Where each claim id actually appears. Only <Claim id="..."/> counts as a
@@ -84,17 +93,20 @@ export function buildManifest() {
   // ---- placeholders that must not reach production ----
   L.push("## Placeholders — must be replaced before production");
   L.push("");
-  if (placeholders.length === 0) {
+  const placeholderRows = [
+    ...placeholders.map(
+      (p) => `| ${p.name} (\`${p.id}\`) | lib/packages.ts · /for-individuals | Draft price |`,
+    ),
+    ...(phoneIsPlaceholder
+      ? [`| Phone number | lib/site.ts · /contact | \`${phone}\` is a placeholder |`]
+      : []),
+  ];
+  if (placeholderRows.length === 0) {
     L.push("_None. Safe to launch on this axis._");
   } else {
     L.push("| Item | Where | Status |");
     L.push("| --- | --- | --- |");
-    for (const p of placeholders) {
-      L.push(`| ${p.name} (\`${p.id}\`) | lib/packages.ts · /for-individuals | Draft price |`);
-    }
-    L.push(
-      `| Phone number | lib/site.ts · /contact | \`+91 9999999999\` is a placeholder |`,
-    );
+    L.push(...placeholderRows);
   }
   L.push("");
 
@@ -121,7 +133,7 @@ export function buildManifest() {
   L.push(`- Reserved (deliberately not placed): ${reserved.length}`);
   L.push(`- Unused (should be placed or marked reserved): ${unused.length}`);
   L.push(`- Flagged for your decision: ${flagged.length}`);
-  L.push(`- Placeholders blocking launch: ${placeholders.length + 1}`);
+  L.push(`- Placeholders blocking launch: ${placeholderRows.length}`);
   L.push("");
 
   return L.join("\n");

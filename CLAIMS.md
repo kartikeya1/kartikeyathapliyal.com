@@ -46,7 +46,6 @@ Every factual claim on the public site is listed here with its source in the pri
 | Resume review (`individuals-resume-review`) | lib/packages.ts · /for-individuals | Draft price |
 | Mock PM interview (`individuals-mock-interview`) | lib/packages.ts · /for-individuals | Draft price |
 | SDE→PM / APM→PM coaching (`individuals-career-coaching`) | lib/packages.ts · /for-individuals | Draft price |
-| Phone number | lib/site.ts · /contact | `+91 9999999999` is a placeholder |
 
 ## All claims
 
@@ -198,4 +197,4 @@ Every factual claim on the public site is listed here with its source in the pri
 - Reserved (deliberately not placed): 5
 - Unused (should be placed or marked reserved): 0
 - Flagged for your decision: 3
-- Placeholders blocking launch: 4
+- Placeholders blocking launch: 3
