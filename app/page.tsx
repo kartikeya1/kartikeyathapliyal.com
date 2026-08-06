@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { PrimaryCta } from "@/components/content/PrimaryCta";
+import { Claim } from "@/components/content/Claim";
 import { siteConfig } from "@/lib/site";
 
 export default function HomePage() {
@@ -6,13 +7,13 @@ export default function HomePage() {
     <div data-box className="max-w-[62ch]">
       <h1 className="text-4xl font-medium tracking-tight">{siteConfig.name}</h1>
       <p className="mt-4 text-lg text-muted">{siteConfig.positioning}</p>
-      <Link
-        href="/services"
-        data-cta="primary"
-        className="mt-10 inline-block rounded border border-accent bg-accent px-5 py-2.5 text-sm text-accent-fg"
-      >
+      <PrimaryCta href="/services" className="mt-10">
         See how I work
-      </Link>
+      </PrimaryCta>
+      <p className="mt-10 text-sm text-muted">
+        <Claim id="users-reached" /> · <Claim id="broker-count" /> ·{" "}
+        <Claim id="uptime" />
+      </p>
     </div>
   );
 }
