@@ -29,8 +29,20 @@ const instrumentSerif = Instrument_Serif({
 });
 
 const wireframe = process.env.NEXT_PUBLIC_WIREFRAME === "1";
-/** Phase 3 only — shows the A/B/C direction switcher on preview builds. */
-const designPreview = process.env.NEXT_PUBLIC_DESIGN_PREVIEW === "1";
+
+/**
+ * Phase 3 only — shows the A/B/C direction switcher.
+ *
+ * Hardcoded rather than read from an env var: Vercel strips committed `.env`
+ * files from the build source, so a repo-level flag silently does nothing on
+ * preview deployments. Setting it here is the only way to get the switcher
+ * onto a preview without changing project settings.
+ *
+ * This constant, the switcher, and the two losing directions are all deleted
+ * in the commit that collapses to the chosen direction. Until then this branch
+ * must not be merged.
+ */
+const designPreview = true;
 
 export default function RootLayout({
   children,
