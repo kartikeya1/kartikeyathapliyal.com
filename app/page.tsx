@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CtaLink } from "@/components/content/CtaLink";
 import { Claim } from "@/components/content/Claim";
+import { Testimonials } from "@/components/content/Testimonials";
 import { siteConfig } from "@/lib/site";
 import { buildMetadata } from "@/lib/metadata";
 
@@ -82,6 +83,8 @@ export default function HomePage() {
           </li>
         </ul>
       </section>
+
+      <Testimonials />
 
       <section data-box className="max-w-[62ch]">
         <h2 data-label className="text-muted">
