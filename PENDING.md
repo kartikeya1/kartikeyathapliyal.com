@@ -8,6 +8,23 @@ need Kartikeya's input or are simply queued.
 
 ## Queued work — no input needed
 
+### Pricing programme — P1 and P3 still to come
+
+**P2 is done** — the rate calculator moved below the pricing grid and is
+hidden by default behind a floating on/off toggle
+(`components/pricing/CalculatorToggle.tsx`). **P1 (base discounts) and P3
+(coupon codes from the Google Sheet, plus `?code=` deep-linking) are not
+built yet** — full plan already approved, queued for when Opus 5 tokens are
+available. See the session plan for the exact pricing table, coupon maths,
+and the two things flagged before P1 ships: PM coaching becomes a genuine
+6.7% price rise dressed as a 4% discount, and the workshop names ("half-day",
+"full-day") stop matching their durations once both gain 2 hours.
+
+**The calculator toggle is temporary.** Once a final call is made on whether
+the calculator earns its place, delete `CalculatorToggle.tsx` and its one
+usage in `PricingExplorer.tsx` — don't leave a dead toggle live on
+production indefinitely.
+
 ### Improvements programme, remaining phases
 
 **All improvements phases (I1–I7) are done.** Nothing queued here right now.
