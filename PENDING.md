@@ -23,20 +23,20 @@ production indefinitely.
 public site right now. Retire it (set `Active` to anything but `YES`) before
 this matters, and replace it with the real ad / LinkedIn / past-client codes.
 
-**Two things flagged during P1 that are now live** — both were your call,
-recorded so they aren't forgotten:
-- **PM coaching is a genuine price rise**: ₹30,000 → ₹32,000 for the same
-  8 hours, presented as "4% off". The only plan where a client actually
-  pays more for the same scope.
-- **Seven struck-through "was" prices were never charged.** India's
-  Consumer Protection Act expects a struck-through price to reflect one
-  genuinely offered. The clean alternative, if it ever becomes a concern, is
-  raising the real list rate to ₹4,500/hr and discounting from there.
+**Base rate raised to ₹4,500/hr — 2026-08-07.** This resolved the
+struck-through-price concern: every "was" price is now a rate genuinely
+quotable, rather than an anchor invented to manufacture a discount. Nobody
+pays more as a result — the discounted rate is unchanged at ₹4,000/hr — and
+typical discounts moved from 4% to 11%.
 
-**Workshop naming still mismatched.** Both gained 2 hours, so "Half-day
-product workshop" is now 6 hours and "Full-day strategy offsite" is 10.
-I flagged renaming these and you didn't say either way, so they're
-unchanged — a one-line edit in `lib/packages.ts` whenever you decide.
+**Still true: PM coaching is a genuine price rise.** ₹30,000 → ₹32,000 for
+the same 8 hours (₹3,750/hr → ₹4,000/hr). The only plan where a client
+actually pays more for the same scope. Deliberate, recorded so it isn't
+rediscovered as a surprise.
+
+**Workshop naming — resolved.** Renamed to "Product workshop" (6h) and
+"Strategy offsite" (10h); the hours live in the tag, so the names no longer
+contradict them.
 
 ### Sheet sharing must stay public
 
