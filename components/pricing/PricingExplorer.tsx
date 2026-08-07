@@ -9,6 +9,7 @@ import {
 import { PackageCard } from "./PackageCard";
 import { RateCalculator } from "./RateCalculator";
 import { FilterSortBar, type SortValue } from "./FilterSortBar";
+import { CalculatorToggle, useCalculatorVisible } from "./CalculatorToggle";
 
 /** Matches the `flash-highlight` fade below. */
 const FLASH_MS = 1200;
@@ -17,6 +18,11 @@ const FLASH_MS = 1200;
  * Owns the state that the calculator and the filter/sort bar both act on:
  * the calculator needs to find and flash a card that filter/sort may have
  * hidden or reordered, so all three live in one client component.
+ *
+ * The calculator sits below the grid (it was moved from the top — it was
+ * confusing visitors before they'd even seen the plans) and is gated behind
+ * a temporary on/off flag so it can be evaluated for removal without a
+ * redeploy. See CalculatorToggle.tsx.
  */
 export function PricingExplorer({
   packages,
@@ -29,6 +35,7 @@ export function PricingExplorer({
   const [filter, setFilter] = useState<PackageCategory | "all">("all");
   const [sort, setSort] = useState<SortValue>("default");
   const [flashId, setFlashId] = useState<string | null>(null);
+  const [showCalculator, setShowCalculator] = useCalculatorVisible();
 
   const total = hours * weeks * rate;
 
@@ -63,17 +70,6 @@ export function PricingExplorer({
 
   return (
     <div className="space-y-8">
-      <RateCalculator
-        hours={hours}
-        weeks={weeks}
-        rate={rate}
-        onHoursChange={setHours}
-        onWeeksChange={setWeeks}
-        onRateChange={setRate}
-        total={total}
-        matchName={closest?.name ?? null}
-        onMatchClick={handleMatchClick}
-      />
       <FilterSortBar
         activeFilter={filter}
         onFilterChange={setFilter}
@@ -104,6 +100,22 @@ export function PricingExplorer({
           </div>
         ))}
       </div>
+
+      {showCalculator && (
+        <RateCalculator
+          hours={hours}
+          weeks={weeks}
+          rate={rate}
+          onHoursChange={setHours}
+          onWeeksChange={setWeeks}
+          onRateChange={setRate}
+          total={total}
+          matchName={closest?.name ?? null}
+          onMatchClick={handleMatchClick}
+        />
+      )}
+
+      <CalculatorToggle show={showCalculator} onToggle={setShowCalculator} />
     </div>
   );
 }
