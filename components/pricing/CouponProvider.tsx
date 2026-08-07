@@ -33,12 +33,21 @@ const Ctx = createContext<CouponState>({
 
 export const useCoupon = () => useContext(Ctx);
 
-const MESSAGES = {
-  unknown: "That code isn't valid. Check the spelling and try again.",
-  inactive: "That code has expired.",
-  unavailable:
-    "Couldn't check the code just now — prices below are unchanged. Try again in a moment.",
-} as const;
+/**
+ * One message for every failure mode, deliberately.
+ *
+ * A visitor can't act differently on "expired" versus "never existed"
+ * versus "the sheet was unreachable" — in all three cases the outcome is
+ * the same and the advice is the same. Collapsing them also avoids
+ * confirming that a code exists but is switched off, which would otherwise
+ * let someone enumerate retired codes.
+ *
+ * The distinction is kept in the console for debugging, since the one case
+ * that isn't the visitor's fault (`unavailable`) is worth being able to
+ * spot in the field.
+ */
+const NOT_FOUND =
+  "No such promotional code. Check the spelling, or it may no longer be running.";
 
 export function CouponProvider({ children }: { children: React.ReactNode }) {
   const [coupon, setCoupon] = useState<Coupon | null>(null);
@@ -55,7 +64,14 @@ export function CouponProvider({ children }: { children: React.ReactNode }) {
       } catch {
         // Storage blocked; nothing to clean up.
       }
-      setStatus({ state: "error", message: MESSAGES[result.reason] });
+      if (result.reason === "unavailable") {
+        // Not the visitor's fault — surfaced only here so a sheet outage is
+        // diagnosable without showing them a different message.
+        console.warn(
+          "[coupon] lookup failed — the coupon sheet was unreachable or malformed. Check that it is still shared as 'Anyone with the link — Viewer'.",
+        );
+      }
+      setStatus({ state: "error", message: NOT_FOUND });
       return;
     }
 
