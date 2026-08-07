@@ -8,22 +8,45 @@ need Kartikeya's input or are simply queued.
 
 ## Queued work — no input needed
 
-### Pricing programme — P1 and P3 still to come
+### Pricing programme — all three phases done
 
-**P2 is done** — the rate calculator moved below the pricing grid and is
-hidden by default behind a floating on/off toggle
-(`components/pricing/CalculatorToggle.tsx`). **P1 (base discounts) and P3
-(coupon codes from the Google Sheet, plus `?code=` deep-linking) are not
-built yet** — full plan already approved, queued for when Opus 5 tokens are
-available. See the session plan for the exact pricing table, coupon maths,
-and the two things flagged before P1 ships: PM coaching becomes a genuine
-6.7% price rise dressed as a 4% discount, and the workshop names ("half-day",
-"full-day") stop matching their durations once both gain 2 hours.
+P1 (base discounts), P2 (calculator moved + toggled) and P3 (coupon codes)
+are all built. Two temporary things live in production as a result, and
+both need a decision before they can be cleaned up:
 
-**The calculator toggle is temporary.** Once a final call is made on whether
-the calculator earns its place, delete `CalculatorToggle.tsx` and its one
-usage in `PricingExplorer.tsx` — don't leave a dead toggle live on
+**1. The calculator toggle is temporary.** Once a call is made on whether
+the calculator earns its place, delete `components/pricing/CalculatorToggle.tsx`
+and its usage in `PricingExplorer.tsx`. Don't leave a dead toggle in
 production indefinitely.
+
+**2. `TEST10` is a test coupon.** It's live in the sheet and works on the
+public site right now. Retire it (set `Active` to anything but `YES`) before
+this matters, and replace it with the real ad / LinkedIn / past-client codes.
+
+**Two things flagged during P1 that are now live** — both were your call,
+recorded so they aren't forgotten:
+- **PM coaching is a genuine price rise**: ₹30,000 → ₹32,000 for the same
+  8 hours, presented as "4% off". The only plan where a client actually
+  pays more for the same scope.
+- **Seven struck-through "was" prices were never charged.** India's
+  Consumer Protection Act expects a struck-through price to reflect one
+  genuinely offered. The clean alternative, if it ever becomes a concern, is
+  raising the real list rate to ₹4,500/hr and discounting from there.
+
+**Workshop naming still mismatched.** Both gained 2 hours, so "Half-day
+product workshop" is now 6 hours and "Full-day strategy offsite" is 10.
+I flagged renaming these and you didn't say either way, so they're
+unchanged — a one-line edit in `lib/packages.ts` whenever you decide.
+
+### Sheet sharing must stay public
+
+`siteConfig.currency.couponsUrl` reads the coupon sheet anonymously. It must
+stay shared as **"Anyone with the link — Viewer"**. If it's ever set back to
+restricted, coupons silently stop resolving and every visitor pays base
+price with no error visible to you.
+
+Codes in that sheet are readable by anyone who opens DevTools — a deliberate
+trade for having no backend. Don't put anything there you wouldn't publish.
 
 ### Improvements programme, remaining phases
 
