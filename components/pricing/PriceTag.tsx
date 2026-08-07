@@ -1,4 +1,4 @@
-import { formatInr, formatRate } from "@/lib/format";
+import { formatInr } from "@/lib/format";
 import { UsdAmount } from "@/components/currency/UsdAmount";
 import type { ConsultingPackage } from "@/lib/packages";
 
@@ -19,34 +19,85 @@ function Amount({ inr, className }: { inr: number; className?: string }) {
   );
 }
 
+/** The per-hour figure, in whichever currency is active. */
+function RatePerHour({ inr, className }: { inr: number; className?: string }) {
+  return (
+    <span className={className}>
+      <span data-cur="inr" data-figure>
+        {formatInr(inr)}
+      </span>
+      <span data-cur="usd">
+        <UsdAmount inr={inr} />
+      </span>
+      <span>/hour</span>
+    </span>
+  );
+}
+
+/**
+ * Percentage off, floored rather than rounded — a claimed discount should
+ * never read higher than what's actually given.
+ */
+function percentOff(original: number, now: number): number {
+  return Math.floor(((original - now) / original) * 100);
+}
+
 export function PriceTag({
   priceInr,
   rateInrPerHour,
   priceTiers,
+  originalPriceInr,
+  hours,
 }: {
   priceInr: number;
   rateInrPerHour: number | null;
   priceTiers?: ConsultingPackage["priceTiers"];
+  originalPriceInr?: number;
+  hours?: number;
 }) {
   const hasTiers = Boolean(priceTiers?.length);
+  const isDiscounted = Boolean(originalPriceInr && originalPriceInr > priceInr);
+
+  // Rates are derived from totals rather than stored separately, so the
+  // per-hour figure can never disagree with the headline price.
+  const originalRate =
+    isDiscounted && hours ? Math.round(originalPriceInr! / hours) : null;
+  const newRate = hours ? Math.round(priceInr / hours) : rateInrPerHour;
 
   return (
     <div>
       <div className="text-lg font-medium">
         {/* With tiers the headline is a floor, not the price. */}
         {hasTiers && <span className="mr-1">From</span>}
-        <Amount inr={priceInr} />
+
+        {isDiscounted && (
+          <span className="mr-2 text-sm font-normal text-price-cut line-through">
+            <Amount inr={originalPriceInr!} />
+          </span>
+        )}
+
+        <span className={isDiscounted ? "text-price-cut" : undefined}>
+          <Amount inr={priceInr} />
+        </span>
+
+        {isDiscounted && (
+          <span className="ml-2 align-middle text-xs font-normal text-price-cut">
+            {percentOff(originalPriceInr!, priceInr)}% off
+          </span>
+        )}
       </div>
 
-      {rateInrPerHour !== null && !hasTiers && (
-        <div className="text-xs text-muted">
-          <span data-cur="inr" data-figure>
-            {formatRate(rateInrPerHour)}
-          </span>
-          <span data-cur="usd">
-            <UsdAmount inr={rateInrPerHour} />
-            <span>/hour</span>
-          </span>
+      {newRate !== null && !hasTiers && (
+        <div className="mt-0.5 text-xs text-muted">
+          {isDiscounted && originalRate !== null && (
+            <span className="mr-2 text-price-cut line-through">
+              <RatePerHour inr={originalRate} />
+            </span>
+          )}
+          <RatePerHour
+            inr={newRate}
+            className={isDiscounted ? "text-price-cut" : undefined}
+          />
         </div>
       )}
 

@@ -22,6 +22,8 @@ export function PackageCard({ pkg }: { pkg: ConsultingPackage }) {
           priceInr={pkg.priceInr}
           rateInrPerHour={pkg.rateInrPerHour}
           priceTiers={pkg.priceTiers}
+          originalPriceInr={pkg.originalPriceInr}
+          hours={pkg.hours}
         />
       </div>
       <p className="mt-4 text-sm text-muted">{pkg.summary}</p>
