@@ -1,5 +1,9 @@
+"use client";
+
 import { formatInr } from "@/lib/format";
 import { UsdAmount } from "@/components/currency/UsdAmount";
+import { applyCoupon, totalPercentOff } from "@/lib/coupons";
+import { useCoupon } from "./CouponProvider";
 import type { ConsultingPackage } from "@/lib/packages";
 
 /**
@@ -34,14 +38,6 @@ function RatePerHour({ inr, className }: { inr: number; className?: string }) {
   );
 }
 
-/**
- * Percentage off, floored rather than rounded — a claimed discount should
- * never read higher than what's actually given.
- */
-function percentOff(original: number, now: number): number {
-  return Math.floor(((original - now) / original) * 100);
-}
-
 export function PriceTag({
   priceInr,
   rateInrPerHour,
@@ -55,14 +51,35 @@ export function PriceTag({
   originalPriceInr?: number;
   hours?: number;
 }) {
-  const hasTiers = Boolean(priceTiers?.length);
-  const isDiscounted = Boolean(originalPriceInr && originalPriceInr > priceInr);
+  // No provider on /for-individuals, so this is null there and coupons
+  // simply don't reach that page — no per-page special-casing needed.
+  const { coupon } = useCoupon();
 
-  // Rates are derived from totals rather than stored separately, so the
-  // per-hour figure can never disagree with the headline price.
-  const originalRate =
-    isDiscounted && hours ? Math.round(originalPriceInr! / hours) : null;
-  const newRate = hours ? Math.round(priceInr / hours) : rateInrPerHour;
+  const hasTiers = Boolean(priceTiers?.length);
+
+  // Plans with no base discount still anchor a coupon against their own
+  // list price, so a code works on the three excluded plans too.
+  const original = originalPriceInr ?? priceInr;
+  const final =
+    coupon && priceInr > 0
+      ? applyCoupon(priceInr, original, coupon.discount)
+      : priceInr;
+
+  const isDiscounted = final < original;
+
+  // Rates derive from totals, so the per-hour figure can never disagree
+  // with the headline price — including after a coupon is applied.
+  //
+  // Plans without `hours` (the excluded three) still have a stored rate,
+  // which is by definition their *original* rate. Scale it by the same
+  // ratio as the total, or a coupon would discount the headline price
+  // while leaving the per-hour figure stale.
+  const originalRate = hours ? Math.round(original / hours) : rateInrPerHour;
+  const finalRate = hours
+    ? Math.round(final / hours)
+    : rateInrPerHour !== null && priceInr > 0
+      ? Math.round((rateInrPerHour * final) / priceInr)
+      : rateInrPerHour;
 
   return (
     <div>
@@ -72,22 +89,22 @@ export function PriceTag({
 
         {isDiscounted && (
           <span className="mr-2 text-sm font-normal text-price-cut line-through">
-            <Amount inr={originalPriceInr!} />
+            <Amount inr={original} />
           </span>
         )}
 
         <span className={isDiscounted ? "text-price-cut" : undefined}>
-          <Amount inr={priceInr} />
+          <Amount inr={final} />
         </span>
 
         {isDiscounted && (
           <span className="ml-2 align-middle text-xs font-normal text-price-cut">
-            {percentOff(originalPriceInr!, priceInr)}% off
+            {totalPercentOff(original, final)}% off
           </span>
         )}
       </div>
 
-      {newRate !== null && !hasTiers && (
+      {finalRate !== null && !hasTiers && (
         <div className="mt-0.5 text-xs text-muted">
           {isDiscounted && originalRate !== null && (
             <span className="mr-2 text-price-cut line-through">
@@ -95,7 +112,7 @@ export function PriceTag({
             </span>
           )}
           <RatePerHour
-            inr={newRate}
+            inr={finalRate}
             className={isDiscounted ? "text-price-cut" : undefined}
           />
         </div>
