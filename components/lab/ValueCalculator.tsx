@@ -41,6 +41,8 @@ export function ValueCalculator() {
   const monthlyLoaded = Math.round((effectiveSalary * model.loading) / 12);
   const retainer = rp.price;
   const monthlyDelta = monthlyLoaded - retainer;
+  const isSaving = monthlyDelta >= 0;
+  const annualDelta = Math.abs(monthlyDelta) * 12;
 
   const fmt = config.format;
 
@@ -53,12 +55,15 @@ export function ValueCalculator() {
       <div className="rounded-[var(--radius)] border border-[var(--card-border)] bg-[var(--card-bg)] p-5">
         <label className="flex flex-wrap items-center gap-3 text-sm">
           <span className="text-muted">
-            If you hired a senior product lead at
+            Instead of hiring a senior product lead at
           </span>
           <select
             value={effectiveSalary}
             onChange={(e) => setSalary(Number(e.target.value))}
-            className="rounded-[var(--radius)] border border-border bg-bg px-3 py-1.5 text-sm"
+            // Explicit background/text color, not just inherited: Windows
+            // dark mode otherwise forces its own colors onto native <select>
+            // regardless of what the page inherits.
+            className="rounded-[var(--radius)] border border-border bg-bg px-3 py-1.5 text-sm text-text"
           >
             {model.salaryOptions.map((s) => (
               <option key={s} value={s}>
@@ -68,42 +73,59 @@ export function ValueCalculator() {
           </select>
         </label>
 
-        <dl className="mt-5 space-y-3 text-sm">
-          <div className="flex flex-wrap items-baseline justify-between gap-x-4 border-b border-border pb-3">
-            <dt className="text-muted">
-              Fully loaded, per month
-              <span className="ml-1 text-xs">
-                (salary plus taxes, benefits, equity, recruiting)
-              </span>
-            </dt>
-            <dd data-figure className="shrink-0">
-              {fmt(monthlyLoaded)}
-            </dd>
-          </div>
+        {/* The headline number is the point of this section: what the
+            visitor keeps, not a neutral ledger they have to interpret
+            themselves. Savings are never rendered in text-price-cut — that
+            color means "you are giving this up," which is backwards for a
+            number that is good news. */}
+        <p className="mt-5 text-2xl font-semibold text-balance">
+          {isSaving ? (
+            <>
+              You save{" "}
+              <span data-figure className="text-price-save">
+                {fmt(monthlyDelta)}
+              </span>{" "}
+              a month
+            </>
+          ) : (
+            <>
+              <span data-figure>{fmt(-monthlyDelta)}</span> more a month than
+              the {pkg.name.toLowerCase()}
+            </>
+          )}
+        </p>
+        {monthlyDelta !== 0 && (
+          <p className="mt-1 text-sm text-muted">
+            That&rsquo;s <span data-figure>{fmt(annualDelta)}</span> a year
+            {isSaving ? " kept, not spent." : "."}
+          </p>
+        )}
 
-          <div className="flex flex-wrap items-baseline justify-between gap-x-4 border-b border-border pb-3">
-            <dt className="text-muted">
-              {pkg.name}, per month
-              <span className="ml-1 text-xs">({pkg.hours} hours)</span>
-            </dt>
-            <dd data-figure className="shrink-0">
-              {fmt(retainer)}
-            </dd>
-          </div>
-
+        <dl className="mt-5 space-y-2 border-t border-border pt-4 text-sm text-muted">
           <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-            <dt>Difference, per month</dt>
-            <dd data-figure className="shrink-0 text-price-cut">
-              {monthlyDelta >= 0 ? fmt(monthlyDelta) : `+${fmt(-monthlyDelta)}`}
+            <dt>
+              Full-time, fully loaded
+              <span className="ml-1 text-xs">(salary, benefits, equity, recruiting)</span>
+            </dt>
+            <dd data-figure className="shrink-0">
+              {fmt(monthlyLoaded)}/mo
+            </dd>
+          </div>
+          <div className="flex flex-wrap items-baseline justify-between gap-x-4">
+            <dt>
+              {pkg.name}
+              <span className="ml-1 text-xs">({pkg.hours} hours/month)</span>
+            </dt>
+            <dd data-figure className="shrink-0">
+              {fmt(retainer)}/mo
             </dd>
           </div>
         </dl>
 
         <p className="mt-4 text-xs text-muted">
-          Indicative. A fully-loaded multiple of{" "}
-          {model.loading.toFixed(1)}× base salary is a common planning
-          assumption, not a quote — and it excludes the months a search takes
-          before anyone starts.
+          Indicative. A {model.loading.toFixed(1)}× loading on base salary is
+          a common planning assumption, not a quote — and it excludes the
+          months a search takes before anyone starts.
         </p>
       </div>
     </section>

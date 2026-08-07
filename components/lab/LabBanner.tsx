@@ -19,9 +19,10 @@ export function LabBanner() {
       }}
     >
       <strong>Prototype — not the live pricing page.</strong> A parallel
-      version of Services used to evaluate a two-market pricing model and a
-      three-tier structure. The region switch below would not exist on the
-      real page; region would be detected automatically. The live page is{" "}
+      version of Services testing a two-market pricing model (India pricing
+      vs. everywhere-else pricing) and a three-tier structure. The switch
+      below would not exist on the real page — region would be detected
+      automatically. The live page is{" "}
       <a href="/services" className="underline underline-offset-4">
         /services
       </a>

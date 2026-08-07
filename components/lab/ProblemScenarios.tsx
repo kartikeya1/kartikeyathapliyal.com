@@ -26,7 +26,7 @@ export function ProblemScenarios() {
               key={s.id}
               className="rounded-[var(--radius)] border border-[var(--card-border)] bg-[var(--card-bg)] p-5"
             >
-              <h3 className="text-base">{s.situation}</h3>
+              <h3 data-scenario-heading className="text-balance">{s.situation}</h3>
               <p className="mt-2 text-sm text-muted">{s.detail}</p>
               {tier && (
                 <Link

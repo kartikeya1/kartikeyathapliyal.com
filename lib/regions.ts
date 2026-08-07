@@ -57,23 +57,27 @@ function formatUsdExact(usd: number): string {
 export const REGIONS: Record<Region, RegionConfig> = {
   in: {
     id: "in",
-    label: "India",
+    // Named explicitly as the India-specific case — the international list
+    // is just "Pricing", so the two buttons read as "the price" and "the
+    // India-specific price," not as two equally-generic options. See
+    // docs/PRICING-REVAMP-INDIA-VS-INTERNATIONAL.md.
+    label: "India pricing",
     shortLabel: "India",
     hourlyList: 4500,
     hourlyNow: 4000,
     showHourlyRate: true,
     format: formatInr,
-    note: "Billed in INR. Rates unchanged from the current site.",
+    note: "India-specific pricing, billed in INR.",
   },
   intl: {
     id: "intl",
-    label: "International",
-    shortLabel: "Intl",
+    label: "Pricing",
+    shortLabel: "Pricing",
     hourlyList: 150,
     hourlyNow: 135,
     showHourlyRate: false,
     format: formatUsdExact,
-    note: "Billed in USD. Priced for the market, not converted from INR.",
+    note: "Billed in USD.",
   },
 };
 

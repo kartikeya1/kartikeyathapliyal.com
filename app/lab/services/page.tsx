@@ -41,10 +41,11 @@ const entryIds = entryPackages.map((p) => p.id);
  * untouched, so this can be judged in production against the live page.
  *
  * Section order follows what the research found converts, and differs from
- * /services in three ways: the visitor qualifies themselves *before* seeing
- * a price, twelve SKUs are three tiers, and the objection-handling sections
- * (first 30 days, FAQ) sit between the offers and the booking step rather
- * than not existing.
+ * /services in four ways: the visitor qualifies themselves *before* seeing
+ * a price, twelve SKUs are three tiers, the coupon field sits with the
+ * pricing explainer near the top (not at the bottom, where a code someone
+ * already has just sits unused for a full scroll), and the
+ * objection-handling sections (first 30 days, FAQ) exist at all.
  */
 export default function LabServicesPage() {
   return (
@@ -54,7 +55,7 @@ export default function LabServicesPage() {
       <div data-box className="space-y-5">
         <PageHeader
           title="Consulting engagements"
-          dek="Three ways in, priced for the market you are in. Fixed scope, fixed price, and a defined end date on everything."
+          dek="Senior product leadership — sharpened by real fintech integration, compliance, and reliability work."
         />
         <CtaLink href={siteConfig.booking.calUrl} external>
           Book a 30-minute call
@@ -67,13 +68,20 @@ export default function LabServicesPage() {
             How pricing works
           </h2>
           <p className="max-w-[62ch] text-sm text-muted">
-            Indian and international consulting rates genuinely differ, so
-            there are two price lists rather than one converted number. Each
-            is priced for its own market and billed in its own currency.
-            Within a list, what changes between engagements is scope and
-            duration — never the rate.
+            Consulting rates in India and elsewhere genuinely differ — so
+            there are two price lists, not one converted number. Within a
+            list, what changes between engagements is scope and duration,
+            never the rate.
           </p>
           <RegionSwitch />
+          <div className="max-w-sm">
+            <div data-label className="text-muted">
+              Have a code?
+            </div>
+            <div className="mt-1.5">
+              <CouponField />
+            </div>
+          </div>
         </section>
 
         <ProblemScenarios />
@@ -99,8 +107,6 @@ export default function LabServicesPage() {
           <h2 data-label className="text-muted">
             Book a call or send a brief
           </h2>
-
-          <CouponField />
 
           <div className="max-w-[46rem] space-y-8">
             <LazyEmbed

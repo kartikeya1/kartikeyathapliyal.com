@@ -29,7 +29,7 @@ export function Faq() {
         {faq.map((item) => (
           <details key={item.id} className="group py-3">
             <summary className="cursor-pointer list-none text-sm marker:content-none">
-              <span className="text-text">{item.q}</span>
+              <span className="text-text text-balance">{item.q}</span>
             </summary>
             <p className="mt-2 max-w-[62ch] text-sm text-muted">{item.a}</p>
           </details>

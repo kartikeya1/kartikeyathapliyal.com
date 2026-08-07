@@ -28,6 +28,10 @@
   --accent-fg: #ffffff;
   /* Discount pricing. 4.5:1 on --bg, so it passes AA as normal-size text. */
   --price-cut: #dc2626;
+  /* Savings — a smaller number that is good news. Never the same color as
+     price-cut: red reads as "you are losing this," which is backwards for
+     a number the visitor keeps. 4.5:1 on --bg. */
+  --price-save: #15803d;
 }
 
 [data-theme="dark"] {
@@ -40,6 +44,7 @@
   --accent: #5cc8e8;
   --accent-fg: #0b0e11;
   --price-cut: #f87171;
+  --price-save: #4ade80;
 }
 
 /* Structure — identical in both themes. */
@@ -75,6 +80,7 @@
   --color-accent: var(--accent);
   --color-accent-fg: var(--accent-fg);
   --color-price-cut: var(--price-cut);
+  --color-price-save: var(--price-save);
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
@@ -109,6 +115,20 @@ h3 {
 }
 [data-hero] h1 {
   font-size: var(--fs-hero);
+}
+
+/* /lab/services hierarchy fixes. Tailwind's text-* utilities live in
+   Tailwind's own @layer and lose the cascade to the unlayered h3 rule
+   above regardless of specificity — Tailwind v4 places all @layer content
+   below unlayered CSS. An attribute override is the working pattern
+   already established by [data-hero] h1 above, so these follow it rather
+   than fighting the layer with !important. */
+[data-tier-headline] {
+  font-size: 1.25rem;
+  line-height: 1.25;
+}
+[data-scenario-heading] {
+  font-size: 1.1875rem;
 }
 
 /* Eyebrows and small-caps labels. */

@@ -37,7 +37,15 @@ export function TierLadder() {
               <div data-label className="text-muted">
                 {tier.step} · {tier.name}
               </div>
-              <h3 className="mt-1">{tier.headline}</h3>
+              {/* The single most important line on the card — sized well
+                  past the site's default h3 (which is shared with much
+                  less important text elsewhere) so it reads as the thing
+                  to notice first, not one line among many the same size.
+                  data-tier-headline is the override; see globals.css for
+                  why a Tailwind size utility alone doesn't win here. */}
+              <h3 data-tier-headline className="mt-1 text-balance">
+                {tier.headline}
+              </h3>
 
               {anchor && (
                 <div className="mt-3">

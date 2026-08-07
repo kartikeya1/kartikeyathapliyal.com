@@ -51,11 +51,10 @@ export const tiers: readonly Tier[] = [
     anchorId: "deep-dive-diagnostic",
     packageIds: ["deep-dive-diagnostic"],
     bestFor:
-      "You know something in the product is broken, but not what, and the team disagrees about where to look.",
+      "You know something is broken, but not what — and the team disagrees about where to look.",
     includes: [
-      "Root-cause analysis of the flow, integration, or reliability problem",
-      "A written findings document with the evidence behind each conclusion",
-      "A prioritised action plan you can execute without me",
+      "A root-cause finding, with the evidence behind it, in writing",
+      "A prioritised action plan your team can run without me",
     ],
   },
   {
@@ -71,11 +70,10 @@ export const tiers: readonly Tier[] = [
     ],
     optionsLabel: "Choose a focus",
     bestFor:
-      "The problem is identified and scoped, and you need someone to run the fix rather than advise on it.",
+      "The problem is scoped, and you need someone to run the fix, not advise from the sidelines.",
     includes: [
-      "A fixed-scope sprint with a named focus and a defined end date",
-      "Working artefacts — specs, sequencing, risk maps — not a slide deck",
-      "Handover documented well enough that the team owns it afterwards",
+      "A fixed-scope sprint, a named focus, a defined end date",
+      "Working artefacts your team owns after I leave — not a slide deck",
     ],
     featured: true,
   },
@@ -88,11 +86,10 @@ export const tiers: readonly Tier[] = [
     packageIds: ["founder-advisory-retainer", "fractional-product-lead"],
     optionsLabel: "Choose a depth",
     bestFor:
-      "There is no strong in-house product lead yet, and the decisions are piling up in the founder's inbox.",
+      "There's no strong in-house product lead yet, and decisions are piling up in the founder's inbox.",
     includes: [
       "Ongoing ownership of roadmap, prioritisation, and operating cadence",
-      "Continuity across decisions rather than one-off advice",
-      "A monthly commitment you can stop at the end of any month",
+      "A monthly commitment — stop at the end of any month, no minimum term",
     ],
   },
 ];
