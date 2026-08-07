@@ -47,7 +47,7 @@ export function readClaims() {
     });
   }
 
-  if (claims.length === 0) throw new Error("read-data: parsed zero claims — parser is out of date");
+  if (claims.length === 0) throw new Error("read-data: parsed zero claims - parser is out of date");
   return claims;
 }
 

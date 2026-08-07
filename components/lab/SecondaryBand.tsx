@@ -2,7 +2,7 @@ import { packageById } from "@/lib/packages";
 import { RegionalPriceTag } from "@/components/region/RegionalPriceTag";
 
 /**
- * Everything real and useful that is not one of the three main steps —
+ * Everything real and useful that is not one of the three main steps -
  * workshops, coaching, the paid sanity-check call, and the free entry
  * options.
  *

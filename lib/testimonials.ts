@@ -4,14 +4,14 @@
  * Every quote here is verbatim and name-attributed, taken from
  * whoami/PROFESSIONAL_REPUTATION.md Part 6 ("Pull-Quotes for Public Use").
  * That file records that all of these were posted publicly by their authors
- * as LinkedIn recommendations, which is what makes naming them safe — these
+ * as LinkedIn recommendations, which is what makes naming them safe - these
  * are statements the recommenders already chose to publish.
  *
  * Nothing from the private review cycles appears here: no internal scores,
  * no manager or peer names from those cycles. whoami/WORK.md §19 lists those
  * as never-publish.
  *
- * `whoami` advises 4–6 quotes from different people and different strength
+ * `whoami` advises 4-6 quotes from different people and different strength
  * buckets. These four are chosen for a *consulting* buyer specifically:
  * technical credibility, behaviour in a crisis, follow-through after
  * handover (the single biggest fear about hiring a consultant), and
@@ -34,7 +34,7 @@ export const testimonials: readonly Testimonial[] = [
   {
     id: "jatin-technical",
     quote:
-      "One of the most technically astute Product Managers I've partnered with… Any engineering team would be lucky to work with him.",
+      "One of the most technically astute Product Managers I've partnered with... Any engineering team would be lucky to work with him.",
     author: "Jatin Manav",
     role: "Senior Software Engineer, smallcase",
     theme: "Technical depth",
@@ -58,7 +58,7 @@ export const testimonials: readonly Testimonial[] = [
   {
     id: "udit-execution",
     quote:
-      "A rare combination of ownership, structured thinking, and relentless execution… he doesn't wait for direction or perfect conditions, he takes initiative, asks the right questions, and moves work forward with high agency.",
+      "A rare combination of ownership, structured thinking, and relentless execution... he doesn't wait for direction or perfect conditions, he takes initiative, asks the right questions, and moves work forward with high agency.",
     author: "Udit Khurana",
     role: "Product & Strategy",
     theme: "Execution",

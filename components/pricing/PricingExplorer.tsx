@@ -19,7 +19,7 @@ const FLASH_MS = 1200;
  * the calculator needs to find and flash a card that filter/sort may have
  * hidden or reordered, so all three live in one client component.
  *
- * The calculator sits below the grid (it was moved from the top — it was
+ * The calculator sits below the grid (it was moved from the top - it was
  * confusing visitors before they'd even seen the plans) and is gated behind
  * a temporary on/off flag so it can be evaluated for removal without a
  * redeploy. See CalculatorToggle.tsx.
@@ -40,7 +40,7 @@ export function PricingExplorer({
   const total = hours * weeks * rate;
 
   const closest = useMemo(() => {
-    // Rate-based packages only — the two flat-fee entry SKUs aren't
+    // Rate-based packages only - the two flat-fee entry SKUs aren't
     // hours x weeks x rate offers, so they're excluded from the match.
     const candidates = packages.filter((p) => p.rateInrPerHour !== null);
     if (candidates.length === 0) return null;
@@ -76,7 +76,7 @@ export function PricingExplorer({
         sort={sort}
         onSortChange={setSort}
       />
-      {/* Own h2, not just a styled label — keeps this grid's h3 cards under
+      {/* Own h2, not just a styled label - keeps this grid's h3 cards under
           their own section rather than nested under EntryBand's "Start
           here" heading. */}
       <h2 data-label className="text-muted">

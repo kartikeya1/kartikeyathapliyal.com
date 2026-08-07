@@ -12,11 +12,11 @@ export const site = {
   tagline:
     "Product manager building products, platforms and internal systems that make complex ecosystems simpler.",
   description:
-    "Kartikeya Thapliyal is a product manager who builds products, platforms and internal systems that make complex ecosystems simpler. Previously Product Manager II at smallcase (Aug 2023 – Jul 2026).",
+    "Kartikeya Thapliyal is a product manager who builds products, platforms and internal systems that make complex ecosystems simpler. Previously Product Manager II at smallcase (Aug 2023 - Jul 2026).",
   previously: {
     role: "Product Manager II",
     company: "smallcase",
-    period: "Aug 2023 – Jul 2026",
+    period: "Aug 2023 - Jul 2026",
   },
   links: {
     linkedin: "https://www.linkedin.com/in/kartikeyathapliyal",

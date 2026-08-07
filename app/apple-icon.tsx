@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { LOGO_NODE, LOGO_PATHS, LOGO_VIEWBOX } from "@/lib/logo";
 
 /**
- * iOS ignores SVG favicons entirely — without this, "Add to Home Screen"
+ * iOS ignores SVG favicons entirely - without this, "Add to Home Screen"
  * renders a screenshot of the page. 180×180 is the size iOS asks for.
  *
  * No `runtime` export: this renders once at build time as a static file.

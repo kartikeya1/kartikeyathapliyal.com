@@ -4,11 +4,11 @@
  * price), a first-30-days breakdown (makes an abstract service concrete),
  * and an FAQ (handles objections without needing a call).
  *
- * All static copy — no new mechanism. See §4 of
+ * All static copy - no new mechanism. See §4 of
  * docs/PRICING-REVAMP-INDIA-VS-INTERNATIONAL.md.
  */
 
-/** "You are probably here because…" — shown above pricing, on purpose. */
+/** "You are probably here because..." - shown above pricing, on purpose. */
 export interface Scenario {
   id: string;
   situation: string;
@@ -48,7 +48,7 @@ export const scenarios: readonly Scenario[] = [
   },
 ];
 
-/** What the first month actually looks like — the risk-killer section. */
+/** What the first month actually looks like - the risk-killer section. */
 export interface Milestone {
   id: string;
   when: string;
@@ -71,7 +71,7 @@ export const firstThirtyDays: readonly Milestone[] = [
   },
   {
     id: "weeks-3-4",
-    when: "Weeks 3–4",
+    when: "Weeks 3-4",
     what: "Sequence and start. Specs for the first fixes, dependencies mapped, and the first change in flight.",
     output: "A plan the team owns, and visible movement on the top item.",
   },
@@ -87,22 +87,22 @@ export const faq: readonly FaqItem[] = [
   {
     id: "first-call",
     q: "What actually happens on the fit call?",
-    a: "30 minutes. You describe the problem, I ask enough questions to know whether it's a one-call answer, a sprint, or something bigger — and say so directly. If it's a one-call answer, you get that on the call, free, whether or not you hire me. If it's more, you leave knowing exactly which engagement fits and why, not with a follow-up email to decode.",
+    a: "30 minutes. You describe the problem, I ask enough questions to know whether it's a one-call answer, a sprint, or something bigger - and say so directly. If it's a one-call answer, you get that on the call, free, whether or not you hire me. If it's more, you leave knowing exactly which engagement fits and why, not with a follow-up email to decode.",
   },
   {
     id: "what-do-i-get",
     q: "What does a findings document actually look like?",
-    a: "A written root cause with the evidence behind it, not a hunch. A ranked list of what to fix and why that order. Specs, sequencing, and dependency maps where the engagement calls for them — working artefacts your team executes from, not a slide deck that gets skimmed once and archived.",
+    a: "A written root cause with the evidence behind it, not a hunch. A ranked list of what to fix and why that order. Specs, sequencing, and dependency maps where the engagement calls for them - working artefacts your team executes from, not a slide deck that gets skimmed once and archived.",
   },
   {
     id: "start-now",
     q: "How soon can you actually start?",
-    a: "Often immediately. There's no notice period on my side, the same as there's none to leave — if the fit call goes well, work can begin as soon as you're ready. The exact date depends on what's already committed elsewhere, and the fit call is where we settle that in minutes, not over an email thread.",
+    a: "Often immediately. There's no notice period on my side, the same as there's none to leave - if the fit call goes well, work can begin as soon as you're ready. The exact date depends on what's already committed elsewhere, and the fit call is where we settle that in minutes, not over an email thread.",
   },
   {
     id: "not-working",
     q: "What if it is not working out?",
-    a: "Sprints are fixed-scope with a defined end date, so the exposure is bounded from the start. Monthly engagements can be stopped at the end of any month — no notice period, no minimum term beyond the month already in progress.",
+    a: "Sprints are fixed-scope with a defined end date, so the exposure is bounded from the start. Monthly engagements can be stopped at the end of any month - no notice period, no minimum term beyond the month already in progress.",
   },
   {
     id: "not-sure-which",
@@ -112,7 +112,7 @@ export const faq: readonly FaqItem[] = [
   {
     id: "why-not-hire",
     q: "Why not just hire a full-time product lead?",
-    a: "Sometimes you should — this isn't a substitute for a strong in-house hire long-term. But a search takes months, a bad hire costs more than a year of this, and most teams don't know they need a full-time seat until someone senior has spent real time in the problem first. The calculator above runs the actual numbers for your situation.",
+    a: "Sometimes you should - this isn't a substitute for a strong in-house hire long-term. But a search takes months, a bad hire costs more than a year of this, and most teams don't know they need a full-time seat until someone senior has spent real time in the problem first. The calculator above runs the actual numbers for your situation.",
   },
   {
     id: "existing-team",
@@ -122,12 +122,12 @@ export const faq: readonly FaqItem[] = [
   {
     id: "after-handover",
     q: "Do you disappear after handover?",
-    a: "No. Staying engaged through implementation and launch, not just requirements, is the thing colleagues most consistently say about working with me — quoted on this site by name, not paraphrased.",
+    a: "No. Staying engaged through implementation and launch, not just requirements, is the thing colleagues most consistently say about working with me - quoted on this site by name, not paraphrased.",
   },
   {
     id: "nda",
     q: "Will you sign an NDA?",
-    a: "Yes, before anything substantive is shared. Product and partner details are often sensitive — unreleased roadmaps, integration terms, sometimes financial data — and an NDA up front is the normal starting point, not a special request.",
+    a: "Yes, before anything substantive is shared. Product and partner details are often sensitive - unreleased roadmaps, integration terms, sometimes financial data - and an NDA up front is the normal starting point, not a special request.",
   },
   {
     id: "why-two-prices",

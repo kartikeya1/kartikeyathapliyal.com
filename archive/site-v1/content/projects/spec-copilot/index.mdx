@@ -3,12 +3,12 @@ title: "Spec Copilot"
 summary: "A copilot that drafts product specs from scattered context, so writing starts at judgment instead of archaeology."
 category: "ai-lab"
 role: "Product Manager"
-timeframe: "2025 — 2026"
+timeframe: "2025 - 2026"
 status: "Prototype"
 featured: true
 order: 1
 highlights:
-  - "Drafts a first-pass PRD from linked sources — tickets, analytics, support threads, call notes"
+  - "Drafts a first-pass PRD from linked sources - tickets, analytics, support threads, call notes"
   - "Every claim in the draft carries a citation back to its source; nothing is laundered through the model"
   - "Thin evidence renders as open questions instead of confident prose"
   - "The prototype exists to test one behaviour: whether PMs actually check citations under deadline"
@@ -19,25 +19,25 @@ prototype:
 
 ## Problem
 
-The hardest part of writing a spec is rarely the writing. It is finding what you already know. The context that makes a spec good — the support thread where a user described the problem in their own words, the analytics query someone ran three months ago, the call note that explains why a workaround exists — lives scattered across half a dozen tools. At smallcase I saw this cost show up the same way every time: the first days of any spec were archaeology, not thinking.
+The hardest part of writing a spec is rarely the writing. It is finding what you already know. The context that makes a spec good - the support thread where a user described the problem in their own words, the analytics query someone ran three months ago, the call note that explains why a workaround exists - lives scattered across half a dozen tools. At smallcase I saw this cost show up the same way every time: the first days of any spec were archaeology, not thinking.
 
 There is a second problem. A spec is a snapshot. The moment it is written, the tickets keep moving and the data keeps changing, and the document drifts away from reality. Nobody updates it, because updating it means doing the archaeology again.
 
 ## Idea
 
-Spec Copilot starts from the material instead of a blank page. You link the sources — tickets, analytics exports, support threads, call notes — and it assembles a first-draft PRD: problem statement, evidence, open questions, proposed scope. The PM's job shifts from assembling boilerplate to editing judgment calls. What to cut, which tradeoff to take, what the spec is actually arguing for.
+Spec Copilot starts from the material instead of a blank page. You link the sources - tickets, analytics exports, support threads, call notes - and it assembles a first-draft PRD: problem statement, evidence, open questions, proposed scope. The PM's job shifts from assembling boilerplate to editing judgment calls. What to cut, which tradeoff to take, what the spec is actually arguing for.
 
 The constraint I cared about most is that every claim in the draft carries a citation back to its source. If the draft says users struggle with a flow, you can open the support thread it came from. Nothing gets laundered through the model. A draft that cannot show its sources is worse than no draft, because it looks authoritative.
 
 ## Mockup
 
-The interface explores a two-pane layout: the draft on the left, linked sources on the right. Selecting a sentence in the draft highlights the passages that produced it. Sections where the evidence is thin are rendered as open questions rather than written with false confidence — the model is not allowed to sound sure when its sources are not.
+The interface explores a two-pane layout: the draft on the left, linked sources on the right. Selecting a sentence in the draft highlights the passages that produced it. Sections where the evidence is thin are rendered as open questions rather than written with false confidence - the model is not allowed to sound sure when its sources are not.
 
 <Placeholder label="Two-pane draft view: PRD text on the left, cited source passages highlighted on the right" aspect="video" caption="Every sentence in the draft traces back to a source." />
 
 ## Prototype
 
-The prototype runs against a corpus of sample documents — fabricated tickets, support threads, and call notes — not live integrations. Retrieval is naive: embedding search over a small corpus, no reranking, no notion of freshness. Both limits are acceptable because generation was never the interesting question. Current models write plausible PRD prose without much help.
+The prototype runs against a corpus of sample documents - fabricated tickets, support threads, and call notes - not live integrations. Retrieval is naive: embedding search over a small corpus, no reranking, no notion of freshness. Both limits are acceptable because generation was never the interesting question. Current models write plausible PRD prose without much help.
 
 The interesting question is trust. Given a cited draft, does a PM actually check the citations, or rubber-stamp the prose because it reads well? The prototype exists to make that behavior observable: citations are one click away, and the drafting flow forces a pass through the flagged open questions before export. Whether citation-checking survives contact with a real deadline is the thing I still cannot answer from a sample corpus.
 

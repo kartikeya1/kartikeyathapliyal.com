@@ -24,7 +24,7 @@ interface CurrencyState {
 }
 
 /**
- * Initial state deliberately matches what the server rendered — the
+ * Initial state deliberately matches what the server rendered - the
  * build-time rate and INR. Everything real happens in an effect *after*
  * hydration, so React never sees a mismatch.
  */

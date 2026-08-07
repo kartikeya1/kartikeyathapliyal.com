@@ -11,14 +11,14 @@ import { packageById } from "@/lib/packages";
  * That framing was the problem: its only output was a larger number, and it
  * presented the work as metered labour. This one compares the retainer
  * against the fully-loaded cost of the full-time hire the buyer is avoiding
- * — the same comparison the closest comparable puts on its own pricing page.
+ * - the same comparison the closest comparable puts on its own pricing page.
  * Same slot, inverted framing. See §4 of the research doc.
  *
  * Region comes from React state rather than the CSS attribute because this
  * is interactive: the numbers change as the select changes, so they cannot
  * be server-rendered for both regions. State resolves from the attribute
  * just after hydration, so an international visitor sees India figures for
- * one frame — the same trade already accepted for the live FX rate.
+ * one frame - the same trade already accepted for the live FX rate.
  */
 export function ValueCalculator() {
   const { region } = useRegion();
@@ -75,7 +75,7 @@ export function ValueCalculator() {
 
         {/* The headline number is the point of this section: what the
             visitor keeps, not a neutral ledger they have to interpret
-            themselves. Savings are never rendered in text-price-cut — that
+            themselves. Savings are never rendered in text-price-cut - that
             color means "you are giving this up," which is backwards for a
             number that is good news. */}
         <p className="mt-5 text-2xl font-semibold text-balance">
@@ -124,7 +124,7 @@ export function ValueCalculator() {
 
         <p className="mt-4 text-xs text-muted">
           Indicative. A {model.loading.toFixed(1)}× loading on base salary is
-          a common planning assumption, not a quote — and it excludes the
+          a common planning assumption, not a quote - and it excludes the
           months a search takes before anyone starts.
         </p>
       </div>

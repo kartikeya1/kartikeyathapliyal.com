@@ -24,7 +24,7 @@ export function formatInr(rupees: number): string {
 /**
  * Rounding is magnitude-aware on purpose. `usdRounding` (10) suits the
  * five-figure consulting prices it was written for, but applying it to the
- * individual-track prices overstates them badly — ₹500 is ~$5.5, and
+ * individual-track prices overstates them badly - ₹500 is ~$5.5, and
  * rounding that to $10 nearly doubles it. Anything under $100 rounds to the
  * nearest dollar instead.
  */
@@ -40,7 +40,7 @@ export function formatUsd(inr: number): string {
   return `~$${toUsd(inr).toLocaleString("en-US")}`;
 }
 
-/** "₹40,000 (~$440)" — the standard price string used on every card. */
+/** "₹40,000 (~$440)" - the standard price string used on every card. */
 export function formatPrice(inr: number): string {
   if (inr === 0) return "Free";
   const usd = formatUsd(inr);

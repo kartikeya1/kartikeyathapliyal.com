@@ -34,7 +34,7 @@ export function CouponField() {
       {/*
         Password managers ignore `autocomplete="off"` almost universally, and
         Safari/iCloud Keychain classifies a lone text input inside a <form>
-        as the username step of a username-first login — which is why it was
+        as the username step of a username-first login - which is why it was
         offering to autofill passwords here.
 
         No single attribute fixes this, so the standard mitigations are
@@ -76,7 +76,7 @@ export function CouponField() {
           disabled={!value.trim() || checking}
           className="rounded-[var(--radius)] border border-border px-4 py-2 text-sm hover:border-text disabled:opacity-50"
         >
-          {checking ? "Checking…" : "Apply"}
+          {checking ? "Checking..." : "Apply"}
         </button>
       </form>
 

@@ -7,7 +7,7 @@ import { cn } from "@/lib/cn";
 /**
  * Prototype affordance, not a proposed design element.
  *
- * On the real /services this control would not exist — region would resolve
+ * On the real /services this control would not exist - region would resolve
  * from the browser timezone and never be shown, exactly as the currency
  * default already works. It is here so both price lists can be reviewed on
  * one screen in production, which is the only reason /lab/services exists.

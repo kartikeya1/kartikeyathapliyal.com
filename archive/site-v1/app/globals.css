@@ -2,7 +2,7 @@
 @plugin "@tailwindcss/typography";
 
 /*
-  Design tokens — dark mode only.
+  Design tokens - dark mode only.
   Near-monochrome palette with a single warm accent, used sparingly.
 */
 @theme {

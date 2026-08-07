@@ -1,6 +1,6 @@
 # kartikeyathapliyal.com
 
-Personal consulting site for Kartikeya Thapliyal — product and fintech
+Personal consulting site for Kartikeya Thapliyal - product and fintech
 consulting for businesses, with a secondary track for individual career
 coaching.
 
@@ -18,7 +18,7 @@ the site-wide footer rather than a dedicated page.
 | `/` | Positioning, what I'm hired for, track record |
 | `/about` | Career background, written from private source notes |
 | `/services` | The 12 consulting packages, a rate estimator, filter/sort, an INR/USD toggle with a live FX rate, and booking |
-| `/for-individuals` | Secondary audience — career coaching, real pricing |
+| `/for-individuals` | Secondary audience - career coaching, real pricing |
 
 `/contact` 308-redirects to `/services#book` (see `next.config.ts`).
 
@@ -35,7 +35,7 @@ npm run dev      # http://localhost:3000
 npm run verify    # typecheck + lint + build (all three build-time gates)
 ```
 
-The build runs three gates automatically — `prebuild` checks for hardcoded
+The build runs three gates automatically - `prebuild` checks for hardcoded
 contact details/prices/URLs and validates the claims registry; `postbuild`
 asserts the output is fully static with zero serverless functions. All
 three run on Vercel too, so a build that passes locally will pass there.
@@ -43,7 +43,7 @@ three run on Vercel too, so a build that passes locally will pass there.
 If you touched `lib/claims.ts` or `lib/packages.ts`:
 
 ```bash
-npm run claims:build    # regenerates CLAIMS.md — commit the diff
+npm run claims:build    # regenerates CLAIMS.md - commit the diff
 ```
 
 ## Structure

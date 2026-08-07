@@ -9,7 +9,7 @@ interface RegionState {
 }
 
 /**
- * Initial state matches what the server rendered — India, the CSS default.
+ * Initial state matches what the server rendered - India, the CSS default.
  * The real value is read after hydration from the attribute RegionScript
  * already set, so React never sees a mismatch and the inference logic is
  * not duplicated a third time.
@@ -34,7 +34,7 @@ export function RegionProvider({ children }: { children: React.ReactNode }) {
     try {
       localStorage.setItem("region", r);
     } catch {
-      // Storage blocked — the choice still applies for this page view.
+      // Storage blocked - the choice still applies for this page view.
     }
   }, []);
 

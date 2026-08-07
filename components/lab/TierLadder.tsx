@@ -37,7 +37,7 @@ export function TierLadder() {
               <div data-label className="text-muted">
                 {tier.step} · {tier.name}
               </div>
-              {/* The single most important line on the card — sized well
+              {/* The single most important line on the card - sized well
                   past the site's default h3 (which is shared with much
                   less important text elsewhere) so it reads as the thing
                   to notice first, not one line among many the same size.
@@ -70,7 +70,7 @@ export function TierLadder() {
                       at this column width (~280px in the 3-up grid) the
                       longer option names don't fit beside their price on
                       one line. flex-wrap made the whole row drop to a new
-                      line instead — price and name both flush left,
+                      line instead - price and name both flush left,
                       justify-between doing nothing. This keeps them on one
                       row: the name wraps *within its own column*
                       (min-w-0 is what allows that instead of overflowing),

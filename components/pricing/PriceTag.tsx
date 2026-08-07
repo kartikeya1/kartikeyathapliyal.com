@@ -52,7 +52,7 @@ export function PriceTag({
   hours?: number;
 }) {
   // No provider on /for-individuals, so this is null there and coupons
-  // simply don't reach that page — no per-page special-casing needed.
+  // simply don't reach that page - no per-page special-casing needed.
   const { coupon } = useCoupon();
 
   const hasTiers = Boolean(priceTiers?.length);
@@ -68,7 +68,7 @@ export function PriceTag({
   const isDiscounted = final < original;
 
   // Rates derive from totals, so the per-hour figure can never disagree
-  // with the headline price — including after a coupon is applied.
+  // with the headline price - including after a coupon is applied.
   //
   // Plans without `hours` (the excluded three) still have a stored rate,
   // which is by definition their *original* rate. Scale it by the same

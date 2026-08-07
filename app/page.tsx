@@ -17,7 +17,7 @@ export const metadata: Metadata = buildMetadata({
 const PILLARS = [
   {
     title: "Integrations that hold",
-    body: "Broker, RTA, aggregator and payment-partner work — API contracts, failure modes, and rollout plans that survive contact with a real partner.",
+    body: "Broker, RTA, aggregator and payment-partner work - API contracts, failure modes, and rollout plans that survive contact with a real partner.",
   },
   {
     title: "Reliability you can measure",
@@ -25,7 +25,7 @@ const PILLARS = [
   },
   {
     title: "Product leadership, part-time",
-    body: "Advisory or fractional ownership of a platform area — roadmap, specs, and the product-engineering translation teams struggle with.",
+    body: "Advisory or fractional ownership of a platform area - roadmap, specs, and the product-engineering translation teams struggle with.",
   },
 ];
 

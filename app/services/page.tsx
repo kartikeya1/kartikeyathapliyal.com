@@ -15,7 +15,7 @@ import { buildMetadata } from "@/lib/metadata";
 export const metadata: Metadata = buildMetadata({
   title: "Services",
   description:
-    "Fixed-price consulting engagements for fintech and platform teams — from a 15-minute fit call to fractional product leadership.",
+    "Fixed-price consulting engagements for fintech and platform teams - from a 15-minute fit call to fractional product leadership.",
   path: "/services",
 });
 
@@ -54,7 +54,7 @@ export default function ServicesPage() {
             How pricing works
           </h2>
           <p className="max-w-[62ch] text-sm text-muted">
-            Every engagement below runs at the same hourly rate — what changes
+            Every engagement below runs at the same hourly rate - what changes
             is scope and duration, not the rate. Each price is fixed for the
             hours listed, so there is no meter running.
           </p>
@@ -66,7 +66,7 @@ export default function ServicesPage() {
         <PricingExplorer packages={corePackages} />
 
         {/* Anyone who scrolled the whole pricing grid is the highest-intent
-            visitor on the site — this is the natural place to book or ask,
+            visitor on the site - this is the natural place to book or ask,
             not a standalone /contact page nobody would navigate to first. */}
         <section data-box id="book" className="scroll-mt-8 space-y-4">
           <h2 data-label className="text-muted">

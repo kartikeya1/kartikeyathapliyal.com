@@ -32,7 +32,7 @@ export default function OpengraphImage() {
             marginBottom: 28,
           }}
         >
-          {/* Same geometry as the header mark and the favicon — imported, not
+          {/* Same geometry as the header mark and the favicon - imported, not
               redrawn, so the three surfaces cannot drift. */}
           <svg
             width="56"

@@ -19,7 +19,7 @@ export function SiteHeader() {
     <header className="border-b border-border">
       <Container className="flex items-center gap-4 py-4 sm:gap-6 md:py-5">
         {/* Below `sm` the full name can't fit alongside nav, the audience
-            switch and the theme toggle without eating the gutter — so the
+            switch and the theme toggle without eating the gutter - so the
             mark carries the brand alone there. The link keeps its
             accessible name via aria-label, since the SVG is decorative. */}
         <Link

@@ -34,7 +34,7 @@ for (const file of sourceFiles()) {
         if (!used.has(id)) used.set(id, []);
         used.get(id).push(`${file}:${i + 1}`);
         if (!registered.has(id)) {
-          errors.push(`${file}:${i + 1}  unknown claim id "${id}" — not in lib/claims.ts`);
+          errors.push(`${file}:${i + 1}  unknown claim id "${id}" - not in lib/claims.ts`);
         }
       }
     });
@@ -43,7 +43,7 @@ for (const file of sourceFiles()) {
 for (const claim of claims) {
   if (!used.has(claim.id) && !claim.reserved) {
     errors.push(
-      `lib/claims.ts  claim "${claim.id}" is registered but on no page — place it, or mark it \`reserved: true\``,
+      `lib/claims.ts  claim "${claim.id}" is registered but on no page - place it, or mark it \`reserved: true\``,
     );
   }
   const ageDays = (Date.now() - Date.parse(claim.verifiedOn)) / 86_400_000;
@@ -55,10 +55,10 @@ for (const claim of claims) {
 // --- the anti-drift gate ---
 const manifestPath = join(ROOT, "CLAIMS.md");
 if (!existsSync(manifestPath)) {
-  errors.push("CLAIMS.md is missing — run `npm run claims:build`");
+  errors.push("CLAIMS.md is missing - run `npm run claims:build`");
 } else if (readFileSync(manifestPath, "utf8") !== buildManifest()) {
   errors.push(
-    "CLAIMS.md is stale — lib/claims.ts or lib/packages.ts changed. Run `npm run claims:build` and commit the result.",
+    "CLAIMS.md is stale - lib/claims.ts or lib/packages.ts changed. Run `npm run claims:build` and commit the result.",
   );
 }
 
@@ -72,5 +72,5 @@ if (errors.length) {
 }
 
 console.log(
-  `check-claims: ok — ${claims.length} registered, ${used.size} rendered, ${warnings.length} warning(s)`,
+  `check-claims: ok - ${claims.length} registered, ${used.size} rendered, ${warnings.length} warning(s)`,
 );

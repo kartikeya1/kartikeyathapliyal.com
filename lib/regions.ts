@@ -7,10 +7,10 @@ import { formatInr } from "./format";
  * The site previously had one INR list and FX-converted it for everyone
  * else. That is the bug this module exists to fix: the research in
  * docs/PRICING-REVAMP-INDIA-VS-INTERNATIONAL.md found the INR rate correctly
- * placed against the Indian senior-freelance band (₹2,000–₹4,000+/hr) and
+ * placed against the Indian senior-freelance band (₹2,000-₹4,000+/hr) and
  * roughly a fifth of the international fractional-product band
- * ($200–$400/hr). Converting one into the other exports an India price to a
- * market that pays 2–3× more.
+ * ($200-$400/hr). Converting one into the other exports an India price to a
+ * market that pays 2-3× more.
  *
  * `Region` is therefore *not* the same thing as `Currency` in lib/currency.ts.
  * Currency changes how one number is displayed. Region changes which number
@@ -33,7 +33,7 @@ export interface RegionConfig {
    * Whether to surface a per-hour figure at all.
    *
    * Off internationally, deliberately. The closest comparable
-   * (thefractionalproductmanager.com, $7,999–$15,999/month) quotes monthly
+   * (thefractionalproductmanager.com, $7,999-$15,999/month) quotes monthly
    * and never hourly. An hourly number invites comparison against a $30/hr
    * offshore contractor; a monthly retainer figure invites comparison
    * against a salary. See §3.2 of the research doc.
@@ -46,7 +46,7 @@ export interface RegionConfig {
 
 /**
  * Exact, not approximate. `formatUsdAmount` in lib/currency.ts prefixes a
- * `~` because it is converting at a floating rate — honest there, wrong
+ * `~` because it is converting at a floating rate - honest there, wrong
  * here. These figures are authored, so they are the price.
  */
 function formatUsdExact(usd: number): string {
@@ -57,7 +57,7 @@ function formatUsdExact(usd: number): string {
 export const REGIONS: Record<Region, RegionConfig> = {
   in: {
     id: "in",
-    // Named explicitly as the India-specific case — the international list
+    // Named explicitly as the India-specific case - the international list
     // is just "Pricing", so the two buttons read as "the price" and "the
     // India-specific price," not as two equally-generic options. See
     // docs/PRICING-REVAMP-INDIA-VS-INTERNATIONAL.md.
@@ -93,7 +93,7 @@ export interface RegionalPrice {
 }
 
 /**
- * Returns null when an offering is not sold in a region — the caller renders
+ * Returns null when an offering is not sold in a region - the caller renders
  * nothing rather than falling back to a converted figure, which is the
  * behaviour this whole module exists to prevent.
  */
@@ -122,7 +122,7 @@ export function regionalPrice(
 }
 
 /**
- * Timezone rather than IP, matching `inferCurrency()` in lib/currency.ts —
+ * Timezone rather than IP, matching `inferCurrency()` in lib/currency.ts -
  * no network call, no third-party service, and no middleware (which would
  * create a serverless function and fail check-static).
  *
@@ -143,7 +143,7 @@ export function inferRegion(): Region {
  *
  * The salary bands are what a company would pay to hire the role the
  * retainer replaces. `loading` is the multiplier for everything beyond
- * base salary — employer taxes, benefits, equity, recruiting fees,
+ * base salary - employer taxes, benefits, equity, recruiting fees,
  * equipment, and the cost of the seat sitting empty during a search.
  */
 export interface HireModel {

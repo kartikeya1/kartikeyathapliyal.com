@@ -9,7 +9,7 @@ import { ExternalLink } from "./ExternalLink";
  * until the visitor asks for them, with a plain link-out for no-JS.
  *
  * The revealed content is passed as children rather than baked in here, so
- * each embed can use whatever rendering it actually needs — an <iframe> for
+ * each embed can use whatever rendering it actually needs - an <iframe> for
  * Google Forms, Cal.com's own inline-embed component for Cal.com.
  */
 export function LazyEmbed({

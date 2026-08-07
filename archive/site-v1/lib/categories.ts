@@ -23,7 +23,7 @@ export const categories: Category[] = [
     key: "platform",
     title: "Platform Products",
     intro:
-      "Products that other products are built on — where the users are often other teams, and the interface is as much organizational as technical.",
+      "Products that other products are built on - where the users are often other teams, and the interface is as much organizational as technical.",
   },
   {
     key: "ai-lab",
@@ -35,19 +35,19 @@ export const categories: Category[] = [
     key: "ux",
     title: "UX Explorations",
     intro:
-      "Product thinking exercises. Each one starts from a problem worth having an opinion about — the pixels come later.",
+      "Product thinking exercises. Each one starts from a problem worth having an opinion about - the pixels come later.",
   },
   {
     key: "internal-tooling",
     title: "Internal Tooling",
     intro:
-      "Internal systems and developer tools — built to cut manual work, whether that's coordinating smallcase and partner brokers or speeding up everyday engineering tasks.",
+      "Internal systems and developer tools - built to cut manual work, whether that's coordinating smallcase and partner brokers or speeding up everyday engineering tasks.",
   },
   {
     key: "case-study",
     title: "Product Case Studies",
     intro:
-      "End-to-end accounts of taking ambiguous problems to shipped products — the framing, the tradeoffs, and what actually happened.",
+      "End-to-end accounts of taking ambiguous problems to shipped products - the framing, the tradeoffs, and what actually happened.",
   },
 ];
 

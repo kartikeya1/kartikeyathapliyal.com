@@ -19,7 +19,7 @@ export default function WorkPage() {
           Work
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
-          Organized by capability, not chronology — because the useful question
+          Organized by capability, not chronology - because the useful question
           is rarely <em className="not-italic text-foreground">when</em> something
           was built, but what kind of problem it solved.
         </p>

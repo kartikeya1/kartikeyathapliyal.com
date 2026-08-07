@@ -8,10 +8,10 @@ export default function NotFound() {
         404
       </p>
       <h1 className="mt-5 text-4xl font-medium tracking-tighter text-foreground sm:text-5xl">
-        This page doesn’t exist.
+        This page doesn't exist.
       </h1>
       <p className="mt-5 max-w-md text-lg leading-relaxed text-muted">
-        Possibly a broken link, possibly a project that hasn’t been written up
+        Possibly a broken link, possibly a project that hasn't been written up
         yet.
       </p>
       <Link href="/" className={`${buttonVariants({ size: "default" })} mt-10`}>

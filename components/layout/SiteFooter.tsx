@@ -5,12 +5,12 @@ import { ExternalLink } from "@/components/content/ExternalLink";
 import { siteConfig } from "@/lib/site";
 
 /**
- * Contact is a utility, not a destination — so it lives in the chrome on
+ * Contact is a utility, not a destination - so it lives in the chrome on
  * every page rather than behind a nav click.
  *
  * Three rules keep it from becoming a dumping ground:
  *  1. Exactly one button-shaped element, and it is the *secondary* outline
- *     variant carrying no `data-cta` — the footer must never compete with
+ *     variant carrying no `data-cta` - the footer must never compete with
  *     the page's own primary action.
  *  2. Routes and external profiles are separate columns. Grouping a route
  *     with LinkedIn/GitHub is a category error.
@@ -58,7 +58,7 @@ export function SiteFooter() {
               >
                 {siteConfig.contact.email}
               </a>
-              {/* A real tel: link — the old /contact page rendered this as
+              {/* A real tel: link - the old /contact page rendered this as
                   plain text, which looks actionable and isn't. */}
               <a
                 href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`}

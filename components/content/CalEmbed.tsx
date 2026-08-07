@@ -15,7 +15,7 @@ declare global {
 
 /**
  * A raw <iframe src="https://cal.com/..."> renders Cal.com's full public
- * page — their own header, footer, and page margins — inside our iframe,
+ * page - their own header, footer, and page margins - inside our iframe,
  * which is why it looked cramped and left a dead strip on the right at
  * normal content width. Cal.com's inline-embed script solves exactly this:
  * it renders just the booking widget, sized to the container, and resizes

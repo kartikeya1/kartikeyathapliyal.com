@@ -32,7 +32,7 @@ export default function ThinkingPage() {
         <MDXRemote source={page.body} components={mdxComponents} />
       </Reveal>
 
-      {/* Now — deliberately not in the main navigation */}
+      {/* Now - deliberately not in the main navigation */}
       <Reveal>
         <Link
           href="/now"
@@ -43,7 +43,7 @@ export default function ThinkingPage() {
               Now
             </p>
             <p className="mt-2 text-sm leading-relaxed text-muted">
-              What I’m focused on at the moment — updated as it changes.
+              What I'm focused on at the moment - updated as it changes.
             </p>
           </div>
           <span
@@ -71,7 +71,7 @@ export default function ThinkingPage() {
               To publish one, add content/writing/<slug>.mdx with
               frontmatter: title, summary, date ("YYYY-MM-DD").
               A dedicated /thinking/<slug> route can be added when the
-              first real post lands — see content/README.md.
+              first real post lands - see content/README.md.
             */
             <ul className="mt-6 flex flex-col gap-4">
               {posts.map((post) => (
@@ -95,7 +95,7 @@ export default function ThinkingPage() {
               </p>
               <p className="mt-3 max-w-lg text-sm leading-relaxed text-muted">
                 Occasional essays on platforms, internal tools and AI-native
-                product work. Written slowly, published when they’re worth your
+                product work. Written slowly, published when they're worth your
                 time.
               </p>
             </div>

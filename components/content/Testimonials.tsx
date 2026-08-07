@@ -1,7 +1,7 @@
 import { testimonials } from "@/lib/testimonials";
 
 /**
- * Social proof was the single biggest thing missing from the site — the
+ * Social proof was the single biggest thing missing from the site - the
  * competitor research found it to be the main lever, and none of these had
  * been cleared for use until now.
  *

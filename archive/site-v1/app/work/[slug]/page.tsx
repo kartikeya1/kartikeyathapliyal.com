@@ -118,7 +118,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <p className="mt-2 text-sm leading-relaxed text-muted">
             The fastest way to understand this project is to use it.
           </p>
-          {/* Placeholder URL — replaced when the prototype is deployed. */}
+          {/* Placeholder URL - replaced when the prototype is deployed. */}
           <a
             href={project.prototype.url}
             target="_blank"

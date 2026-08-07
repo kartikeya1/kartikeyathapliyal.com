@@ -1,6 +1,6 @@
 /**
  * Sets `data-region` on <html> before the priced content is parsed, exactly
- * like ThemeScript and CurrencyScript — an explicit choice wins, otherwise
+ * like ThemeScript and CurrencyScript - an explicit choice wins, otherwise
  * the timezone decides.
  *
  * Both regions' prices ship in the static HTML and CSS picks one, so the

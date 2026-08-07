@@ -11,7 +11,7 @@ export type CouponResult =
   | { ok: false; reason: "unknown" | "inactive" | "unavailable" };
 
 /**
- * gviz wraps its JSON in `/*O_o*​/\ngoogle.visualization.Query.setResponse(…);`
+ * gviz wraps its JSON in `/*O_o*​/\ngoogle.visualization.Query.setResponse(...);`
  * so it can be loaded as JSONP. Strip the wrapper to get at the payload.
  */
 function unwrapGviz(text: string): unknown {
@@ -22,10 +22,10 @@ function unwrapGviz(text: string): unknown {
 }
 
 /**
- * Google gives percentages back as fractions — "10%" arrives as 0.1. But if
+ * Google gives percentages back as fractions - "10%" arrives as 0.1. But if
  * someone types a bare `10` into the sheet it arrives as 10, which would be
  * a 1000% discount. Anything above 1 is therefore read as whole percent.
- * Values outside 0–100% are rejected rather than clamped, so a typo can't
+ * Values outside 0-100% are rejected rather than clamped, so a typo can't
  * quietly hand out a free engagement.
  */
 function normaliseDiscount(raw: unknown): number | null {
@@ -41,7 +41,7 @@ function isActive(raw: unknown): boolean {
 /**
  * Looks a code up in the sheet. Network and parse failures are reported as
  * "unavailable" rather than "unknown" so the UI can tell the visitor their
- * code might be fine and the lookup failed — pricing is left untouched
+ * code might be fine and the lookup failed - pricing is left untouched
  * either way.
  */
 export async function lookupCoupon(input: string): Promise<CouponResult> {
@@ -77,7 +77,7 @@ export async function lookupCoupon(input: string): Promise<CouponResult> {
 
 /**
  * The coupon discounts the ORIGINAL price and stacks additively with the
- * base discount, so a 4% base plus a 10% coupon is 14% off the original —
+ * base discount, so a 4% base plus a 10% coupon is 14% off the original -
  * not 10% off the already-discounted price.
  */
 export function applyCoupon(

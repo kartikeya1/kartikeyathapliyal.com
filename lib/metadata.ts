@@ -17,7 +17,7 @@ interface PageMeta {
  */
 export function buildMetadata({ title, description, path }: PageMeta): Metadata {
   const url = `${siteConfig.url}${path}`;
-  const fullTitle = title ? `${title} — ${siteConfig.name}` : `${siteConfig.name} — ${siteConfig.role}`;
+  const fullTitle = title ? `${title} - ${siteConfig.name}` : `${siteConfig.name} - ${siteConfig.role}`;
 
   return {
     ...(title ? { title } : {}),

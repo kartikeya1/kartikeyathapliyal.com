@@ -35,7 +35,7 @@ export interface Project {
   status?: string;
   featured: boolean;
   order: number;
-  /** 3–4 scannable facts rendered as "At a glance" on the project page. */
+  /** 3-4 scannable facts rendered as "At a glance" on the project page. */
   highlights?: string[];
   prototype?: Prototype;
   /** Raw MDX body, compiled by the page that renders it. */
@@ -99,7 +99,7 @@ export function getProject(slug: string): Project | undefined {
 
 /**
  * Featured projects for the home page, ordered by category (the order in
- * lib/categories.ts) and then by each project's `order` within it — so the
+ * lib/categories.ts) and then by each project's `order` within it - so the
  * grid tells a deliberate story rather than an alphabetical accident.
  */
 export function getFeaturedProjects(limit = 6): Project[] {
@@ -120,7 +120,7 @@ export function getProjectsByCategory(category: CategoryKey): Project[] {
 
 /**
  * Writing posts for the (future) blog inside /thinking.
- * Returns [] until .mdx files exist under content/writing —
+ * Returns [] until .mdx files exist under content/writing -
  * the "coming soon" state renders automatically in the meantime.
  */
 export function getWritingPosts(): WritingPost[] {

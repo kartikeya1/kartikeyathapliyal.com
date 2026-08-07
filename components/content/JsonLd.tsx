@@ -2,7 +2,7 @@ import { siteConfig } from "@/lib/site";
 
 /**
  * Person + ProfessionalService, site-wide. One static block is enough for a
- * five-page site — no per-route JSON-LD needed.
+ * five-page site - no per-route JSON-LD needed.
  */
 export function JsonLd() {
   const data = {
@@ -22,7 +22,7 @@ export function JsonLd() {
       {
         "@type": "ProfessionalService",
         "@id": `${siteConfig.url}/#service`,
-        name: `${siteConfig.name} — ${siteConfig.role}`,
+        name: `${siteConfig.name} - ${siteConfig.role}`,
         url: siteConfig.url,
         description: siteConfig.positioning,
         provider: { "@id": `${siteConfig.url}/#person` },

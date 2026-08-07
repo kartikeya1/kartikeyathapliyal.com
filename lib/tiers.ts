@@ -5,7 +5,7 @@ import { packageById, type ConsultingPackage } from "./packages";
  *
  * Price Intelligently's data across 512 companies found three packages
  * produced ~30% higher ARPU than five or more, and the consensus B2B
- * guidance is that past 3–4 options buyers default to the cheapest or
+ * guidance is that past 3-4 options buyers default to the cheapest or
  * abandon entirely. The closest comparable in this exact niche
  * (thefractionalproductmanager.com) ships exactly three. /services ships
  * twelve, to cold traffic. See §2.3 of
@@ -13,7 +13,7 @@ import { packageById, type ConsultingPackage } from "./packages";
  *
  * The key structural insight is tier 2: `strategy-sprint`,
  * `integration-readiness-sprint` and `reliability-sprint` are *one product
- * with three subject matters* — same shape, same delivery, 16–36 hours.
+ * with three subject matters* - same shape, same delivery, 16-36 hours.
  * They belong in one card as focus areas, not as three tiles competing with
  * each other.
  *
@@ -23,7 +23,7 @@ import { packageById, type ConsultingPackage } from "./packages";
  */
 export interface Tier {
   id: string;
-  /** "01" — the ladder is the point, so the step number is explicit. */
+  /** "01" - the ladder is the point, so the step number is explicit. */
   step: string;
   name: string;
   /** One line on what this tier is for. */
@@ -32,7 +32,7 @@ export interface Tier {
   anchorId: string;
   /** Every package presented inside this tier, anchor first. */
   packageIds: readonly string[];
-  /** Set when the tier holds several options — renders a "from" price. */
+  /** Set when the tier holds several options - renders a "from" price. */
   optionsLabel?: string;
   /** Who this is for, in their words not ours. */
   bestFor: string;
@@ -51,7 +51,7 @@ export const tiers: readonly Tier[] = [
     anchorId: "deep-dive-diagnostic",
     packageIds: ["deep-dive-diagnostic"],
     bestFor:
-      "You know something is broken, but not what — and the team disagrees about where to look.",
+      "You know something is broken, but not what - and the team disagrees about where to look.",
     includes: [
       "A root-cause finding, with the evidence behind it, in writing",
       "A prioritised action plan your team can run without me",
@@ -73,7 +73,7 @@ export const tiers: readonly Tier[] = [
       "The problem is scoped, and you need someone to run the fix, not advise from the sidelines.",
     includes: [
       "A fixed-scope sprint, a named focus, a defined end date",
-      "Working artefacts your team owns after I leave — not a slide deck",
+      "Working artefacts your team owns after I leave - not a slide deck",
     ],
     featured: true,
   },
@@ -89,7 +89,7 @@ export const tiers: readonly Tier[] = [
       "There's no strong in-house product lead yet, and decisions are piling up in the founder's inbox.",
     includes: [
       "Ongoing ownership of roadmap, prioritisation, and operating cadence",
-      "A monthly commitment — stop at the end of any month, no minimum term",
+      "A monthly commitment - stop at the end of any month, no minimum term",
     ],
   },
 ];
