@@ -15,6 +15,13 @@ Routes: `/` `/about` `/services` `/for-individuals` — plus `/robots.txt`,
 `/contact` 308-redirects to `/services#book`; contact details live in the
 site-wide footer instead of a dedicated page.
 
+`/lab/*` holds prototypes: reachable by direct link only, `robots: noindex`,
+and deliberately absent from `app/sitemap.ts` (which is why that list is
+hand-maintained rather than derived from the filesystem). `/lab/services` is
+a parallel Services page testing a two-market pricing model — see
+`docs/PRICING-REVAMP-INDIA-VS-INTERNATIONAL.md` and PENDING.md §0. Nothing
+outside `/lab` depends on it.
+
 ## Non-negotiables
 
 1. **Static output only.** No API routes, no route handlers, no server
@@ -62,6 +69,12 @@ lib/format.ts        Server-side INR/USD formatting for the build-time rate.
                      mismatches. Magnitude-aware rounding: nearest dollar
                      below $100, nearest $10 above (see the note in-file —
                      the individuals prices exposed a real bug here once).
+lib/regions.ts       /lab only. Two *price lists* (India / international),
+                     not one price in two currencies — the USD figures are
+                     authored, never FX-converted. Also the hire model the
+                     value calculator compares against.
+lib/tiers.ts         /lab only. Groups the 12 SKUs into 3 tiers. Grouping
+                     only — nothing is deleted from lib/packages.ts.
 lib/currency.ts       Client-side: timezone-based geo default, live-rate
                      fetch with localStorage caching and a two-source
                      fallback chain, magnitude-aware rounding mirrored from

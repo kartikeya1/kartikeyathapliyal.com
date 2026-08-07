@@ -127,6 +127,39 @@ biggest missing element on the site.
 
 ## Needs Kartikeya's input
 
+### 0. Pricing revamp prototype — `/lab/services` — OPEN
+
+Research and reasoning: `docs/PRICING-REVAMP-INDIA-VS-INTERNATIONAL.md`.
+Live at `/lab/services` — direct link only, noindex, absent from the
+sitemap. `/services` is untouched and unaffected.
+
+Headline finding: the INR rate is correctly placed against the Indian
+senior-freelance band; the FX-converted USD figure shown to international
+visitors is roughly a fifth of the international fractional-product rate.
+The closest comparable in the same niche charges ~$186/hr against our ~$44.
+
+Decisions needed, in order of consequence:
+
+1. **Adopt the international price list?** ($150/hr list → $135/hr
+   effective, authored in `lib/packages.ts` as `intl`, never FX-converted.)
+   Everything else in the prototype is presentation; this one is a business
+   decision.
+2. **Is $150/hr the right number?** One value in `lib/regions.ts`.
+3. **Reprice the diagnostic as a product** ($2,000+, the standard
+   productized-diagnostic band) and accept that it breaks the clean $150/hr
+   derivation? See §3.3 of the doc.
+4. **Does the value calculator earn its place** where the rate calculator
+   did not? It replaces `hours × weeks × rate` with a fractional-vs-
+   full-time-hire cost comparison.
+5. **Promote `/lab/services` over `/services`, or cherry-pick?** The
+   three-tier collapse, the `/month` retainer framing, the FAQ and the
+   first-30-days section are all independent of the pricing decision and
+   could ship on their own.
+
+If the answer to (1) is no, `lib/regions.ts`, `components/region/`,
+`components/lab/`, `app/lab/` and the `intl` field in `lib/packages.ts`
+delete cleanly in one commit — nothing outside `/lab` depends on them.
+
 ### 1. Package renames — APPROVED 2026-08-07
 
 Approved as-is. No further action.

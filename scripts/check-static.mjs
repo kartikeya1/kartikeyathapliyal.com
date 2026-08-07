@@ -25,6 +25,11 @@ const EXPECTED_ROUTES = new Set([
   "/about",
   "/services",
   "/for-individuals",
+  // Prototype, reachable by direct link only: deliberately absent from
+  // app/sitemap.ts and marked noindex. It is listed here because this gate
+  // asserts an *exact* route set — an unlisted route would fail the build,
+  // which is the behaviour we want for an accidental one.
+  "/lab/services",
   "/_not-found",
   "/icon.svg",
   "/apple-icon",

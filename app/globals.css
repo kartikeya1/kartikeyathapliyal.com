@@ -142,6 +142,23 @@ h3 {
   display: none;
 }
 
+/* ----------------------------------------------------------- region ---
+   Same mechanism as currency above, one level up: currency picks how a
+   number is displayed, region picks which number it is. Both regions'
+   prices are server-rendered and RegionScript sets [data-region] before the
+   priced content is parsed. Defaults to India when no attribute is set
+   (JS off), so the intl rule is the one needing an explicit selector.
+   Prototype only — /lab/services. See lib/regions.ts. */
+[data-region-price="intl"] {
+  display: none;
+}
+[data-region="intl"] [data-region-price="intl"] {
+  display: inline;
+}
+[data-region="intl"] [data-region-price="in"] {
+  display: none;
+}
+
 /* The only motion on the site. */
 a,
 button {

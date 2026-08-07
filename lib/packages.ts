@@ -36,6 +36,22 @@ export interface ConsultingPackage {
   priceTiers?: readonly { label: string; priceInr: number }[];
   /** Marks an offering whose price is not final. Renders a visible badge. */
   isPlaceholder?: true;
+  /**
+   * International (non-India) pricing, in USD.
+   *
+   * **Authored, never FX-converted.** This is the entire point — see
+   * docs/PRICING-REVAMP-INDIA-VS-INTERNATIONAL.md §3.2. Converting the INR
+   * list price into dollars exports an India-market price to a market that
+   * pays 2–3× more, which reads as offshore-commodity rather than as value.
+   *
+   * Absent means the offering is India-only. Consumed exclusively by the
+   * `/lab/services` prototype; `/services` ignores it entirely.
+   */
+  intl?: {
+    priceUsd: number;
+    /** Pre-discount anchor, mirroring `originalPriceInr`. */
+    originalPriceUsd?: number;
+  };
 }
 
 /**
@@ -61,6 +77,7 @@ export const packages: readonly ConsultingPackage[] = [
       "No prep required on either side",
     ],
     outcome: "Outcome: a clear yes, no, or pointer to the right engagement.",
+    intl: { priceUsd: 0 },
   },
   {
     id: "async-teardown",
@@ -78,6 +95,7 @@ export const packages: readonly ConsultingPackage[] = [
       "Works well as a second opinion before a big product decision",
     ],
     outcome: "Outcome: a recorded walkthrough, written notes, and a short action list.",
+    intl: { priceUsd: 200 },
   },
   {
     id: "intro-call",
@@ -95,6 +113,7 @@ export const packages: readonly ConsultingPackage[] = [
       "Also suited for partner or integration blockers and second opinions before a major call",
     ],
     outcome: "Outcome: clear recommendations, decision framing, and immediate next steps.",
+    intl: { priceUsd: 250 },
   },
   {
     id: "deep-dive-diagnostic",
@@ -114,6 +133,7 @@ export const packages: readonly ConsultingPackage[] = [
       "Works well for messy partner or API situations and recurring operational friction",
     ],
     outcome: "Outcome: root-cause analysis, key findings, and a practical action plan.",
+    intl: { priceUsd: 1350, originalPriceUsd: 1500 },
   },
   {
     id: "strategy-sprint",
@@ -133,6 +153,7 @@ export const packages: readonly ConsultingPackage[] = [
       "Helps when founders and teams aren't aligned on sequencing or near-term focus",
     ],
     outcome: "Outcome: a clearer roadmap, prioritization logic, and stronger execution focus.",
+    intl: { priceUsd: 2160, originalPriceUsd: 2400 },
   },
   {
     id: "integration-readiness-sprint",
@@ -152,6 +173,7 @@ export const packages: readonly ConsultingPackage[] = [
       "Helps improve API and workflow design, rollout planning, and dependency mapping",
     ],
     outcome: "Outcome: an integration review, risk map, partner-workflow recommendations, and rollout clarity.",
+    intl: { priceUsd: 4050, originalPriceUsd: 4500 },
   },
   {
     id: "reliability-sprint",
@@ -171,6 +193,7 @@ export const packages: readonly ConsultingPackage[] = [
       "Helps identify failure points and what should be fixed first, based on impact",
     ],
     outcome: "Outcome: a diagnostic view of failure areas, metrics, and a structured improvement plan.",
+    intl: { priceUsd: 4860, originalPriceUsd: 5400 },
   },
   {
     id: "founder-advisory-retainer",
@@ -190,6 +213,7 @@ export const packages: readonly ConsultingPackage[] = [
       "Includes continuity across decisions instead of one-off advice",
     ],
     outcome: "Outcome: recurring guidance, review sessions, async support, and a better decision-making rhythm.",
+    intl: { priceUsd: 2700, originalPriceUsd: 3000 },
   },
   {
     id: "fractional-product-lead",
@@ -209,6 +233,7 @@ export const packages: readonly ConsultingPackage[] = [
       "Helps establish product rituals, prioritization structure, specs, and reviews",
     ],
     outcome: "Outcome: active involvement in roadmap, execution, alignment, and operating cadence.",
+    intl: { priceUsd: 5400, originalPriceUsd: 6000 },
   },
   {
     id: "pm-coaching",
@@ -228,6 +253,7 @@ export const packages: readonly ConsultingPackage[] = [
       "Helps improve PM habits, communication quality, and product-engineering collaboration",
     ],
     outcome: "Outcome: coaching, working templates, and stronger PM capability over time.",
+    intl: { priceUsd: 1080, originalPriceUsd: 1200 },
   },
   {
     id: "half-day-workshop",
@@ -247,6 +273,7 @@ export const packages: readonly ConsultingPackage[] = [
       "Best for founder and cross-functional sessions that need facilitated discussion",
     ],
     outcome: "Outcome: team alignment, action points, and sharper next-step clarity.",
+    intl: { priceUsd: 720, originalPriceUsd: 900 },
   },
   {
     id: "full-day-workshop",
@@ -266,6 +293,7 @@ export const packages: readonly ConsultingPackage[] = [
       "Best suited for founder, product, engineering, business, and operations stakeholders together",
     ],
     outcome: "Outcome: shared direction, clearer priorities, and a stronger execution path.",
+    intl: { priceUsd: 1350, originalPriceUsd: 1500 },
   },
 ] as const;
 
