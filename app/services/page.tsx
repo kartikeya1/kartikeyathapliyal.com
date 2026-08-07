@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/content/PageHeader";
 import { CtaLink } from "@/components/content/CtaLink";
 import { CurrencyToggle } from "@/components/currency/CurrencyToggle";
+import { CouponProvider } from "@/components/pricing/CouponProvider";
+import { CouponField } from "@/components/pricing/CouponField";
 import { LazyEmbed } from "@/components/content/LazyEmbed";
 import { CalEmbed } from "@/components/content/CalEmbed";
 import { EntryBand } from "@/components/pricing/EntryBand";
@@ -35,11 +37,15 @@ export default function ServicesPage() {
         </CtaLink>
       </div>
 
-      <EntryBand packages={entryPackages} />
+      <CouponProvider>
+        <CouponField />
 
-      <PricingExplorer packages={corePackages} />
+        <EntryBand packages={entryPackages} />
 
-      <CurrencyToggle />
+        <PricingExplorer packages={corePackages} />
+
+        <CurrencyToggle />
+      </CouponProvider>
 
       {/* Anyone who scrolled the whole pricing grid is the highest-intent
           visitor on the site — this is the natural place to book or ask,

@@ -26,6 +26,8 @@
   --border: #e4e4e7;
   --accent: #18181b;
   --accent-fg: #ffffff;
+  /* Discount pricing. 4.5:1 on --bg, so it passes AA as normal-size text. */
+  --price-cut: #dc2626;
 }
 
 [data-theme="dark"] {
@@ -37,6 +39,7 @@
   --border: #232b33;
   --accent: #5cc8e8;
   --accent-fg: #0b0e11;
+  --price-cut: #f87171;
 }
 
 /* Structure — identical in both themes. */
@@ -71,6 +74,7 @@
   --color-border: var(--border);
   --color-accent: var(--accent);
   --color-accent-fg: var(--accent-fg);
+  --color-price-cut: var(--price-cut);
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;

@@ -57,6 +57,26 @@ export const siteConfig = {
      * Both publish once daily, so the UI says "as of" rather than implying a
      * live market feed.
      */
+    /**
+     * Coupon codes live in a Google Sheet so they can be added or retired
+     * without a redeploy. Columns: Code | Discount | Active.
+     *
+     * gviz rather than the CSV `export` endpoint — export 307-redirects to a
+     * googleusercontent.com host, gviz answers directly with CORS. Verified.
+     *
+     * `Discount` arrives as a number: "10%" in the sheet parses to 0.1.
+     *
+     * The sheet must stay shared as "Anyone with the link — Viewer". If it's
+     * ever set back to restricted, coupons silently stop resolving and
+     * everyone pays base price.
+     *
+     * Codes here are readable by anyone who opens DevTools — this is a
+     * deliberate trade for 5–10% discounts and no backend. Don't put
+     * anything in that sheet you wouldn't publish.
+     */
+    couponsUrl:
+      "https://docs.google.com/spreadsheets/d/1OMNzEk5DgnZWiOwlBZc814cbQDeA6A9K1nO9Ks2pZqc/gviz/tq?tqx=out:json&gid=0",
+
     fx: {
       primaryUrl: "https://open.er-api.com/v6/latest/USD",
       fallbackUrl:

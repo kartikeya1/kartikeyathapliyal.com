@@ -17,6 +17,18 @@ export interface ConsultingPackage {
   outcome: string;
   claimIds?: readonly string[];
   /**
+   * Billable hours. Present on every rate-based engagement, and the basis
+   * for both the original and discounted hourly figures — rates are derived
+   * from totals rather than stored twice, so they can't drift apart.
+   */
+  hours?: number;
+  /**
+   * The pre-discount price. When set, `priceInr` is the *discounted* price
+   * and the card renders a struck-through original plus a discount badge.
+   * Absent means no discount — the plan renders exactly as it always has.
+   */
+  originalPriceInr?: number;
+  /**
    * Set when one offering has several prices — mock interviews are priced by
    * the candidate's level. `priceInr` then acts as the "from" price and the
    * tiers render beneath it, which beats three near-identical cards.
@@ -91,6 +103,8 @@ export const packages: readonly ConsultingPackage[] = [
     tier: "core",
     priceInr: 40000,
     rateInrPerHour: 4000,
+    hours: 10,
+    originalPriceInr: 41670,
     tag: "10 hours/week",
     featured: false,
     summary:
@@ -106,8 +120,10 @@ export const packages: readonly ConsultingPackage[] = [
     name: "Reset a reactive roadmap",
     category: "sprint",
     tier: "core",
-    priceInr: 70000,
-    rateInrPerHour: 4375,
+    priceInr: 64000,
+    rateInrPerHour: 4000,
+    hours: 16,
+    originalPriceInr: 70000,
     tag: "8 hours/week for 2 weeks",
     featured: false,
     summary:
@@ -125,6 +141,8 @@ export const packages: readonly ConsultingPackage[] = [
     tier: "core",
     priceInr: 120000,
     rateInrPerHour: 4000,
+    hours: 30,
+    originalPriceInr: 125010,
     tag: "10 hours/week for 3 weeks",
     featured: false,
     summary:
@@ -140,8 +158,10 @@ export const packages: readonly ConsultingPackage[] = [
     name: "Reliability and error-reduction program",
     category: "sprint",
     tier: "core",
-    priceInr: 150000,
-    rateInrPerHour: 4167,
+    priceInr: 144000,
+    rateInrPerHour: 4000,
+    hours: 36,
+    originalPriceInr: 150000,
     tag: "9 hours/week for 4 weeks",
     featured: false,
     summary:
@@ -159,6 +179,8 @@ export const packages: readonly ConsultingPackage[] = [
     tier: "core",
     priceInr: 80000,
     rateInrPerHour: 4000,
+    hours: 20,
+    originalPriceInr: 83340,
     tag: "Monthly · 20 hours/month",
     featured: false,
     summary:
@@ -176,6 +198,8 @@ export const packages: readonly ConsultingPackage[] = [
     tier: "core",
     priceInr: 160000,
     rateInrPerHour: 4000,
+    hours: 40,
+    originalPriceInr: 166680,
     tag: "Monthly · 40 hours/month",
     featured: false,
     summary:
@@ -191,8 +215,10 @@ export const packages: readonly ConsultingPackage[] = [
     name: "PM coaching and team enablement",
     category: "monthly",
     tier: "core",
-    priceInr: 30000,
-    rateInrPerHour: 3750,
+    priceInr: 32000,
+    rateInrPerHour: 4000,
+    hours: 8,
+    originalPriceInr: 33336,
     tag: "Monthly · 8 hours/month",
     featured: false,
     summary:
@@ -208,9 +234,11 @@ export const packages: readonly ConsultingPackage[] = [
     name: "Half-day product workshop",
     category: "workshop",
     tier: "core",
-    priceInr: 20000,
-    rateInrPerHour: 5000,
-    tag: "Workshop · 4 hours",
+    priceInr: 24000,
+    rateInrPerHour: 4000,
+    hours: 6,
+    originalPriceInr: 30000,
+    tag: "Workshop · 6 hours",
     featured: false,
     summary:
       "A short, high-focus session to solve one important product problem together with the team.",
@@ -225,9 +253,11 @@ export const packages: readonly ConsultingPackage[] = [
     name: "Full-day strategy offsite",
     category: "workshop",
     tier: "core",
-    priceInr: 36000,
-    rateInrPerHour: 4500,
-    tag: "Workshop · 8 hours",
+    priceInr: 40000,
+    rateInrPerHour: 4000,
+    hours: 10,
+    originalPriceInr: 45000,
+    tag: "Workshop · 10 hours",
     featured: false,
     summary:
       "A deeper facilitated session for strategy, planning, and cross-functional product alignment.",
