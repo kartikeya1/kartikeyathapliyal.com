@@ -104,7 +104,7 @@ export const packages: readonly ConsultingPackage[] = [
     priceInr: 40000,
     rateInrPerHour: 4000,
     hours: 10,
-    originalPriceInr: 41670,
+    originalPriceInr: 45000,
     tag: "10 hours/week",
     featured: false,
     summary:
@@ -123,7 +123,7 @@ export const packages: readonly ConsultingPackage[] = [
     priceInr: 64000,
     rateInrPerHour: 4000,
     hours: 16,
-    originalPriceInr: 70000,
+    originalPriceInr: 72000,
     tag: "8 hours/week for 2 weeks",
     featured: false,
     summary:
@@ -142,7 +142,7 @@ export const packages: readonly ConsultingPackage[] = [
     priceInr: 120000,
     rateInrPerHour: 4000,
     hours: 30,
-    originalPriceInr: 125010,
+    originalPriceInr: 135000,
     tag: "10 hours/week for 3 weeks",
     featured: false,
     summary:
@@ -161,7 +161,7 @@ export const packages: readonly ConsultingPackage[] = [
     priceInr: 144000,
     rateInrPerHour: 4000,
     hours: 36,
-    originalPriceInr: 150000,
+    originalPriceInr: 162000,
     tag: "9 hours/week for 4 weeks",
     featured: false,
     summary:
@@ -180,7 +180,7 @@ export const packages: readonly ConsultingPackage[] = [
     priceInr: 80000,
     rateInrPerHour: 4000,
     hours: 20,
-    originalPriceInr: 83340,
+    originalPriceInr: 90000,
     tag: "Monthly · 20 hours/month",
     featured: false,
     summary:
@@ -199,7 +199,7 @@ export const packages: readonly ConsultingPackage[] = [
     priceInr: 160000,
     rateInrPerHour: 4000,
     hours: 40,
-    originalPriceInr: 166680,
+    originalPriceInr: 180000,
     tag: "Monthly · 40 hours/month",
     featured: false,
     summary:
@@ -218,7 +218,7 @@ export const packages: readonly ConsultingPackage[] = [
     priceInr: 32000,
     rateInrPerHour: 4000,
     hours: 8,
-    originalPriceInr: 33336,
+    originalPriceInr: 36000,
     tag: "Monthly · 8 hours/month",
     featured: false,
     summary:
