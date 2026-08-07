@@ -1,7 +1,7 @@
 # Pricing revamp: India vs international
 
 Research conducted 2026-08-07. This document is the reasoning behind the
-`/lab/services` prototype route — it records what the market actually pays,
+`/lab/services` prototype route - it records what the market actually pays,
 where the current pricing sits against it, and the two-market model that
 replaces it.
 
@@ -18,7 +18,7 @@ that FX-converts it to USD for anyone outside India. That rate is
 **correct for the Indian market and roughly a fifth of the international
 market rate**. Because the toggle defaults by timezone, an international
 visitor is automatically shown an India-market price in dollars. The number
-they see does not read as good value — it reads as offshore-commodity, and
+they see does not read as good value - it reads as offshore-commodity, and
 it contradicts every seniority signal in the surrounding copy.
 
 The fix is not a discount or a markup. It is recognising that these are two
@@ -32,19 +32,19 @@ different markets with two different price lists.
 
 [thefractionalproductmanager.com](https://thefractionalproductmanager.com/)
 leads with **"Fractional CPO & Product Leadership for SaaS, Fintech &
-Platforms"** — near-identical positioning.
+Platforms"** - near-identical positioning.
 
 | Their offer | Commitment | Price | Effective |
 |---|---|---|---|
 | Focused Product Leadership | ~10 hrs/week (~43/mo) | $7,999/mo | ~$186/hr |
 | Cross-Functional Ownership | ~20 hrs/week (~86/mo) | $15,999/mo | ~$186/hr |
-| Interim & Custom | — | quoted at kickoff | — |
+| Interim & Custom | - | quoted at kickoff | - |
 
 Two things matter about this page beyond the price:
 
 1. **They have no client logos, no testimonials, and no case studies.**
    Their entire proof stack is quantified operating results from prior
-   in-house work — 5 legacy systems retired, 30+ teams enabled, 30% shorter
+   in-house work - 5 legacy systems retired, 30+ teams enabled, 30% shorter
    release cycles, 40% less downtime, 30% higher adoption. That is
    structurally identical to what already exists in `lib/claims.ts`. They
    are not out-proving us. They are out-pricing us.
@@ -54,11 +54,11 @@ Two things matter about this page beyond the price:
 
 | Market | Benchmark | Current position |
 |---|---|---|
-| India, senior freelance, high-demand domain | ₹2,000–₹4,000+/hr | **₹4,000/hr** — at/above the top of the band |
-| Global freelance PM | avg $103/hr, most $60–$130 | **~$44/hr** — below the floor |
-| Fractional CPO, US/UK | $200–$400/hr | **~$44/hr** — 5–9× below |
-| Fractional executive retainers | $7,500–$25,000/mo | **~$1,780/mo** |
-| Senior product marketing consultant | $1,800–$2,400/day | — |
+| India, senior freelance, high-demand domain | ₹2,000-₹4,000+/hr | **₹4,000/hr** - at/above the top of the band |
+| Global freelance PM | avg $103/hr, most $60-$130 | **~$44/hr** - below the floor |
+| Fractional CPO, US/UK | $200-$400/hr | **~$44/hr** - 5-9× below |
+| Fractional executive retainers | $7,500-$25,000/mo | **~$1,780/mo** |
+| Senior product marketing consultant | $1,800-$2,400/day | - |
 
 Sources: [xflowpay](https://www.xflowpay.com/blog/freelancer-charges) ·
 [Karbon Card](https://www.karboncard.com/blog/freelance-hourly-rate) ·
@@ -67,7 +67,7 @@ Sources: [xflowpay](https://www.xflowpay.com/blog/freelancer-charges) ·
 
 The decisive line, from Karbon: **international clients pay two to three
 times higher than domestic clients**, because of market and currency
-differences. That is not a markup — it is the actual observed spread.
+differences. That is not a markup - it is the actual observed spread.
 
 **Conclusion: the India rate is right. The international rate is the bug.**
 
@@ -76,7 +76,7 @@ differences. That is not a markup — it is the actual observed spread.
 - Price Intelligently, across 512 companies: **three packages produced 30%
   higher ARPU** than five or more
   ([Monetizely](https://www.getmonetizely.com/articles/customer-choice-overload-how-many-pricing-options-are-too-many))
-- Consensus sweet spot is 3–4 tiers; past that, buyers **default to the
+- Consensus sweet spot is 3-4 tiers; past that, buyers **default to the
   cheapest option or abandon entirely**
   ([Figma](https://www.figma.com/resource-library/pricing-page-best-practices/),
   [10Louder](https://10louder.com/how-to-price-b2b-services/))
@@ -87,8 +87,8 @@ differences. That is not a markup — it is the actual observed spread.
 
 ### 2.4 The entry rung
 
-Productized diagnostics — fixed scope, repeatable method, report deliverable
-— are the standard entry product at **$2,000–$5,000**, explicitly designed
+Productized diagnostics - fixed scope, repeatable method, report deliverable
+- are the standard entry product at **$2,000-$5,000**, explicitly designed
 to lead into retainer work
 ([Pharallax](https://pharallax.ai/guides/productized-consulting-examples/),
 [Melisa Liberman](https://www.melisaliberman.com/blog/productized-consulting)).
@@ -110,13 +110,13 @@ competitor has none either and charges $186/hr.
 
 ## 3. The two-market model
 
-### 3.1 India — unchanged
+### 3.1 India - unchanged
 
 The research says the current INR pricing is correctly placed. **No INR
 price changes.** ₹4,500/hr list → ₹4,000/hr effective stays exactly as it
 is, discount anchoring included.
 
-### 3.2 International — authored, not converted
+### 3.2 International - authored, not converted
 
 International prices are **written down as USD figures in
 `lib/packages.ts`**, not derived from the INR list by FX. This is the whole
@@ -154,7 +154,7 @@ invites a comparison against a salary. The region config carries a
 
 ### 3.3 Known gap, deliberately left open
 
-At $1,350 the diagnostic sits **below** the $2,000–$5,000 productized-
+At $1,350 the diagnostic sits **below** the $2,000-$5,000 productized-
 diagnostic benchmark from §2.4. Pricing it as a product rather than by the
 hour would fix that, but would break the clean $150/hr derivation and make
 the ladder internally inconsistent. Coherence was chosen over benchmark
@@ -168,8 +168,8 @@ Beyond price, six changes derived from §2.1 and §2.3:
 
 | # | Change | Grounded in |
 |---|---|---|
-| 1 | 12 SKUs collapse into **3 tiers** — Diagnose / Fix / Embed | §2.3 |
-| 2 | The three sprints become **one card with three focus areas** — they are one product with three subject matters | §2.3 |
+| 1 | 12 SKUs collapse into **3 tiers** - Diagnose / Fix / Embed | §2.3 |
+| 2 | The three sprints become **one card with three focus areas** - they are one product with three subject matters | §2.3 |
 | 3 | Retainers presented as **`/month`**, not blocks of hours | §2.4 |
 | 4 | The rate calculator is replaced by a **fractional-vs-full-time cost comparison** | §2.1 |
 | 5 | New sections: **problem scenarios**, **first 30 days**, **FAQ** | §2.1 |
@@ -181,7 +181,7 @@ The replacement compares the retainer against the fully-loaded cost of the
 full-time hire the buyer is avoiding. Same component slot, inverted framing.
 
 Nothing is deleted from `lib/packages.ts`. The sprints keep their
-individual entries, prices and hours — they are *presented* as focus areas
+individual entries, prices and hours - they are *presented* as focus areas
 within one tier. This is a presentation change, so `CLAIMS.md`, the coupon
 maths and the currency renderer are untouched.
 
@@ -201,7 +201,7 @@ Mechanically it reuses the pattern already proven for theme and currency:
 both regions' prices are server-rendered into the static HTML, a
 before-paint script sets `data-region` on `<html>`, and CSS picks one. That
 keeps the page correct with JavaScript disabled, correct for crawlers, free
-of any flash, and free of hydration mismatch — and it stays fully static, so
+of any flash, and free of hydration mismatch - and it stays fully static, so
 `check-static.mjs` still reports zero serverless functions.
 
 ---

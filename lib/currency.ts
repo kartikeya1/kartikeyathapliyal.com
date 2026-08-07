@@ -47,7 +47,7 @@ export function storeCurrency(c: Currency) {
   try {
     localStorage.setItem(STORAGE_CURRENCY, c);
   } catch {
-    // Storage blocked — the choice still applies for this page view.
+    // Storage blocked - the choice still applies for this page view.
   }
 }
 
@@ -130,7 +130,7 @@ async function fetchFallback(): Promise<FxRate | null> {
   }
 }
 
-/** Magnitude-aware, matching lib/format.ts — see the note there. */
+/** Magnitude-aware, matching lib/format.ts - see the note there. */
 export function convertToUsd(inr: number, inrPerUsd: number): number {
   const raw = inr / inrPerUsd;
   if (raw < 100) return Math.round(raw);

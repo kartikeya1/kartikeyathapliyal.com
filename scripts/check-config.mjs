@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Runs in `prebuild`, so Vercel enforces it on every deployment — a hardcoded
+ * Runs in `prebuild`, so Vercel enforces it on every deployment - a hardcoded
  * email or price can never reach production.
  *
  * Rule: app/ and components/ may not contain contact details, external URLs,
@@ -19,7 +19,7 @@ const ALLOWLIST = new Set([
   "lib/packages.ts",
   "lib/claims.ts",
   // Vendor integration. The app.cal.com script URL and the cal.com embed
-  // origin are part of Cal.com's embed protocol, not site configuration —
+  // origin are part of Cal.com's embed protocol, not site configuration -
   // they change when Cal.com changes, not when Kartikeya's details do.
   // Which booking page to open still comes from siteConfig.booking.calUrl.
   "components/content/CalEmbed.tsx",
@@ -63,14 +63,14 @@ for (const file of sourceFiles()) {
     const at = `${file}:${i + 1}`;
     for (const rule of RULES) {
       const m = line.match(rule.re);
-      if (m) errors.push(`${at}  [${rule.name}] ${m[0].trim()} — ${rule.hint}`);
+      if (m) errors.push(`${at}  [${rule.name}] ${m[0].trim()} - ${rule.hint}`);
     }
 
     // Bare 4+ digit integers, e.g. a price pasted into JSX.
     if (!NUMBER_EXEMPT.test(line)) {
       const m = line.match(/(?<![\w.#-])\d{4,}(?![\w.-])/);
       if (m) {
-        warnings.push(`${at}  [bare-number] ${m[0]} — should this come from lib/?`);
+        warnings.push(`${at}  [bare-number] ${m[0]} - should this come from lib/?`);
       }
     }
   });
@@ -79,14 +79,14 @@ for (const file of sourceFiles()) {
   //
   // Counted by inspecting <CtaLink> elements and their `variant`, NOT by
   // grepping for data-cta="primary". CtaLink emits that attribute at
-  // runtime, so the literal string appears only inside CtaLink.tsx — a
+  // runtime, so the literal string appears only inside CtaLink.tsx - a
   // source grep would silently pass on every file and check nothing.
   const primaryCtas = countPrimaryCtas(readSource(file));
 
   // At most one primary CTA per page.
   if (/^app\/.*page\.tsx$/.test(file) && primaryCtas > 1) {
     errors.push(
-      `${file}  [multi-cta] ${primaryCtas} primary CTAs — a page may have at most one`,
+      `${file}  [multi-cta] ${primaryCtas} primary CTAs - a page may have at most one`,
     );
   }
 
@@ -95,7 +95,7 @@ for (const file of sourceFiles()) {
   // deliberately variant="secondary".
   if (/^components\/layout\//.test(file) && primaryCtas > 0) {
     errors.push(
-      `${file}  [chrome-cta] ${primaryCtas} primary CTA(s) in site-wide chrome — this doubles every page's CTA. Use variant="secondary".`,
+      `${file}  [chrome-cta] ${primaryCtas} primary CTA(s) in site-wide chrome - this doubles every page's CTA. Use variant="secondary".`,
     );
   }
 }
@@ -111,7 +111,7 @@ function countPrimaryCtas(src) {
 
 // --- brand sync ---
 // app/icon.svg is a static file, so it cannot import lib/logo.ts like the
-// header mark and the OG image do. Assert its path data matches instead —
+// header mark and the OG image do. Assert its path data matches instead -
 // the same "derived or verified, never hand-synced" rule as CLAIMS.md.
 // Only stroke-width and a wrapping transform differ between surfaces, so
 // verbatim `d` matching is exactly the right assertion.
@@ -120,17 +120,17 @@ const iconSrc = readFileSync(join(ROOT, "app/icon.svg"), "utf8");
 const logoPaths = [...logoSrc.matchAll(/^\s*"(M[^"]+)",/gm)].map((m) => m[1]);
 
 if (logoPaths.length === 0) {
-  errors.push("lib/logo.ts  [brand] no paths parsed — the gate is checking nothing");
+  errors.push("lib/logo.ts  [brand] no paths parsed - the gate is checking nothing");
 }
 for (const d of logoPaths) {
   if (!iconSrc.includes(d)) {
     errors.push(
-      `app/icon.svg  [brand-drift] missing path from lib/logo.ts: ${d} — the favicon no longer matches the logo`,
+      `app/icon.svg  [brand-drift] missing path from lib/logo.ts: ${d} - the favicon no longer matches the logo`,
     );
   }
 }
 
-// FX staleness — a warning, never a failure. A hard error here would break a
+// FX staleness - a warning, never a failure. A hard error here would break a
 // deploy months from now for a reason nobody is awake to fix.
 const site = readFileSync(join(ROOT, "lib/site.ts"), "utf8");
 const rateAsOf = site.match(/rateAsOf:\s*"([\d-]+)"/)?.[1];
@@ -139,7 +139,7 @@ if (rateAsOf) {
   const days = Math.round((Date.now() - Date.parse(rateAsOf)) / 86_400_000);
   if (days > 180 && source !== "live") {
     warnings.push(
-      `lib/site.ts  [fx-stale] INR/USD rate set ${days} days ago and still manual — re-check it`,
+      `lib/site.ts  [fx-stale] INR/USD rate set ${days} days ago and still manual - re-check it`,
     );
   }
 }
@@ -153,4 +153,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`check-config: ok — ${warnings.length} warning(s)`);
+console.log(`check-config: ok - ${warnings.length} warning(s)`);

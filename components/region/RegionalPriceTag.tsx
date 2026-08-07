@@ -9,14 +9,14 @@ import type { ConsultingPackage } from "@/lib/packages";
  * The region-aware replacement for PriceTag.
  *
  * Both regions' prices are rendered into the static HTML and CSS shows one,
- * keyed off `[data-region]` — the same mechanism PriceTag uses for the two
+ * keyed off `[data-region]` - the same mechanism PriceTag uses for the two
  * currencies, and for the same reasons: correct with JavaScript disabled,
  * correct for crawlers, no flash, no hydration mismatch.
  *
  * The difference from PriceTag is what varies between the two branches.
  * There, one INR figure is converted at a live rate. Here the two figures
  * are independently authored prices for two different markets, so nothing
- * is derived from anything — see lib/regions.ts.
+ * is derived from anything - see lib/regions.ts.
  */
 export function RegionalPriceTag({
   pkg,
@@ -24,9 +24,9 @@ export function RegionalPriceTag({
   compact = false,
 }: {
   pkg: ConsultingPackage;
-  /** Renders "From" — used when a tier holds several options. */
+  /** Renders "From" - used when a tier holds several options. */
   from?: boolean;
-  /** Inline size, no hourly rate — for option lists inside a tier. */
+  /** Inline size, no hourly rate - for option lists inside a tier. */
   compact?: boolean;
 }) {
   const { coupon } = useCoupon();
@@ -49,7 +49,7 @@ export function RegionalPriceTag({
         const isDiscounted = final < original;
 
         // Rates derive from totals so the per-hour figure can never disagree
-        // with the headline — including after a coupon.
+        // with the headline - including after a coupon.
         const showRate =
           config.showHourlyRate && Boolean(hours) && !from && !compact;
         const originalRate = hours ? Math.round(original / hours) : 0;
@@ -72,7 +72,7 @@ export function RegionalPriceTag({
                 </span>
               )}
 
-              {/* The kept price, not the given-up one — same reasoning as
+              {/* The kept price, not the given-up one - same reasoning as
                   the value calculator's "you save" line: green reads as
                   good news, red reads as loss. Only the struck-through
                   original stays red, below. */}

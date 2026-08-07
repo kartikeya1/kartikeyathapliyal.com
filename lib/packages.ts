@@ -12,24 +12,24 @@ export interface ConsultingPackage {
   featured: boolean;
   /** Exactly one sentence. */
   summary: string;
-  /** Exactly two — a third element is a type error. */
+  /** Exactly two - a third element is a type error. */
   bullets: readonly [string, string];
   outcome: string;
   claimIds?: readonly string[];
   /**
    * Billable hours. Present on every rate-based engagement, and the basis
-   * for both the original and discounted hourly figures — rates are derived
+   * for both the original and discounted hourly figures - rates are derived
    * from totals rather than stored twice, so they can't drift apart.
    */
   hours?: number;
   /**
    * The pre-discount price. When set, `priceInr` is the *discounted* price
    * and the card renders a struck-through original plus a discount badge.
-   * Absent means no discount — the plan renders exactly as it always has.
+   * Absent means no discount - the plan renders exactly as it always has.
    */
   originalPriceInr?: number;
   /**
-   * Set when one offering has several prices — mock interviews are priced by
+   * Set when one offering has several prices - mock interviews are priced by
    * the candidate's level. `priceInr` then acts as the "from" price and the
    * tiers render beneath it, which beats three near-identical cards.
    */
@@ -39,10 +39,10 @@ export interface ConsultingPackage {
   /**
    * International (non-India) pricing, in USD.
    *
-   * **Authored, never FX-converted.** This is the entire point — see
+   * **Authored, never FX-converted.** This is the entire point - see
    * docs/PRICING-REVAMP-INDIA-VS-INTERNATIONAL.md §3.2. Converting the INR
    * list price into dollars exports an India-market price to a market that
-   * pays 2–3× more, which reads as offshore-commodity rather than as value.
+   * pays 2-3× more, which reads as offshore-commodity rather than as value.
    *
    * Absent means the offering is India-only. Consumed exclusively by the
    * `/lab/services` prototype; `/services` ignores it entirely.
@@ -311,7 +311,7 @@ export const rateOptions = [
   { value: 3750, label: "3,750 · coaching" },
 ] as const;
 
-/** The estimator's starting rate — the most common one across packages. */
+/** The estimator's starting rate - the most common one across packages. */
 export const defaultRateInr = 4000;
 
 export const entryPackages: readonly ConsultingPackage[] = packages.filter(
@@ -326,7 +326,7 @@ export function packageById(id: string): ConsultingPackage | undefined {
 }
 
 /**
- * /for-individuals only. All placeholder values — see CLAIMS.md's
+ * /for-individuals only. All placeholder values - see CLAIMS.md's
  * PLACEHOLDERS block once Phase 2 generates it. Owner supplies real
  * prices before launch.
  */
@@ -344,7 +344,7 @@ export const individualPackages: readonly ConsultingPackage[] = [
       "A free call to talk through where you are and what you actually want next.",
     bullets: [
       "Useful when you're not sure whether you want a PM role or just a change",
-      "No prep, no pitch — bring a question or bring the confusion",
+      "No prep, no pitch - bring a question or bring the confusion",
     ],
     outcome:
       "Outcome: a clearer read on your next step, and an honest answer on whether any of the paid options below would help.",
@@ -359,7 +359,7 @@ export const individualPackages: readonly ConsultingPackage[] = [
     tag: "Two passes · 24-hour turnaround each",
     featured: false,
     summary:
-      "Two full passes over your resume — I review, you revise, I check the final version.",
+      "Two full passes over your resume - I review, you revise, I check the final version.",
     bullets: [
       "First pass: written feedback on positioning, structure, and which lines are doing no work",
       "Second pass: I re-read your revision and tell you whether it's ready. Further rounds need a new booking",
@@ -385,7 +385,7 @@ export const individualPackages: readonly ConsultingPackage[] = [
       "A realistic 60-minute round at your level, followed by written feedback within 24 hours.",
     bullets: [
       "Priced by where you actually are, so the questions match the bar you're being held to",
-      "Feedback is honest rather than encouraging — what worked, what didn't, and what to change",
+      "Feedback is honest rather than encouraging - what worked, what didn't, and what to change",
     ],
     outcome:
       "Outcome: a real read on where you stand, and specific things to fix before the round that counts.",
@@ -402,7 +402,7 @@ export const individualPackages: readonly ConsultingPackage[] = [
     summary:
       "Two hours of coaching on your specific transition, plus a mock interview at no extra cost.",
     bullets: [
-      "Two one-hour sessions on your actual situation and gaps — not a generic PM curriculum",
+      "Two one-hour sessions on your actual situation and gaps - not a generic PM curriculum",
       "Includes a free mock interview with written feedback inside 24 hours",
     ],
     outcome:

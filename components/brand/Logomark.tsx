@@ -1,7 +1,7 @@
 import { LOGO_NODE, LOGO_PATHS, LOGO_VIEWBOX } from "@/lib/logo";
 
 /**
- * Theme-aware because it strokes `currentColor` — same icon vocabulary as
+ * Theme-aware because it strokes `currentColor` - same icon vocabulary as
  * ThemeToggle (24×24, 1.5 stroke, round caps), so the header reads as one
  * set of marks rather than two.
  */

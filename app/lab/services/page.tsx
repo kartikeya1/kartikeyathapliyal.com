@@ -26,7 +26,7 @@ export const metadata: Metadata = {
       "Prototype pricing page evaluating a two-market model and a three-tier engagement structure.",
     path: "/lab/services",
   }),
-  // Direct-link only. Also absent from app/sitemap.ts — both, because
+  // Direct-link only. Also absent from app/sitemap.ts - both, because
   // robots is a request not a guarantee and the sitemap is what actively
   // invites a crawler in.
   robots: { index: false, follow: false },
@@ -55,7 +55,7 @@ export default function LabServicesPage() {
       <div data-box className="space-y-5">
         <PageHeader
           title="Consulting engagements"
-          dek="Senior product leadership — sharpened by real fintech integration, compliance, and reliability work."
+          dek="Senior product leadership - sharpened by real fintech integration, compliance, and reliability work."
         />
         <CtaLink href={siteConfig.booking.calUrl} external>
           Book a 30-minute call
@@ -68,7 +68,7 @@ export default function LabServicesPage() {
             How pricing works
           </h2>
           <p className="max-w-[62ch] text-sm text-muted">
-            Consulting rates in India and elsewhere genuinely differ — so
+            Consulting rates in India and elsewhere genuinely differ - so
             there are two price lists, not one converted number. Within a
             list, what changes between engagements is scope and duration,
             never the rate.

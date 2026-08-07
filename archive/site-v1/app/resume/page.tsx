@@ -6,7 +6,7 @@ import { Reveal } from "@/components/motion/reveal";
 export const metadata: Metadata = {
   title: "Resume",
   description:
-    "Download Kartikeya Thapliyal's resume — available in India and Southeast Asia versions.",
+    "Download Kartikeya Thapliyal's resume - available in India and Southeast Asia versions.",
 };
 
 const resumes = [
@@ -23,7 +23,7 @@ const resumes = [
 ];
 
 const requestHref = (label: string) =>
-  `mailto:${site.links.email}?subject=${encodeURIComponent(`Resume request — ${label}`)}`;
+  `mailto:${site.links.email}?subject=${encodeURIComponent(`Resume request - ${label}`)}`;
 
 export default function ResumePage() {
   return (
@@ -33,7 +33,7 @@ export default function ResumePage() {
           Resume
         </h1>
         <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-          One page, two versions — pick the region you’re hiring in.
+          One page, two versions - pick the region you're hiring in.
         </p>
       </Reveal>
 

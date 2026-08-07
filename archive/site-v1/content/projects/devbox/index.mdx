@@ -1,14 +1,14 @@
 ---
-title: "Devbox — Developer Toolkit"
+title: "Devbox - Developer Toolkit"
 summary: "A zero-build collection of everyday developer utilities that run entirely in the browser, so data being formatted or signed never leaves the machine."
 category: "internal-tooling"
 role: "Designer & Builder"
-timeframe: "2025 — 2026"
+timeframe: "2025 - 2026"
 status: "Prototype"
 featured: false
 order: 4
 highlights:
-  - "Five everyday developer utilities — JSON, AES, cURL, HTML preview, JWT — in one place"
+  - "Five everyday developer utilities - JSON, AES, cURL, HTML preview, JWT - in one place"
   - "Everything runs client-side; secrets never leave the machine, guaranteed by Web Crypto"
   - "Zero-build: no framework, no bundler, no server"
 prototype:
@@ -18,26 +18,26 @@ prototype:
 
 ## Problem
 
-The small utilities a developer reaches for a dozen times a day — unescaping a JSON blob, tidying a copied cURL command, signing a test JWT — are mostly scattered across random websites of uncertain provenance. That is a nuisance for the harmless ones and a genuine risk for the rest: pasting a secret key or a token into a page that phones it home is exactly the kind of habit that turns into an incident.
+The small utilities a developer reaches for a dozen times a day - unescaping a JSON blob, tidying a copied cURL command, signing a test JWT - are mostly scattered across random websites of uncertain provenance. That is a nuisance for the harmless ones and a genuine risk for the rest: pasting a secret key or a token into a page that phones it home is exactly the kind of habit that turns into an incident.
 
 ## Approach
 
 Put the common tools in one place and run every one of them client-side. Nothing is transmitted; the JSON you format, the string you encrypt, and the token you sign all stay in the browser tab. For anything touching a secret, "it never leaves your machine" is the property that matters, and building on the Web Crypto API makes that a guarantee rather than a promise.
 
-The whole thing is zero-build — no framework, no bundler, no server — which keeps it fast to load and trivial to reason about.
+The whole thing is zero-build - no framework, no bundler, no server - which keeps it fast to load and trivial to reason about.
 
 ## What it does
 
 Five tools so far, each with a sample-data loader for quick testing and dark-mode support:
 
-- **JSON Unescape & Formatter** — strips backslashes from an escaped JSON string and pretty-prints the result.
-- **AES Encryption** — symmetric encrypt/decrypt in CBC mode with PKCS7 padding, configurable key and IV.
-- **cURL Formatter** — unescapes a copied cURL command back into something readable.
-- **HTML Previewer** — renders HTML live as you type.
-- **JWT Maker** — generates and signs JSON Web Tokens with HS256/384/512, entirely via Web Crypto.
+- **JSON Unescape & Formatter** - strips backslashes from an escaped JSON string and pretty-prints the result.
+- **AES Encryption** - symmetric encrypt/decrypt in CBC mode with PKCS7 padding, configurable key and IV.
+- **cURL Formatter** - unescapes a copied cURL command back into something readable.
+- **HTML Previewer** - renders HTML live as you type.
+- **JWT Maker** - generates and signs JSON Web Tokens with HS256/384/512, entirely via Web Crypto.
 
 <Placeholder label="Devbox tool grid: JSON formatter, AES, cURL, HTML preview, JWT maker" aspect="wide" caption="Everyday utilities, all running locally in the tab." />
 
 ## Prototype
 
-This one is off the beaten path for a product portfolio — it is developer tooling, not a product flow — but it earns its place by showing the same instinct applied to my own workflow: notice a recurring friction, decide the real constraint (here, that sensitive data must stay local), and build the smallest thing that removes the friction without introducing a worse one.
+This one is off the beaten path for a product portfolio - it is developer tooling, not a product flow - but it earns its place by showing the same instinct applied to my own workflow: notice a recurring friction, decide the real constraint (here, that sensitive data must stay local), and build the smallest thing that removes the friction without introducing a worse one.

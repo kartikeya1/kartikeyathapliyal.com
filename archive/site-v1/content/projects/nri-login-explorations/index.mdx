@@ -1,9 +1,9 @@
 ---
 title: "Login Flows for Multi-Account NRIs"
-summary: "Four side-by-side login designs for a customer who may hold several account types at once — an exploration of one ambiguous question, not a single answer."
+summary: "Four side-by-side login designs for a customer who may hold several account types at once - an exploration of one ambiguous question, not a single answer."
 category: "ux"
 role: "Product Manager"
-timeframe: "2025 — 2026"
+timeframe: "2025 - 2026"
 status: "Exploration"
 featured: false
 order: 4
@@ -18,23 +18,23 @@ prototype:
 
 ## Problem
 
-An NRI customer can hold more than one kind of broking account — a Regular account, an NRE-PIS account, an NRO-PIS account, or some combination. That makes a question most products answer trivially genuinely ambiguous: which account am I logging into? Ask too early and you force a decision the user may not be able to make; ask too late and you have already loaded the wrong context. There is no obviously correct login form here, which is exactly why it is worth several.
+An NRI customer can hold more than one kind of broking account - a Regular account, an NRE-PIS account, an NRO-PIS account, or some combination. That makes a question most products answer trivially genuinely ambiguous: which account am I logging into? Ask too early and you force a decision the user may not be able to make; ask too late and you have already loaded the wrong context. There is no obviously correct login form here, which is exactly why it is worth several.
 
 ## Idea
 
 Rather than pick one design and defend it, put four credible approaches side by side and let them be compared directly. Each takes a different stance on where the ambiguity should be resolved:
 
-- **Adaptive form** — pick an account type and the form reveals only the fields that type needs, with an option to add a second account inline.
-- **Multi-select chips** — select every account type you hold as chips, then log in once.
-- **Fill what you have** — show fields for every account type and let the user complete whichever ones apply.
-- **Single smart input** — one field that accepts a Client ID or an account number, with the primary account confirmed after sign-in.
+- **Adaptive form** - pick an account type and the form reveals only the fields that type needs, with an option to add a second account inline.
+- **Multi-select chips** - select every account type you hold as chips, then log in once.
+- **Fill what you have** - show fields for every account type and let the user complete whichever ones apply.
+- **Single smart input** - one field that accepts a Client ID or an account number, with the primary account confirmed after sign-in.
 
 ## Mockup
 
-The prototype switches between all four with tabs or the number keys 1–4, and the URL hash updates as you switch, so a specific variant can be linked directly in a review or a message. Seeing them in one place makes the tradeoff legible: how much each design asks the user to know up front versus how much it defers until after authentication.
+The prototype switches between all four with tabs or the number keys 1-4, and the URL hash updates as you switch, so a specific variant can be linked directly in a review or a message. Seeing them in one place makes the tradeoff legible: how much each design asks the user to know up front versus how much it defers until after authentication.
 
 <Placeholder label="Four login-form variants shown side by side, switchable by tab or keypress" aspect="wide" caption="One ambiguous question, four stances on where to resolve it." />
 
 ## Prototype
 
-These are design explorations, not production code — the goal is to compare approaches, not to ship any one as-is. The value is in making the disagreement concrete. A written brief about "handling multi-account login" invites everyone to imagine a different screen; four working variants force the actual choice into the open, where it can be argued about honestly.
+These are design explorations, not production code - the goal is to compare approaches, not to ship any one as-is. The value is in making the disagreement concrete. A written brief about "handling multi-account login" invites everyone to imagine a different screen; four working variants force the actual choice into the open, where it can be argued about honestly.

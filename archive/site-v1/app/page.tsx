@@ -40,7 +40,7 @@ export default function HomePage() {
               Resume
             </Link>
             {/*
-              TODO: Book Consultation — replace href with a real booking link
+              TODO: Book Consultation - replace href with a real booking link
               (e.g. Cal.com) once one exists; see `booking` in lib/site.ts.
               It points to /contact until then.
             */}
@@ -64,7 +64,7 @@ export default function HomePage() {
             <SectionHeading
               eyebrow="Selected Work"
               title="Systems I'm glad I built"
-              intro="Platforms, internal tools and experiments — chosen for what they say about how I work, not how they looked in a launch post."
+              intro="Platforms, internal tools and experiments - chosen for what they say about how I work, not how they looked in a launch post."
             />
             <Link
               href="/work"
@@ -93,7 +93,7 @@ export default function HomePage() {
         <div className="mx-auto w-full max-w-5xl px-6 py-24">
           <Reveal>
             <p className="max-w-2xl text-2xl font-medium leading-snug tracking-tight text-foreground sm:text-3xl">
-              If you want to know how I work before we ever talk —{" "}
+              If you want to know how I work before we ever talk -{" "}
               <Link
                 href="/thinking"
                 className="text-muted underline decoration-border-strong underline-offset-4 transition-colors hover:text-foreground hover:decoration-accent"

@@ -6,7 +6,7 @@ const STORAGE_KEY = "show-calculator";
 
 /**
  * Temporary. The calculator confused visitors enough that it's being
- * evaluated for removal — this lets the owner (or anyone testing) flip it
+ * evaluated for removal - this lets the owner (or anyone testing) flip it
  * on to judge whether it earns its place, without a redeploy.
  *
  * Styled with hardcoded values on purpose, same reasoning as the old Phase 3
@@ -14,7 +14,7 @@ const STORAGE_KEY = "show-calculator";
  * identically regardless of what's being judged underneath it.
  *
  * Delete this component and its one usage in PricingExplorer once a final
- * call is made — see PENDING.md.
+ * call is made - see PENDING.md.
  */
 export function CalculatorToggle({
   show,
@@ -76,7 +76,7 @@ export function useCalculatorVisible(): [boolean, (next: boolean) => void] {
     try {
       setShow(localStorage.getItem(STORAGE_KEY) === "1");
     } catch {
-      // Storage blocked — stays hidden for this page view.
+      // Storage blocked - stays hidden for this page view.
     }
   }, []);
 

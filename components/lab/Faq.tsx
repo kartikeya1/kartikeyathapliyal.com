@@ -5,7 +5,7 @@ import { faq } from "@/lib/services-sections";
  * FAQPage structured data is emitted from the same array that renders the
  * list, so the markup and the schema can never drift apart.
  *
- * <details> rather than a JS accordion — it works with JavaScript disabled,
+ * <details> rather than a JS accordion - it works with JavaScript disabled,
  * is keyboard accessible for free, and adds nothing to the bundle.
  */
 export function Faq() {

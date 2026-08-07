@@ -49,7 +49,7 @@ export const siteConfig = {
     usdRounding: 10,
 
     /**
-     * Live rate sources, in order. Both are free, keyless and CORS-enabled —
+     * Live rate sources, in order. Both are free, keyless and CORS-enabled -
      * verified. Yahoo and Google Finance cannot be used: neither sends
      * Access-Control-Allow-Origin, so a browser request is blocked outright
      * (Yahoo also rate-limits to 429).
@@ -61,17 +61,17 @@ export const siteConfig = {
      * Coupon codes live in a Google Sheet so they can be added or retired
      * without a redeploy. Columns: Code | Discount | Active.
      *
-     * gviz rather than the CSV `export` endpoint — export 307-redirects to a
+     * gviz rather than the CSV `export` endpoint - export 307-redirects to a
      * googleusercontent.com host, gviz answers directly with CORS. Verified.
      *
      * `Discount` arrives as a number: "10%" in the sheet parses to 0.1.
      *
-     * The sheet must stay shared as "Anyone with the link — Viewer". If it's
+     * The sheet must stay shared as "Anyone with the link - Viewer". If it's
      * ever set back to restricted, coupons silently stop resolving and
      * everyone pays base price.
      *
-     * Codes here are readable by anyone who opens DevTools — this is a
-     * deliberate trade for 5–10% discounts and no backend. Don't put
+     * Codes here are readable by anyone who opens DevTools - this is a
+     * deliberate trade for 5-10% discounts and no backend. Don't put
      * anything in that sheet you wouldn't publish.
      */
     couponsUrl:
@@ -86,14 +86,14 @@ export const siteConfig = {
     },
   },
 
-  /** Primary nav — topics. Rendered left, next to the brand. */
+  /** Primary nav - topics. Rendered left, next to the brand. */
   nav: [
     { href: "/services", label: "Services" },
     { href: "/about", label: "About" },
   ],
 
   /**
-   * Audience switch, not a topic — so it sits right, with the theme toggle,
+   * Audience switch, not a topic - so it sits right, with the theme toggle,
    * rather than among the primary nav items. `shortLabel` is what renders
    * below the `sm` breakpoint, where the full label would push the theme
    * toggle past the gutter.

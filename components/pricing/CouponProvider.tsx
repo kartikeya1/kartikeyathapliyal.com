@@ -37,7 +37,7 @@ export const useCoupon = () => useContext(Ctx);
  * One message for every failure mode, deliberately.
  *
  * A visitor can't act differently on "expired" versus "never existed"
- * versus "the sheet was unreachable" — in all three cases the outcome is
+ * versus "the sheet was unreachable" - in all three cases the outcome is
  * the same and the advice is the same. Collapsing them also avoids
  * confirming that a code exists but is switched off, which would otherwise
  * let someone enumerate retired codes.
@@ -65,10 +65,10 @@ export function CouponProvider({ children }: { children: React.ReactNode }) {
         // Storage blocked; nothing to clean up.
       }
       if (result.reason === "unavailable") {
-        // Not the visitor's fault — surfaced only here so a sheet outage is
+        // Not the visitor's fault - surfaced only here so a sheet outage is
         // diagnosable without showing them a different message.
         console.warn(
-          "[coupon] lookup failed — the coupon sheet was unreachable or malformed. Check that it is still shared as 'Anyone with the link — Viewer'.",
+          "[coupon] lookup failed - the coupon sheet was unreachable or malformed. Check that it is still shared as 'Anyone with the link - Viewer'.",
         );
       }
       setStatus({ state: "error", message: NOT_FOUND });
@@ -80,7 +80,7 @@ export function CouponProvider({ children }: { children: React.ReactNode }) {
     try {
       sessionStorage.setItem(STORAGE_KEY, JSON.stringify(result.coupon));
     } catch {
-      // Storage blocked — the coupon just won't survive navigation.
+      // Storage blocked - the coupon just won't survive navigation.
     }
   }, []);
 
@@ -95,7 +95,7 @@ export function CouponProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
-    // A `?code=` in the URL wins over a stored one — that's how an ad or a
+    // A `?code=` in the URL wins over a stored one - that's how an ad or a
     // LinkedIn post hands someone a pre-applied discount. Read from
     // location.search rather than Next's searchParams: the server-side hook
     // would opt this route out of static rendering and fail check-static.
@@ -107,7 +107,7 @@ export function CouponProvider({ children }: { children: React.ReactNode }) {
     }
 
     if (fromUrl) {
-      // Re-validated against the sheet, never trusted from the URL — so a
+      // Re-validated against the sheet, never trusted from the URL - so a
       // retired code in an old ad stops working the moment it's deactivated.
       void apply(fromUrl);
       return;
@@ -122,7 +122,7 @@ export function CouponProvider({ children }: { children: React.ReactNode }) {
         setStatus({ state: "applied", coupon: parsed });
       }
     } catch {
-      // Corrupt entry — ignore it and start clean.
+      // Corrupt entry - ignore it and start clean.
     }
   }, [apply]);
 

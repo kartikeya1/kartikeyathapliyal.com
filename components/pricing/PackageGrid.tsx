@@ -7,7 +7,7 @@ export function PackageGrid({
 }: {
   packages: readonly ConsultingPackage[];
   /**
-   * A real h2, not just a styled label — the page's h1 is always the only
+   * A real h2, not just a styled label - the page's h1 is always the only
    * heading above this grid, and each card is an h3, so without one here
    * the heading order skips a level (caught by Lighthouse's heading-order
    * audit on /for-individuals).

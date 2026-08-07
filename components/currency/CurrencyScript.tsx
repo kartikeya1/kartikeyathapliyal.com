@@ -1,6 +1,6 @@
 /**
  * Sets `data-currency` on <html> before first paint, exactly like
- * ThemeScript — an explicit choice wins, otherwise the timezone decides.
+ * ThemeScript - an explicit choice wins, otherwise the timezone decides.
  *
  * Visibility is then pure CSS, so both currencies ship in the static HTML
  * and the correct one is showing before hydration. That is what avoids both

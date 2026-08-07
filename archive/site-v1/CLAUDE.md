@@ -1,4 +1,4 @@
-# CLAUDE.md — how to work on this site
+# CLAUDE.md - how to work on this site
 
 Personal site of Kartikeya Thapliyal (product manager). Next.js App Router,
 fully static, dark-mode only, deployed on Vercel (auto-deploys on push to
@@ -8,7 +8,7 @@ fully static, dark-mode only, deployed on Vercel (auto-deploys on push to
 
 **Content drives everything; code is a dumb renderer.** Routine updates
 (new project, edited copy, changed link) touch only `content/` and `lib/site.ts`.
-If you are editing a component to change words or URLs, stop — you are in the
+If you are editing a component to change words or URLs, stop - you are in the
 wrong file.
 
 ## Where things live
@@ -38,11 +38,11 @@ before touching any `.mdx` file.
   route to `app/sitemap.ts`.
 - **New MDX component**: build it in `components/mdx/`, register it in
   `components/mdx/mdx-components.tsx`, then use it in content. Never invent a
-  component in MDX without registering it — the build fails.
+  component in MDX without registering it - the build fails.
 
 ## The "At a glance" feature (added July 2026)
 
-Every project can carry `highlights:` in frontmatter — 3–4 scannable facts
+Every project can carry `highlights:` in frontmatter - 3-4 scannable facts
 rendered as an accent-dotted list under the Role/Timeframe/Status strip on
 `/work/<slug>`. Purpose: hiring managers and recruiters get the substance
 without reading 600 words of prose.
@@ -56,17 +56,17 @@ without reading 600 words of prose.
 ## Design constraints (do not "improve")
 
 - Dark only, single accent `#d9926c`, subtle borders, generous whitespace.
-  All values are tokens in `app/globals.css` — change tokens, never inline hex.
+  All values are tokens in `app/globals.css` - change tokens, never inline hex.
 - Do not redesign layouts, typography scale, or animation behavior. The owner
   has explicitly asked that the look stay as-is; new features must reuse the
   existing patterns (mono uppercase eyebrows, border-y meta strips, `bg-card`
-  asides — see `app/work/[slug]/page.tsx` for the vocabulary).
+  asides - see `app/work/[slug]/page.tsx` for the vocabulary).
 - `components/motion/reveal.tsx` is the only animation primitive; it respects
   reduced motion. Reuse it, don't add new motion.
 
 ## MDX gotchas (these break the build)
 
-- No raw `{` `}` `<` `>` in prose. Comments are `{/* like this */}` — HTML
+- No raw `{` `}` `<` `>` in prose. Comments are `{/* like this */}` - HTML
   comments (`<!-- -->`) fail.
 - Only `<Placeholder label aspect caption />` is available in MDX
   (`aspect`: `video` | `wide` | `square`).
@@ -78,7 +78,7 @@ without reading 600 words of prose.
 
 Quiet, first-person, concrete, honest about limits. Past tense for smallcase
 work (employment ended July 2026). No buzzwords, no exclamation marks, and
-**never invent metrics** — where a real number is missing, leave a
+**never invent metrics** - where a real number is missing, leave a
 `{/* TODO: add real metric */}` comment instead.
 
 ## Known open items
@@ -95,7 +95,7 @@ Keep PENDING.md updated as items are finished. Quick summary below:
 - **Booking link**: `site.booking` is `null`; wire a Cal.com-style URL when it
   exists (home page "Book Consultation" currently goes to /contact).
 - **From Ambiguity to Launch** (`content/projects/from-ambiguity-to-launch/`)
-  is a template case study — its `{/* TODO */}` comments mark where a real
+  is a template case study - its `{/* TODO */}` comments mark where a real
   project's specifics belong before it can be considered finished.
 - **Blog**: `content/writing/` is empty; first post needs a
   `/thinking/[slug]` route (mirror `app/work/[slug]/page.tsx`).
@@ -104,10 +104,10 @@ Keep PENDING.md updated as items are finished. Quick summary below:
 
 ```bash
 npm run dev     # local dev, http://localhost:3000
-npm run build   # static production build — MUST pass before any push
+npm run build   # static production build - MUST pass before any push
 npm run lint    # eslint
 ```
 
 Before pushing: run `npm run build`, and spot-check `/`, `/work`, one project
 page, and `/resume`. Push to `main` only when the owner has approved the local
-work — Vercel deploys every push immediately.
+work - Vercel deploys every push immediately.

@@ -5,7 +5,7 @@ import { cn } from "@/lib/cn";
  * The site's only call-to-action element.
  *
  * `variant="primary"` emits `data-cta="primary"`, which
- * `scripts/check-config.mjs` counts — at most one per page, and none at all
+ * `scripts/check-config.mjs` counts - at most one per page, and none at all
  * in `components/layout/` so that site-wide chrome (the footer) can never
  * silently double every page's primary action.
  *

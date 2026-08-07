@@ -1,10 +1,10 @@
 # kartikeyathapliyal.com
 
-Personal website of Kartikeya Thapliyal—a product manager's working notebook. Dark, quiet, content-driven. Fully static, deployed on Vercel, zero runtime dependencies.
+Personal website of Kartikeya Thapliyal-a product manager's working notebook. Dark, quiet, content-driven. Fully static, deployed on Vercel, zero runtime dependencies.
 
 **Live:** https://kartikeyathapliyalcom.vercel.app
 
-> Deploy notes: GitHub → Vercel auto-deploy **is connected** — pushing to `main`
+> Deploy notes: GitHub → Vercel auto-deploy **is connected** - pushing to `main`
 > triggers a production build (verified 2026-07-29). `vercel --prod --yes` still
 > works if you need to force a deploy. The only **public** URL is
 > `kartikeyathapliyalcom.vercel.app`; the project/branch aliases sit behind
@@ -18,25 +18,25 @@ Personal website of Kartikeya Thapliyal—a product manager's working notebook. 
 ### ✅ What's Built & Live
 
 **Core Pages:**
-- **Home** (`/`) — Hero with name + tagline, three action buttons (See My Work, Resume, Book Consultation), 6 featured projects in category order
-- **Work** (`/work`) — All 9 projects organized by capability (Platform Products, AI Lab, UX Explorations, Internal Tooling, Product Case Studies)
-- **Project Details** (`/work/[slug]`) — Template for each project: overview, problem, constraints, thinking, process, design, execution, outcome, learnings, prototype link
-- **Thinking** (`/thinking`) — Long-form essay on how the PM thinks (problem-solving, working with engineers, tradeoffs, ambiguity)
-- **Now** (`/now`) — Current focus (AI-native workflows, internal tooling, writing, learning) — meant to be updated monthly
-- **Resume** (`/resume`) — Two download buttons (India version, SEA version)
-- **Contact** (`/contact`) — Clean link list (email, LinkedIn, GitHub, X, Instagram)
-- **404** (`/not-found`) — Friendly not-found page
+- **Home** (`/`) - Hero with name + tagline, three action buttons (See My Work, Resume, Book Consultation), 6 featured projects in category order
+- **Work** (`/work`) - All 9 projects organized by capability (Platform Products, AI Lab, UX Explorations, Internal Tooling, Product Case Studies)
+- **Project Details** (`/work/[slug]`) - Template for each project: overview, problem, constraints, thinking, process, design, execution, outcome, learnings, prototype link
+- **Thinking** (`/thinking`) - Long-form essay on how the PM thinks (problem-solving, working with engineers, tradeoffs, ambiguity)
+- **Now** (`/now`) - Current focus (AI-native workflows, internal tooling, writing, learning) - meant to be updated monthly
+- **Resume** (`/resume`) - Two download buttons (India version, SEA version)
+- **Contact** (`/contact`) - Clean link list (email, LinkedIn, GitHub, X, Instagram)
+- **404** (`/not-found`) - Friendly not-found page
 
 **9 Project Case Studies (Complete, Awaiting Final Polish):**
-1. **Broker Distribution Platform** (Platform) — Designing platform primitives for multi-broker integration
-2. **Integration as a Product** (Platform) — Treating broker onboarding itself as a product
-3. **Waypoint** (Internal Tooling) — Deep-link platform for authenticated user journeys
-4. **Spec Copilot** (AI Lab) — LLM-assisted spec drafting from scattered context
-5. **Prototype-First Product Development** (AI Lab) — Collapsing the gap between design and code
-6. **Signal from Noise** (AI Lab) — Mining qualitative feedback at scale with evidence trails
-7. **Onboarding, Without the Fog** (UX) — Resequencing investor onboarding around comprehension
-8. **A Calmer Portfolio** (UX) — Redesigning portfolio review around decisions, not stimulation
-9. **From Ambiguity to Launch** (Case Study) — Template: one-sentence problem to shipped product
+1. **Broker Distribution Platform** (Platform) - Designing platform primitives for multi-broker integration
+2. **Integration as a Product** (Platform) - Treating broker onboarding itself as a product
+3. **Waypoint** (Internal Tooling) - Deep-link platform for authenticated user journeys
+4. **Spec Copilot** (AI Lab) - LLM-assisted spec drafting from scattered context
+5. **Prototype-First Product Development** (AI Lab) - Collapsing the gap between design and code
+6. **Signal from Noise** (AI Lab) - Mining qualitative feedback at scale with evidence trails
+7. **Onboarding, Without the Fog** (UX) - Resequencing investor onboarding around comprehension
+8. **A Calmer Portfolio** (UX) - Redesigning portfolio review around decisions, not stimulation
+9. **From Ambiguity to Launch** (Case Study) - Template: one-sentence problem to shipped product
 
 **Design System:**
 - Dark mode only (no light mode)
@@ -48,11 +48,11 @@ Personal website of Kartikeya Thapliyal—a product manager's working notebook. 
 - Responsive: full desktop experience, mobile optimized nav ("KT" on mobile, full name on desktop)
 
 **SEO & Meta:**
-- `robots.txt` — allows all, points to sitemap
-- `sitemap.xml` — all 22 routes with correct priorities (home 1.0, pages 0.7, projects 0.6)
-- Open Graph image — dynamically generated (1200×630)
-- JSON-LD Person schema — searchable structured data
-- Favicon — SVG with name and dot accent
+- `robots.txt` - allows all, points to sitemap
+- `sitemap.xml` - all 22 routes with correct priorities (home 1.0, pages 0.7, projects 0.6)
+- Open Graph image - dynamically generated (1200×630)
+- JSON-LD Person schema - searchable structured data
+- Favicon - SVG with name and dot accent
 
 **Deployment:**
 - Fully static (all 22 routes prerendered at build time)
@@ -70,21 +70,21 @@ Personal website of Kartikeya Thapliyal—a product manager's working notebook. 
 
 ---
 
-## 🔄 Previously Pending — Now Done (July 2026)
+## 🔄 Previously Pending - Now Done (July 2026)
 
 The three-phase content workflow that was killed mid-flight has been completed:
 
-- **Critique + revise pass** — all project case studies and fixed pages
+- **Critique + revise pass** - all project case studies and fixed pages
   reviewed for MDX syntax, frontmatter schema, voice consistency, invented
   metrics, and cross-file redundancy; edits applied.
-- **Prototype placeholders resolved** — all `{{VERCEL_PROJECT_*}}` and
+- **Prototype placeholders resolved** - all `{{VERCEL_PROJECT_*}}` and
   `{{BROKER_PLATFORM_URL}}` values replaced with live deployment URLs, or the
   `prototype` block removed where no public prototype can exist (Waypoint was
   internal; the two UX concepts have no deployed build).
-- **"At a glance" highlights** — every project now carries a `highlights:`
+- **"At a glance" highlights** - every project now carries a `highlights:`
   frontmatter block rendered as a scannable facts list on its page, so
   recruiters get the substance without reading the full prose.
-- **Resume page fallback** — resume URLs are `null` in `lib/site.ts` until
+- **Resume page fallback** - resume URLs are `null` in `lib/site.ts` until
   real PDFs exist; the page shows a "Request by email" button instead of a
   broken download.
 
@@ -116,8 +116,8 @@ kartikeyathapliyal.com/
 │   │   ├── spec-copilot/index.mdx
 │   │   └── waypoint/index.mdx
 │   ├── writing/                # FUTURE BLOG (empty, awaiting first post)
-│   ├── thinking.mdx            # /thinking page — the philosophy essay
-│   ├── now.mdx                 # /now page — current focus
+│   ├── thinking.mdx            # /thinking page - the philosophy essay
+│   ├── now.mdx                 # /now page - current focus
 │   └── README.md               # Authoring guide for content
 │
 ├── lib/
@@ -165,7 +165,7 @@ kartikeyathapliyal.com/
 
 ### Configuration Entry Points (No Code Editing Needed)
 
-#### 1️⃣ **lib/site.ts** — The Single Source of Truth
+#### 1️⃣ **lib/site.ts** - The Single Source of Truth
 
 All site-wide metadata, links, and URLs live here. This is the **only file an AI should edit for config**.
 
@@ -179,7 +179,7 @@ export const site = {
   previously: {
     role: "Product Manager II",
     company: "smallcase",
-    period: "Aug 2023 – Jul 2026",  // 👈 Update employment dates
+    period: "Aug 2023 - Jul 2026",  // 👈 Update employment dates
   },
   links: {
     linkedin: "https://www.linkedin.com/in/kartikeyathapliyal",  // 👈 Real now
@@ -205,21 +205,21 @@ export const navigation = [
 ```
 
 **What to edit here:**
-- `tagline` — short one-liner on home hero
-- `description` — meta tag, appears in social shares
-- `previously.*` — employment history (role, company, dates)
-- `links.*` — all social/contact URLs
-- `resumes.*` — PDF URLs when they exist
-- `booking` — Cal.com or similar when available
+- `tagline` - short one-liner on home hero
+- `description` - meta tag, appears in social shares
+- `previously.*` - employment history (role, company, dates)
+- `links.*` - all social/contact URLs
+- `resumes.*` - PDF URLs when they exist
+- `booking` - Cal.com or similar when available
 
 **Where it's used:**
-- `app/layout.tsx` — feeds into metadata, JSON-LD
-- `app/page.tsx` — hero section, action buttons
-- `app/contact/page.tsx` — contact links list
-- `app/resume/page.tsx` — download buttons
+- `app/layout.tsx` - feeds into metadata, JSON-LD
+- `app/page.tsx` - hero section, action buttons
+- `app/contact/page.tsx` - contact links list
+- `app/resume/page.tsx` - download buttons
 - Every page's `<meta>` tags and schema
 
-#### 2️⃣ **lib/categories.ts** — Work Section Order
+#### 2️⃣ **lib/categories.ts** - Work Section Order
 
 Defines the order projects appear on `/work` and the category intros.
 
@@ -240,11 +240,11 @@ export const categories: Category[] = [
 ```
 
 **What to edit here:**
-- `title` — section heading on /work
-- `intro` — paragraph explaining the category
+- `title` - section heading on /work
+- `intro` - paragraph explaining the category
 - Order in the array = order on /work and home featured grid
 
-#### 3️⃣ **app/globals.css** — Design Tokens
+#### 3️⃣ **app/globals.css** - Design Tokens
 
 All colors, fonts, spacing live in CSS custom properties.
 
@@ -263,7 +263,7 @@ All colors, fonts, spacing live in CSS custom properties.
 - Spacing scale (radius, gaps)
 - All CSS custom properties feed into Tailwind, so changes ripple everywhere
 
-**Do NOT edit** component files (app/page.tsx, components/) to change colors — always go through tokens.
+**Do NOT edit** component files (app/page.tsx, components/) to change colors - always go through tokens.
 
 ### Content Entry Points (Where to Add/Edit)
 
@@ -278,7 +278,7 @@ All colors, fonts, spacing live in CSS custom properties.
    summary: "One sentence shown on cards."
    category: "platform"  # or "ai-lab", "ux", "internal-tooling", "case-study"
    role: "Product Manager"
-   timeframe: "2024 — 2025"
+   timeframe: "2024 - 2025"
    status: "Shipped"  # or "Prototype", "Exploration", "Concept"
    featured: true  # or false (only 6 featured appear on home)
    order: 1  # sort order within category (lower = earlier)
@@ -297,8 +297,8 @@ All colors, fonts, spacing live in CSS custom properties.
 - **Now page** → `content/now.mdx` (update `lastUpdated: "July 2026"` when you edit)
 - **Any project** → `content/projects/<slug>/index.mdx`
 
-**MDX syntax rules (CRITICAL — breaking these breaks the build):**
-- **No raw `{}` or `<>` in prose** — MDX parses them as code. Use Placeholder components or rephrase.
+**MDX syntax rules (CRITICAL - breaking these breaks the build):**
+- **No raw `{}` or `<>` in prose** - MDX parses them as code. Use Placeholder components or rephrase.
 - **Comments:** `{/* TODO: add real metric */}` on its own line
 - **Links:** no external links (to keep site self-contained for archive)
 - **Headings:** only H2 (`##`), never H1
@@ -337,7 +337,7 @@ git push origin main
 ```
 
 **Auto-deploy is wired up** (verified 2026-07-29). Pushing to `main` triggers a
-production Vercel build (~40s) — so `git push` is the deploy.
+production Vercel build (~40s) - so `git push` is the deploy.
 
 To force a deploy without a commit (or to ship an uncommitted local state):
 
@@ -384,7 +384,7 @@ npm run lint     # ESLint + TypeScript
 2. **Add the feature to code**, then use it in content
 3. **Example:** If projects need a video embed, add `<Video />` to `components/mdx/` and `mdx-components.ts`, then use it in MDX
 
-**Architecture invariant:** Code is dumb, content is smart. If you find yourself trying to push logic into content, you're doing it backwards — move the logic to code.
+**Architecture invariant:** Code is dumb, content is smart. If you find yourself trying to push logic into content, you're doing it backwards - move the logic to code.
 
 ---
 
@@ -392,17 +392,17 @@ npm run lint     # ESLint + TypeScript
 
 ### Outstanding Items
 
-- **Resume PDFs** — `lib/site.ts` → `resumes.india` / `resumes.sea` are `null`.
+- **Resume PDFs** - `lib/site.ts` → `resumes.india` / `resumes.sea` are `null`.
   Add PDFs to `public/` and set the paths; the Resume page shows a
   "Request by email" fallback until then.
-- **From Ambiguity to Launch** — still a template case study; its
+- **From Ambiguity to Launch** - still a template case study; its
   `{/* TODO */}` comments mark where a real project's specifics belong.
 
 ### Book Consultation Button
 
 Currently points to `/contact`. When a booking link (Cal.com, etc.) exists:
 1. Update `lib/site.ts` → `booking: "https://cal.com/..."`
-2. Update `app/page.tsx` — change `/contact` href to use `site.booking`
+2. Update `app/page.tsx` - change `/contact` href to use `site.booking`
 
 ### Future Blog
 

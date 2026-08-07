@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 /**
- * All hrefs below come from lib/site.ts — edit links there, not here.
+ * All hrefs below come from lib/site.ts - edit links there, not here.
  */
 const channels = [
   {
@@ -52,7 +52,7 @@ export default function ContactPage() {
         </h1>
         <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
           No forms, no scheduling maze. If something here resonated, write to
-          me — I read everything.
+          me - I read everything.
         </p>
       </Reveal>
 

@@ -3,7 +3,7 @@
  * is never a frame of the wrong theme.
  *
  * Must be rendered as the first child of <head>. The server deliberately emits
- * no `data-theme` attribute — this script adds it — which is why <html> carries
+ * no `data-theme` attribute - this script adds it - which is why <html> carries
  * `suppressHydrationWarning`.
  *
  * Hand-minified on purpose: this is a blocking script and every byte is in the

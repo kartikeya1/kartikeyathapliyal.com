@@ -1,7 +1,7 @@
 # Content guide
 
 Everything visible on this site is driven by the files in this folder.
-Pages are generated from content — adding things here requires **no code changes**.
+Pages are generated from content - adding things here requires **no code changes**.
 
 This file is written for two audiences: future me, and any AI assistant asked to
 "add project X" or "add another blog post". Follow it exactly and the site will
@@ -10,7 +10,7 @@ keep working.
 ## Add a project
 
 Create `content/projects/<slug>/index.mdx`. The slug becomes the URL:
-`/work/<slug>`. That's it — the Work page, the home page (if `featured`), the
+`/work/<slug>`. That's it - the Work page, the home page (if `featured`), the
 sitemap and the project page all pick it up automatically.
 
 Frontmatter:
@@ -21,14 +21,14 @@ title: "Project Name"
 summary: "One sentence shown on cards and the page header."
 category: "platform"     # platform | ai-lab | ux | internal-tooling | case-study
 role: "Product Manager"  # optional
-timeframe: "2024 — 2025" # optional
+timeframe: "2024 - 2025" # optional
 status: "Shipped"        # Shipped | Prototype | Exploration | Concept
 featured: false          # true = appears in Selected Work on the home page (max 6 shown)
 order: 3                 # sort order within its category (lower = earlier)
-highlights:              # optional — 3–4 scannable facts, rendered as "At a glance"
+highlights:              # optional - 3-4 scannable facts, rendered as "At a glance"
   - "One concrete fact a recruiter should not have to read 600 words to find"
-  - "Only claims already made in the body — never invent numbers here"
-prototype:               # optional — omit entirely if there is nothing to open
+  - "Only claims already made in the body - never invent numbers here"
+prototype:               # optional - omit entirely if there is nothing to open
   url: "https://..."
   label: "Open Prototype"
 ---
@@ -36,7 +36,7 @@ prototype:               # optional — omit entirely if there is nothing to ope
 
 `highlights` exists because hiring managers scan before they read. Write each
 as a standalone fact (what was built, the rule that shaped it, what changed).
-Pull them from the body — the block is a summary, not a second source of truth.
+Pull them from the body - the block is a summary, not a second source of truth.
 
 Body conventions:
 
@@ -48,7 +48,7 @@ Body conventions:
   (`aspect`: `video`, `wide`, or `square`). Replace with real images later by
   swapping the component for a standard markdown image.
 - MDX gotchas: never write raw `{` `}` `<` `>` in prose; comments are
-  `{/* like this */}` — HTML comments break the build.
+  `{/* like this */}` - HTML comments break the build.
 
 ## Add a category
 
@@ -65,18 +65,18 @@ Thinking page code).
 
 ## Edit fixed pages
 
-- `content/thinking.mdx` — the Thinking essay
-- `content/now.mdx` — the Now page (update `lastUpdated` when you touch it)
-- `lib/site.ts` — name, links, resume URLs, booking link
+- `content/thinking.mdx` - the Thinking essay
+- `content/now.mdx` - the Now page (update `lastUpdated` when you touch it)
+- `lib/site.ts` - name, links, resume URLs, booking link
 
 ## Still pending
 
 All prototype-URL placeholders are resolved. What remains:
 
-- **Resume PDFs** — `lib/site.ts` → `resumes.india` / `resumes.sea` are `null`;
+- **Resume PDFs** - `lib/site.ts` → `resumes.india` / `resumes.sea` are `null`;
   the Resume page shows a "Request by email" fallback until real PDF paths
   (files in `/public`) are set.
-- **Booking link** — `lib/site.ts` → `booking` is `null`; the home page's
+- **Booking link** - `lib/site.ts` → `booking` is `null`; the home page's
   "Book Consultation" button points to /contact until it exists.
-- **From Ambiguity to Launch** — still a template; its `{/* TODO */}` comments
+- **From Ambiguity to Launch** - still a template; its `{/* TODO */}` comments
   mark where a real project's specifics belong.

@@ -16,7 +16,7 @@ export function Nav() {
       >
         <Link
           href="/"
-          aria-label="Kartikeya Thapliyal — home"
+          aria-label="Kartikeya Thapliyal - home"
           className="whitespace-nowrap text-sm font-medium tracking-tight text-foreground transition-colors hover:text-muted"
         >
           <span aria-hidden="true" className="sm:hidden">

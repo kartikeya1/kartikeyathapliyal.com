@@ -9,8 +9,8 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — Product Manager`,
-    template: `%s — ${site.name}`,
+    default: `${site.name} - Product Manager`,
+    template: `%s - ${site.name}`,
   },
   description: site.description,
   keywords: [
@@ -26,13 +26,13 @@ export const metadata: Metadata = {
     type: "website",
     url: site.url,
     siteName: site.name,
-    title: `${site.name} — Product Manager`,
+    title: `${site.name} - Product Manager`,
     description: site.tagline,
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — Product Manager`,
+    title: `${site.name} - Product Manager`,
     description: site.tagline,
   },
   robots: {

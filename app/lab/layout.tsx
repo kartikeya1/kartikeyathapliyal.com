@@ -6,7 +6,7 @@ import { RegionProvider } from "@/components/region/RegionProvider";
  * excluded from the sitemap, and marked noindex on each page.
  *
  * RegionScript renders first so `data-region` is set on <html> before any
- * priced element below it is parsed — that ordering is the whole no-flash
+ * priced element below it is parsed - that ordering is the whole no-flash
  * guarantee, which is why it lives here rather than in a component that
  * might be moved further down a page.
  */
