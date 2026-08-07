@@ -72,7 +72,11 @@ export function RegionalPriceTag({
                 </span>
               )}
 
-              <span className={isDiscounted ? "text-price-cut" : undefined}>
+              {/* The kept price, not the given-up one — same reasoning as
+                  the value calculator's "you save" line: green reads as
+                  good news, red reads as loss. Only the struck-through
+                  original stays red, below. */}
+              <span className={isDiscounted ? "text-price-save" : undefined}>
                 <span data-figure>{config.format(final)}</span>
                 {perMonth && price > 0 && (
                   <span className="text-sm font-normal">/month</span>
@@ -80,7 +84,7 @@ export function RegionalPriceTag({
               </span>
 
               {isDiscounted && (
-                <span className="ml-2 align-middle text-xs font-normal text-price-cut">
+                <span className="ml-2 align-middle text-xs font-normal text-price-save">
                   {totalPercentOff(original, final)}% off
                 </span>
               )}
@@ -93,7 +97,7 @@ export function RegionalPriceTag({
                     <span data-figure>{config.format(originalRate)}</span>/hour
                   </span>
                 )}
-                <span className={isDiscounted ? "text-price-cut" : undefined}>
+                <span className={isDiscounted ? "text-price-save" : undefined}>
                   <span data-figure>{config.format(finalRate)}</span>/hour
                 </span>
               </span>
