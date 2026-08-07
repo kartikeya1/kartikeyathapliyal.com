@@ -31,23 +31,44 @@ export function CouponField() {
 
   return (
     <div data-box className="space-y-2">
+      {/*
+        Password managers ignore `autocomplete="off"` almost universally, and
+        Safari/iCloud Keychain classifies a lone text input inside a <form>
+        as the username step of a username-first login — which is why it was
+        offering to autofill passwords here.
+
+        No single attribute fixes this, so the standard mitigations are
+        layered: an explicit non-credential `name`, `autocomplete="off"` on
+        both the form and the field, and the per-vendor opt-outs. The form is
+        kept so Enter still submits.
+      */}
       <form
         onSubmit={(e) => {
           e.preventDefault();
           if (value.trim() && !checking) void apply(value);
         }}
+        autoComplete="off"
         className="flex flex-wrap items-center gap-2"
       >
-        <label htmlFor="coupon" className="sr-only">
+        <label htmlFor="coupon-code" className="sr-only">
           Coupon code
         </label>
         <input
-          id="coupon"
+          id="coupon-code"
+          name="coupon-code"
+          type="text"
+          inputMode="text"
           value={value}
           onChange={(e) => setValue(e.target.value)}
           placeholder="Coupon code"
           autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="characters"
           spellCheck={false}
+          data-1p-ignore
+          data-lpignore="true"
+          data-bwignore
+          data-form-type="other"
           className="rounded-[var(--radius)] border border-border bg-bg px-3 py-2 text-sm uppercase placeholder:normal-case placeholder:text-muted"
         />
         <button

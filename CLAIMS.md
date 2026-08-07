@@ -13,7 +13,7 @@ Every factual claim on the public site is listed here with its source in the pri
 
 **Renders as:** Lifted a legacy broker platform from ~75% to 99.99% uptime while migrating ~2.5M users, in about two sprints
 
-**Currently on:** app/about/page.tsx:63 · app/page.tsx:81
+**Currently on:** app/about/page.tsx:63 · app/page.tsx:82
 
 **Source:** whoami / WORK.md / §5 Signature Accomplishments / #2 (Kotak and Axis legacy decommissioning)
 
@@ -43,37 +43,65 @@ Every factual claim on the public site is listed here with its source in the pri
 
 _None. Safe to launch on this axis._
 
+## Testimonials
+
+Verbatim and name-attributed, from whoami/PROFESSIONAL_REPUTATION.md Part 6. That file records these were posted publicly by their authors as LinkedIn recommendations, which is what makes naming them safe. Edit or remove in `lib/testimonials.ts`.
+
+### `jatin-technical`  ·  Technical depth
+
+> One of the most technically astute Product Managers I've partnered with… Any engineering team would be lucky to work with him.
+
+— Jatin Manav, Senior Software Engineer, smallcase
+
+### `gayatri-critical`  ·  Under pressure
+
+> He's the person everyone turns to during critical situations because he consistently gets to the root of the problem and drives solutions that are scalable and avoid creating unnecessary technical or product debt.
+
+— Gayatri Joshi, Associate Product Manager, smallcase
+
+### `vaibhav-followthrough`  ·  Follow-through
+
+> He doesn't disappear after handing over requirements: he stays engaged through implementation, testing, launch, and post-release validation to ensure the outcome meets both product and technical expectations.
+
+— Vaibhav Bhandari, Software Engineer
+
+### `udit-execution`  ·  Execution
+
+> A rare combination of ownership, structured thinking, and relentless execution… he doesn't wait for direction or perfect conditions, he takes initiative, asks the right questions, and moves work forward with high agency.
+
+— Udit Khurana, Product & Strategy
+
 ## All claims
 
 ### `users-reached`  ·  scale  ·  verified 2026-08-06
 
 - **Published text:** 10M+ investors
 - **Source:** whoami / WORK.md / §5 Quantified Impact — Metrics Bank / Users reached
-- **Appears on:** app/about/page.tsx:43 · app/page.tsx:67
+- **Appears on:** app/about/page.tsx:43 · app/page.tsx:68
 
 ### `broker-count`  ·  scale  ·  verified 2026-08-06
 
 - **Published text:** 22 broker integrations
 - **Source:** whoami / WORK.md / §5 Quantified Impact — Metrics Bank / Market coverage / §19 corrected 28 Jul 2026 from a prior 19
-- **Appears on:** app/about/page.tsx:40 · app/page.tsx:66
+- **Appears on:** app/about/page.tsx:40 · app/page.tsx:67
 
 ### `market-coverage`  ·  scale  ·  verified 2026-08-06
 
 - **Published text:** ~90–95% of India's active retail broking accounts
 - **Source:** whoami / WORK.md / §5 Quantified Impact — Metrics Bank / Market coverage
-- **Appears on:** app/about/page.tsx:41 · app/page.tsx:66
+- **Appears on:** app/about/page.tsx:41 · app/page.tsx:67
 
 ### `uptime`  ·  metric  ·  verified 2026-08-06
 
 - **Published text:** 99.99% platform uptime
 - **Source:** whoami / WORK.md / §5 Quantified Impact — Metrics Bank / Platform uptime
-- **Appears on:** app/about/page.tsx:46 · app/page.tsx:68
+- **Appears on:** app/about/page.tsx:46 · app/page.tsx:69
 
 ### `orders-per-month`  ·  scale  ·  verified 2026-08-06
 
 - **Published text:** 2.5–4M orders a month
 - **Source:** whoami / WORK.md / §5 Quantified Impact — Metrics Bank / Orders processed
-- **Appears on:** app/about/page.tsx:44 · app/page.tsx:68
+- **Appears on:** app/about/page.tsx:44 · app/page.tsx:69
 
 ### `transaction-value`  ·  scale  ·  verified 2026-08-06
 
@@ -91,13 +119,13 @@ _None. Safe to launch on this axis._
 
 - **Published text:** SIP success rate from ~35% to ~85%
 - **Source:** whoami / WORK.md / §5 Quantified Impact — Metrics Bank / SIP success rate
-- **Appears on:** app/about/page.tsx:54 · app/page.tsx:72
+- **Appears on:** app/about/page.tsx:54 · app/page.tsx:73
 
 ### `error-rate`  ·  delta  ·  verified 2026-08-06
 
 - **Published text:** platform error rates from ~30% to ~7%
 - **Source:** whoami / WORK.md / §5 Quantified Impact — Metrics Bank / Platform error rate
-- **Appears on:** app/about/page.tsx:58 · app/page.tsx:75
+- **Appears on:** app/about/page.tsx:58 · app/page.tsx:76
 
 ### `support-tat`  ·  delta  ·  verified 2026-08-06
 
@@ -109,7 +137,7 @@ _None. Safe to launch on this axis._
 
 - **Published text:** mutual-fund onboarding conversion from ~60% to ~85%
 - **Source:** whoami / WORK.md / §5 Quantified Impact — Metrics Bank / AA + BAV
-- **Appears on:** app/about/page.tsx:69 · app/page.tsx:78
+- **Appears on:** app/about/page.tsx:69 · app/page.tsx:79
 
 ### `organic-activation`  ·  delta  ·  verified 2026-08-06
 
@@ -151,13 +179,13 @@ _None. Safe to launch on this axis._
 
 - **Published text:** ~7 years building tech products — 2 in engineering, 5 in product
 - **Source:** whoami / WORK.md / §1 Snapshot / REBRAND.md §4 / supersedes the stale '6.5 years' figure, per §19
-- **Appears on:** app/about/page.tsx:33 · app/page.tsx:64
+- **Appears on:** app/about/page.tsx:33 · app/page.tsx:65
 
 ### `employer-smallcase`  ·  entity  ·  verified 2026-08-06
 
 - **Published text:** smallcase, July 2021 to July 2026, most recently as Product Manager II
 - **Source:** whoami / WORK.md / §3 Career Timeline
-- **Appears on:** app/about/page.tsx:39 · app/page.tsx:65
+- **Appears on:** app/about/page.tsx:39 · app/page.tsx:66
 
 ### `engineering-background`  ·  entity  ·  verified 2026-08-06
 
@@ -169,7 +197,7 @@ _None. Safe to launch on this axis._
 
 - **Published text:** Lifted a legacy broker platform from ~75% to 99.99% uptime while migrating ~2.5M users, in about two sprints
 - **Source:** whoami / WORK.md / §5 Signature Accomplishments / #2 (Kotak and Axis legacy decommissioning)
-- **Appears on:** app/about/page.tsx:63 · app/page.tsx:81
+- **Appears on:** app/about/page.tsx:63 · app/page.tsx:82
 - **Flagged:** see "Needs your decision" above
 
 ### `cac`  ·  delta  ·  verified 2026-08-06
@@ -193,4 +221,5 @@ _None. Safe to launch on this axis._
 - Reserved (deliberately not placed): 5
 - Unused (should be placed or marked reserved): 0
 - Flagged for your decision: 3
+- Testimonials published: 4
 - Placeholders blocking launch: 0

@@ -231,7 +231,7 @@ export const packages: readonly ConsultingPackage[] = [
   },
   {
     id: "half-day-workshop",
-    name: "Half-day product workshop",
+    name: "Product workshop",
     category: "workshop",
     tier: "core",
     priceInr: 24000,
@@ -250,7 +250,7 @@ export const packages: readonly ConsultingPackage[] = [
   },
   {
     id: "full-day-workshop",
-    name: "Full-day strategy offsite",
+    name: "Strategy offsite",
     category: "workshop",
     tier: "core",
     priceInr: 40000,

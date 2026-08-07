@@ -66,6 +66,24 @@ export function readPlaceholderPackages() {
   return out;
 }
 
+/** Testimonials, so CLAIMS.md can list them for review alongside claims. */
+export function readTestimonials() {
+  const src = readFileSync(join(ROOT, "lib/testimonials.ts"), "utf8");
+  const out = [];
+  const start = src.indexOf("export const testimonials");
+  if (start === -1) return out;
+  for (const block of src.slice(start).split(/\n  \{\n/).slice(1)) {
+    const chunk = block.split(/\n  \},?/)[0];
+    const f = (k) => {
+      const m = chunk.match(new RegExp(`\\b${k}:\\s*\n?\\s*"((?:[^"\\\\]|\\\\.)*)"`, "s"));
+      return m ? m[1].replace(/\\"/g, '"') : undefined;
+    };
+    const id = f("id");
+    if (id) out.push({ id, quote: f("quote"), author: f("author"), role: f("role"), theme: f("theme") });
+  }
+  return out;
+}
+
 /** The phone number currently configured in lib/site.ts. */
 export function readSitePhone() {
   const src = readFileSync(join(ROOT, "lib/site.ts"), "utf8");

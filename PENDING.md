@@ -127,39 +127,21 @@ biggest missing element on the site.
 
 ## Needs Kartikeya's input
 
-### 1. Package renames — awaiting approval
+### 1. Package renames — APPROVED 2026-08-07
 
-Phase 2 sharpened 8 of the 12 business package names toward buyer outcomes.
-**Prices were not touched** — verified unchanged before and after.
+Approved as-is. No further action.
 
-| id | Original | Current |
-|---|---|---|
-| `intro-call` | Intro consultation call | Sanity-check a product decision |
-| `deep-dive-diagnostic` | Deep-dive diagnostic | Diagnose a broken product flow |
-| `strategy-sprint` | Product strategy / roadmap sprint | Reset a reactive roadmap |
-| `integration-readiness-sprint` | Fintech integration / API readiness sprint | Integration readiness audit |
-| `reliability-sprint` | Reliability / critical-journey sprint | Reliability and error-reduction program |
-| `pm-coaching` | PM coaching / team enablement | PM coaching and team enablement |
-| `half-day-workshop` | Half-day workshop / offsite | Half-day product workshop |
-| `full-day-workshop` | Full-day workshop / offsite | Full-day strategy offsite |
-
-Unchanged: `founder-advisory-retainer`, `fractional-product-lead`.
-
-**To resolve:** review `/services` and either approve, or name the specific
-ones to revert.
-
-### 2. Custom domain
+### 2. Custom domain — deferred by choice
 
 `siteConfig.url` points at `https://kartikeyathapliyalcom.vercel.app`.
 Attach `kartikeyathapliyal.com` in Vercel, then one config value changes and
 sitemap, robots, OG tags and JSON-LD all follow. Until then, link previews
 and search results show the `.vercel.app` host.
 
-### 3. Cal.com event for the individuals track
+### 3. Cal.com event for the individuals track — CLOSED
 
-`/for-individuals` currently books the same 30-minute event as the business
-track. If coaching should use its own event type, that's a new
-`siteConfig.booking` value only Kartikeya can create.
+Booking the same 30-minute slot is intentional. Not an open item; it was
+only ever a question.
 
 ### 4. FX refresh cadence — resolved as shipped, confirm you're OK with it
 
@@ -173,7 +155,9 @@ aggressive, `siteConfig.currency.fx.cacheHours` is the one value to change.
 Everything that cannot be done from this repo — no file or commit reaches
 it — is tracked in **[`DASHBOARD-CHECKLIST.md`](./DASHBOARD-CHECKLIST.md)**
 instead of here, so it isn't duplicated in two places. Currently open:
-uploading the GitHub social preview, and attaching the custom domain.
+uploading the GitHub social preview (image is now generated and committed
+at `.github/social-preview.png` — it just needs the one manual upload), and
+attaching the custom domain.
 
 ---
 
@@ -192,3 +176,44 @@ uploading the GitHub social preview, and attaching the custom domain.
   `lib/packages.ts` and verified by a programmatic diff against the original
   HTML before removal.
 - **Merge order** — Phases 0–4 are all on `main`.
+
+---
+
+## Deferred by choice
+
+### Pricing from a Google Sheet — scrapped, with one idea kept
+
+Moving pricing into a live-fetched sheet was **dropped**: prices are
+currently baked into the static HTML, and fetching them at runtime would
+mean Google indexes a pricing page with no prices on it.
+
+**The one idea worth keeping if this ever comes back:** fetch the sheet at
+*build time* and bake the result in as the SSR baseline, then re-fetch
+client-side and update if it changed. That preserves crawlable prices and
+no-JS correctness while still allowing hot-switching — the same pattern the
+live FX rate already uses. A committed fallback (today's `lib/packages.ts`)
+covers the sheet being unreachable mid-build.
+
+### Private sheets via service account — scrapped
+
+Not being pursued. For the record, a service account cannot work from a
+static frontend: the private key would ship in the JS bundle. The workable
+alternative was a Google Apps Script Web App, which can keep the sheet fully
+private and return only `{valid, discount}` for a submitted code. Noted in
+case coupon secrecy ever matters more than it does today.
+
+---
+
+## How to change a price
+
+Deliberately simple — this should never need a heavyweight model.
+
+1. Open `lib/packages.ts`.
+2. Edit `priceInr` (the price actually charged) and, if the plan is
+   discounted, `originalPriceInr` (the struck-through "was").
+   `hours` drives both hourly figures; rates are derived, never stored.
+   Leaving `originalPriceInr` out means the plan shows no discount.
+3. `npm run claims:build` — regenerates `CLAIMS.md`.
+4. `npm run build` — the gates will catch anything inconsistent.
+
+Nothing else references prices. There is no second place to update.

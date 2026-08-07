@@ -16,6 +16,7 @@ import {
   readClaims,
   readPlaceholderPackages,
   readSitePhone,
+  readTestimonials,
   sourceFiles,
   readSource,
 } from "./lib/read-data.mjs";
@@ -30,6 +31,7 @@ export function buildManifest() {
   const claims = readClaims();
   const placeholders = readPlaceholderPackages();
   const phone = readSitePhone();
+  const quotes = readTestimonials();
   const phoneIsPlaceholder = looksLikeDummyPhone(phone);
   const files = sourceFiles();
 
@@ -110,6 +112,22 @@ export function buildManifest() {
   }
   L.push("");
 
+  // ---- testimonials, for the same review pass ----
+  L.push("## Testimonials");
+  L.push("");
+  L.push(
+    "Verbatim and name-attributed, from whoami/PROFESSIONAL_REPUTATION.md Part 6. That file records these were posted publicly by their authors as LinkedIn recommendations, which is what makes naming them safe. Edit or remove in `lib/testimonials.ts`.",
+  );
+  L.push("");
+  for (const q of quotes) {
+    L.push(`### \`${q.id}\`  ·  ${q.theme}`);
+    L.push("");
+    L.push(`> ${q.quote}`);
+    L.push("");
+    L.push(`— ${q.author}, ${q.role}`);
+    L.push("");
+  }
+
   // ---- the full registry ----
   L.push("## All claims");
   L.push("");
@@ -133,6 +151,7 @@ export function buildManifest() {
   L.push(`- Reserved (deliberately not placed): ${reserved.length}`);
   L.push(`- Unused (should be placed or marked reserved): ${unused.length}`);
   L.push(`- Flagged for your decision: ${flagged.length}`);
+  L.push(`- Testimonials published: ${quotes.length}`);
   L.push(`- Placeholders blocking launch: ${placeholderRows.length}`);
   L.push("");
 
