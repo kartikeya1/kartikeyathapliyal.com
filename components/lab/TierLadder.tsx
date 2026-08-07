@@ -66,11 +66,28 @@ export function TierLadder() {
                   <div data-label className="text-muted">
                     {tier.optionsLabel}
                   </div>
+                  {/* items-start + shrink-0, not flex-wrap + items-baseline:
+                      at this column width (~280px in the 3-up grid) the
+                      longer option names don't fit beside their price on
+                      one line. flex-wrap made the whole row drop to a new
+                      line instead — price and name both flush left,
+                      justify-between doing nothing. This keeps them on one
+                      row: the name wraps *within its own column*
+                      (min-w-0 is what allows that instead of overflowing),
+                      the price never shrinks, and the two stay top-aligned
+                      as the price block gains lines from a discount. */}
                   <ul className="mt-2 space-y-2">
                     {options.map((pkg) => (
-                      <li key={pkg.id} className="flex flex-wrap items-baseline justify-between gap-x-3">
-                        <span className="text-sm text-text">{pkg.name}</span>
-                        <RegionalPriceTag pkg={pkg} compact />
+                      <li
+                        key={pkg.id}
+                        className="flex items-start justify-between gap-x-3"
+                      >
+                        <span className="min-w-0 text-sm text-text">
+                          {pkg.name}
+                        </span>
+                        <span className="shrink-0">
+                          <RegionalPriceTag pkg={pkg} compact />
+                        </span>
                       </li>
                     ))}
                   </ul>
