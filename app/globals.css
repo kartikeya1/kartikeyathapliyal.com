@@ -121,6 +121,23 @@ h3 {
   font-variant-numeric: tabular-nums;
 }
 
+/* --------------------------------------------------------- currency ---
+   Both currencies are server-rendered into the static HTML; CurrencyScript
+   sets [data-currency] before paint and CSS picks one. That keeps prices
+   correct with JavaScript disabled, correct for crawlers, and free of both
+   a flash and a hydration mismatch. Defaults to INR when no attribute is
+   set (JS off), which is why the usd rule is the one that needs an
+   explicit selector. */
+[data-cur="usd"] {
+  display: none;
+}
+[data-currency="usd"] [data-cur="usd"] {
+  display: inline;
+}
+[data-currency="usd"] [data-cur="inr"] {
+  display: none;
+}
+
 /* The only motion on the site. */
 a,
 button {

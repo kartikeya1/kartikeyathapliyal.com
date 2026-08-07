@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/content/PageHeader";
-import { PrimaryCta } from "@/components/content/PrimaryCta";
-import { ExternalLink } from "@/components/content/ExternalLink";
+import { CtaLink } from "@/components/content/CtaLink";
 import { Claim } from "@/components/content/Claim";
 import { siteConfig } from "@/lib/site";
 import { buildMetadata } from "@/lib/metadata";
@@ -21,7 +20,12 @@ export default function AboutPage() {
           title="About"
           dek="I turn integration and infrastructure chaos into systems that stay calm under load."
         />
-        <PrimaryCta href="/services">See how I work</PrimaryCta>
+        <div className="flex flex-wrap items-center gap-3">
+          <CtaLink href="/services">See how I work</CtaLink>
+          <CtaLink href={siteConfig.social.linkedin} variant="secondary" external>
+            Full profile on LinkedIn
+          </CtaLink>
+        </div>
       </div>
 
       <section data-box className="space-y-4 text-muted">
@@ -106,12 +110,6 @@ export default function AboutPage() {
           wealth, and adjacent platform work where integrations, reliability, or
           compliance are the hard part.
         </p>
-        <ExternalLink
-          href={siteConfig.social.linkedin}
-          className="inline-block text-sm underline text-muted hover:text-text"
-        >
-          Full profile on LinkedIn
-        </ExternalLink>
       </section>
     </div>
   );

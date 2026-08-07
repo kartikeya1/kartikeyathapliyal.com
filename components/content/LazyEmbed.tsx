@@ -5,7 +5,7 @@ import { ExternalLink } from "./ExternalLink";
 
 /**
  * Third-party embeds (Cal.com, Google Forms) would otherwise load on every
- * visit to /contact and hurt Lighthouse. This keeps them out of the page
+ * visit to /services and hurt Lighthouse. This keeps them out of the page
  * until the visitor asks for them, with a plain link-out for no-JS.
  *
  * The revealed content is passed as children rather than baked in here, so

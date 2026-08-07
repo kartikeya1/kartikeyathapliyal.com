@@ -18,7 +18,11 @@ export function PackageCard({ pkg }: { pkg: ConsultingPackage }) {
       <div data-label className="text-muted">{pkg.tag}</div>
       <h3 className="mt-1">{pkg.name}</h3>
       <div className="mt-3">
-        <PriceTag priceInr={pkg.priceInr} rateInrPerHour={pkg.rateInrPerHour} />
+        <PriceTag
+          priceInr={pkg.priceInr}
+          rateInrPerHour={pkg.rateInrPerHour}
+          priceTiers={pkg.priceTiers}
+        />
       </div>
       <p className="mt-4 text-sm text-muted">{pkg.summary}</p>
       <ul className="mt-3 space-y-1.5 text-sm text-muted">

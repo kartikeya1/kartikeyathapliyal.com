@@ -13,7 +13,7 @@ Every factual claim on the public site is listed here with its source in the pri
 
 **Renders as:** Lifted a legacy broker platform from ~75% to 99.99% uptime while migrating ~2.5M users, in about two sprints
 
-**Currently on:** app/about/page.tsx:59
+**Currently on:** app/about/page.tsx:63 · app/page.tsx:81
 
 **Source:** whoami / WORK.md / §5 Signature Accomplishments / #2 (Kotak and Axis legacy decommissioning)
 
@@ -41,11 +41,7 @@ Every factual claim on the public site is listed here with its source in the pri
 
 ## Placeholders — must be replaced before production
 
-| Item | Where | Status |
-| --- | --- | --- |
-| Resume review (`individuals-resume-review`) | lib/packages.ts · /for-individuals | Draft price |
-| Mock PM interview (`individuals-mock-interview`) | lib/packages.ts · /for-individuals | Draft price |
-| SDE→PM / APM→PM coaching (`individuals-career-coaching`) | lib/packages.ts · /for-individuals | Draft price |
+_None. Safe to launch on this axis._
 
 ## All claims
 
@@ -53,91 +49,91 @@ Every factual claim on the public site is listed here with its source in the pri
 
 - **Published text:** 10M+ investors
 - **Source:** whoami / WORK.md / §5 Quantified Impact — Metrics Bank / Users reached
-- **Appears on:** app/about/page.tsx:39 · app/page.tsx:21
+- **Appears on:** app/about/page.tsx:43 · app/page.tsx:67
 
 ### `broker-count`  ·  scale  ·  verified 2026-08-06
 
 - **Published text:** 22 broker integrations
 - **Source:** whoami / WORK.md / §5 Quantified Impact — Metrics Bank / Market coverage / §19 corrected 28 Jul 2026 from a prior 19
-- **Appears on:** app/about/page.tsx:36 · app/page.tsx:21
+- **Appears on:** app/about/page.tsx:40 · app/page.tsx:66
 
 ### `market-coverage`  ·  scale  ·  verified 2026-08-06
 
 - **Published text:** ~90–95% of India's active retail broking accounts
 - **Source:** whoami / WORK.md / §5 Quantified Impact — Metrics Bank / Market coverage
-- **Appears on:** app/about/page.tsx:37
+- **Appears on:** app/about/page.tsx:41 · app/page.tsx:66
 
 ### `uptime`  ·  metric  ·  verified 2026-08-06
 
 - **Published text:** 99.99% platform uptime
 - **Source:** whoami / WORK.md / §5 Quantified Impact — Metrics Bank / Platform uptime
-- **Appears on:** app/about/page.tsx:42 · app/page.tsx:22
+- **Appears on:** app/about/page.tsx:46 · app/page.tsx:68
 
 ### `orders-per-month`  ·  scale  ·  verified 2026-08-06
 
 - **Published text:** 2.5–4M orders a month
 - **Source:** whoami / WORK.md / §5 Quantified Impact — Metrics Bank / Orders processed
-- **Appears on:** app/about/page.tsx:40
+- **Appears on:** app/about/page.tsx:44 · app/page.tsx:68
 
 ### `transaction-value`  ·  scale  ·  verified 2026-08-06
 
 - **Published text:** ₹90,000 crore+ in cumulative transaction value
 - **Source:** whoami / WORK.md / §5 Quantified Impact — Metrics Bank / Cumulative transaction value
-- **Appears on:** app/about/page.tsx:41
+- **Appears on:** app/about/page.tsx:45
 
 ### `mf-aum`  ·  scale  ·  verified 2026-08-06
 
 - **Published text:** ~₹40,000 crore in mutual-fund AUM across 48 live AMCs
 - **Source:** whoami / WORK.md / §5 Quantified Impact — Metrics Bank / MF EOP backbone
-- **Appears on:** app/about/page.tsx:70
+- **Appears on:** app/about/page.tsx:74
 
 ### `sip-success`  ·  delta  ·  verified 2026-08-06
 
 - **Published text:** SIP success rate from ~35% to ~85%
 - **Source:** whoami / WORK.md / §5 Quantified Impact — Metrics Bank / SIP success rate
-- **Appears on:** app/about/page.tsx:50
+- **Appears on:** app/about/page.tsx:54 · app/page.tsx:72
 
 ### `error-rate`  ·  delta  ·  verified 2026-08-06
 
 - **Published text:** platform error rates from ~30% to ~7%
 - **Source:** whoami / WORK.md / §5 Quantified Impact — Metrics Bank / Platform error rate
-- **Appears on:** app/about/page.tsx:54
+- **Appears on:** app/about/page.tsx:58 · app/page.tsx:75
 
 ### `support-tat`  ·  delta  ·  verified 2026-08-06
 
 - **Published text:** support-ticket turnaround down ~85%, with 95% resolved in under 12 hours
 - **Source:** whoami / WORK.md / §5 Quantified Impact — Metrics Bank / Support-ticket TAT
-- **Appears on:** app/about/page.tsx:56
+- **Appears on:** app/about/page.tsx:60
 
 ### `mf-onboarding-conversion`  ·  delta  ·  verified 2026-08-06
 
 - **Published text:** mutual-fund onboarding conversion from ~60% to ~85%
 - **Source:** whoami / WORK.md / §5 Quantified Impact — Metrics Bank / AA + BAV
-- **Appears on:** app/about/page.tsx:65
+- **Appears on:** app/about/page.tsx:69 · app/page.tsx:78
 
 ### `organic-activation`  ·  delta  ·  verified 2026-08-06
 
 - **Published text:** organic new-user activation from ~30k to 100k+ a month at near-zero acquisition cost
 - **Source:** whoami / WORK.md / §5 Quantified Impact — Metrics Bank / Organic new-user activation
-- **Appears on:** app/about/page.tsx:73
+- **Appears on:** app/about/page.tsx:77
 
 ### `sbi-integration`  ·  entity  ·  verified 2026-08-06
 
 - **Published text:** Delivered SBI Securities as an end-to-end 0→1 bank-broker integration in ~4 sprints, now ~2.5M onboarded users
 - **Source:** whoami / WORK.md / §5 Signature Accomplishments / #4
-- **Appears on:** app/about/page.tsx:62
+- **Appears on:** app/about/page.tsx:66
 
 ### `amc-agreements`  ·  metric  ·  verified 2026-08-06
 
 - **Published text:** 48+ AMC legal agreements, including due diligence and commercial negotiation
 - **Source:** whoami / WORK.md / §5 Quantified Impact — Metrics Bank / AMC agreements
-- **Appears on:** app/about/page.tsx:89
+- **Appears on:** app/about/page.tsx:93
 
 ### `compliance-audits`  ·  metric  ·  verified 2026-08-06
 
 - **Published text:** InfoSec, AppSec, DPDPA and TPRM audits across four cycles a year
 - **Source:** whoami / WORK.md / §5 Quantified Impact — Metrics Bank / Compliance audits
-- **Appears on:** app/about/page.tsx:88
+- **Appears on:** app/about/page.tsx:92
 
 ### `prds`  ·  metric  ·  verified 2026-08-06
 
@@ -155,13 +151,13 @@ Every factual claim on the public site is listed here with its source in the pri
 
 - **Published text:** ~7 years building tech products — 2 in engineering, 5 in product
 - **Source:** whoami / WORK.md / §1 Snapshot / REBRAND.md §4 / supersedes the stale '6.5 years' figure, per §19
-- **Appears on:** app/about/page.tsx:29
+- **Appears on:** app/about/page.tsx:33 · app/page.tsx:64
 
 ### `employer-smallcase`  ·  entity  ·  verified 2026-08-06
 
 - **Published text:** smallcase, July 2021 to July 2026, most recently as Product Manager II
 - **Source:** whoami / WORK.md / §3 Career Timeline
-- **Appears on:** app/about/page.tsx:35
+- **Appears on:** app/about/page.tsx:39 · app/page.tsx:65
 
 ### `engineering-background`  ·  entity  ·  verified 2026-08-06
 
@@ -173,7 +169,7 @@ Every factual claim on the public site is listed here with its source in the pri
 
 - **Published text:** Lifted a legacy broker platform from ~75% to 99.99% uptime while migrating ~2.5M users, in about two sprints
 - **Source:** whoami / WORK.md / §5 Signature Accomplishments / #2 (Kotak and Axis legacy decommissioning)
-- **Appears on:** app/about/page.tsx:59
+- **Appears on:** app/about/page.tsx:63 · app/page.tsx:81
 - **Flagged:** see "Needs your decision" above
 
 ### `cac`  ·  delta  ·  verified 2026-08-06
@@ -197,4 +193,4 @@ Every factual claim on the public site is listed here with its source in the pri
 - Reserved (deliberately not placed): 5
 - Unused (should be placed or marked reserved): 0
 - Flagged for your decision: 3
-- Placeholders blocking launch: 3
+- Placeholders blocking launch: 0
